@@ -1,0 +1,30 @@
+\begin{itemize}
+\item Tweak and test the NewFeatures (including/based on Tags, Roles/Permissions, Queues) that are already implemented.
+\item Generalize data export and storage, including an XML-based content backend (see NewDesign)
+\item Streamline layout templates and stylesheets to create a new frontend\footnote{\url{http://en.wikipedia.org/wiki/XSL_Transformations}} (using some work done by Springer).
+\item Port content to CouchDB.
+\item Develop a unified bibliography management system for Noosphere.
+\item Document the API, with a command-line interface as a testbed.
+\end{itemize}
+
+\subsection*{On the use of Extensible Stylesheet Language}
+The object handling code also returns the objects as Perl
+objects or HTML strings. This object handling code will be
+changed so that all functions return XML representations
+of objects. This will allow for XSLT stylesheets to be
+used to convert the output from the backend into any
+format that the user prefers.
+
+\subsection*{On CouchDB}
+CouchDB will likely be the new database backend for
+Noosphere because of its document centric nature and
+built-in versioning support. As a small test case the new
+bibliography managing component of Noosphere will be
+written using a CouchDB database and likely completely in
+Python (Perl is still the core language for the upcoming
+HTTP/XML Interface for Noosphere).
+
+But... At first it seems that CouchDB is slow on insert
+and update. I am waiting to see how scalable the system is
+for very large object collections. I'm also interested in
+how long it takes to create an index for views.

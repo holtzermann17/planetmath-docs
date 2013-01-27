@@ -1,0 +1,47 @@
+\subsection*{Overview}
+An important aspect of a collaborative content-creation system is the authority model. The model should define who has permissions to add content, who can remove things already created, who can modify them, and how these facets of authority evolve with time.
+
+This document will explain what Noosphere's authority system is, how it works, and give some justification for this particular design.
+
+\subsection*{Ownership}
+The foundation of Noosphere's authority model is that of the object owner. At it's simplest level, this system is what you might expect: the person who creates an object becomes its owner, and basically has complete control over what kind of changes are made to the object. They are the gatekeeper for all changes to the object, and their judgement is assumed to be reasonable.
+
+The motivation for this system was to appeal to the natural instinct of valuing and perfecting that which one has created, especially when this work is on display for a large community. When a single name is associated with a work, the quality of that work becomes a statement about its creator. Hence, the ownership model encourages quality work on sites running Noosphere.
+
+However, if this were the end of the story, such sites would be in pretty poor shape. The problem is that we can never assume that an object is ``complete,'' and experience shows us that this is a reasonable assumption. This fact clashes with the observation that people in any (online) community come and go, their attention waxes and wanes, available free time varies considerably, and interest can in some cases quickly fade.
+
+Not only may a user create an object and never return to maintain it, but it is simply too much to ask that a user maintain their contribution to the site in perpetuity. A solution is needed that strikes a compromise between singular ownership and community involvement in order to account for a shifting user base (one can never step in the same river twice, similarly, a site running Noosphere is never the same between each visit.)
+
+\subsection*{The Adoption System}
+One solution to this problem is to follow the Wiki model and simply allow anyone to modify objects, completely overturning the ownership model. Clearly this solution brings to an end the system of ``the owner,'' and incentives to at least attempt to take full responsibility for an entry are somewhat diminished.
+
+In addition, this model is somewhat inappropriate for mathematical and scientific content. Requiring a correction to be filed in order to suggest changes creates a dialog around these proposed changes. This is good because there typically is a ``right'' answer in these fields, and it may not be obvious to the casual observer who might just happen by and think they see something wrong.
+
+Though the ability to roll back changes in Wiki can ``simulate'' the rejection of corrections in Noosphere, the dialog surrounding corrections is more appropriately formalize, preserved and packaged in Noosphere. For these reasons and others, it is widely believed that this is not a good authority model for sites developing mathematical or scientific content.
+
+The best compromise then seems to be allowing some form of shifting ownership, and this is in place currently in the form of the orphaning and adoption system.
+
+Under this system, objects with long-lived pending corrections become targets for adoption first, and then later orphaning. At 6 weeks, any other user can ``adopt'' one of these objects from the ``orphanage,'' at which point they become owner of the object. At 8 weeks of a pending correction, ownership of an object is completely removed, and the object is fully ``orphaned.''
+
+Of course, before either of these stages is reached, the owner of the entry is notified of the situation. Beginning at 2 weeks of a pending correction and continuing every week until orphaning, an owner is sent e-mail nags informing them of the situation.
+
+This system has been observed to work very well so far. It allows motivated and active users to take neglected objects ``under their wing,'' and the same incentives which come from singular ownership can continue.
+
+\subsection*{The ACL System}
+Strictly speaking, the ownership system, along with adoption, is ``complete'' in that it succeeds in providing for continuity of maintenance. However, it was realized after a while that things could be nicer. What seemed to be missing is the ability to make the decision to ``share'' responsibility for an entry between two or more people, effectively making the creator of an object a group-like entity. The singular owner system is nice as a starting point, but in the real world, multiple authors are common.
+
+This is somewhat different again from the Wiki model in that the author group still should be restricted. Thinking of the group of authors as a Noosphere ``user'' which acts as the owner of an object is a good approximation.
+
+This system has been implemented with ACLs, or \emph{Access Control Lists}. The starting point for any new object is to have one owner who is ``superuser'' with regards to that object, but this person can, if they choose, use ACLs to define other users or groups of system users who should also have edit access to the object.
+
+The access rules in Noosphere are simple. A single rule specification consists of read, write, and ACL flags, and a subject (which can be a user or a group). Or, instead of a subject, the rule can be ``default'' in which case it is applied to users for whom no other matching rule can be found (the user isn't explicitly mentioned in a rule, or isn't in a group that is mentioned). The ``read'' and ``write'' flags are fairly self-explanatory. The ``ACL'' flag simply determines whether or not the subject can also define ACL rules for the object. Granting a subject ``ACL'' permission is akin to making this subject an ``admin'' or ``editor'' (rather than author) of the object.
+
+These rules allow Noosphere to subsume the Wiki authority model where this is desired, since an owner can include a default access rule to make their objects world-writeable. But orphaning and adoption still applies as before, so this universal authoring status must be maintained by actual participation and upkeep.
+
+More importantly though is the added flexibility the ACL system affords the ownership model, generalizing the concept of ``owner'' to a group. It is anticipated that this will be commonly needed, as it is possible to begin an entry from one approach and with one facet of expertise, but later discover that there are many other facts to the concept which it would do better to have other ``experts'' write about. In this situation, changing ownership seems less reasonable than simply expanding the set of authors, to properly give all parties credit.
+
+\subsection*{Conclusion}
+Of course the above system is very unique and experimental, and time will tell how well it all works out. The authority system has always been evolving in Noosphere and it is not certain that it is finished evolving. Suggestions and criticisms are welcome as always. The authority system must, after all, conform to the way people do things, so we'd love to hear from you.
+
+
+

@@ -1,0 +1,450 @@
+
+\abstract{This could all be completely out of date, but
+  updated information of this sort will eventually be nice
+  to have.}
+
+\subsection*{Backup}
+
+Backups of planetmath should be made nightly, this will
+include the database, perl scripts, and additional content
+(papers, ebooks, images, etc). back up to a separate
+physical device (hard drive) on the server machine should
+be sufficient. in addition server will be on surge
+protector and ups so hardware failure should not be that
+big a problem.
+
+Fast ethernet (100Mbps) lan with a separate machine could
+be used later to create a working backup of the entire
+system nightly so downtime due to failure could be kept to
+a minimum, this is a consideration for the future.
+
+\subsubsection{Caching}
+
+Since we are only storing LaTeX and not the rendered pages
+with images,etc, we want to cache the rendered pages.  To
+do this, we take each hit as it comes in. the hits
+correspond to locations in the name space.  if this
+location exists on disk, in a literal filesystem path,
+then we serve up the page at this location. if it does not
+exist, we then query the database and generate the page.
+this is placed on disk, and then served to the user.  now
+subsequent hits to that namespace target will be served
+from the cache.
+
+if something has changed, for example, a theorem has been
+updated, it will be invalidated by simply deleting it from
+the filesystem cache.
+
+In this view the filesystem is simply the database for our
+cache.  we wont *directly* serve up files in this cache.
+tthe namespace heirarchy will still be directly visible to
+the user, but it will look something like this
+
+\verb|http://planetmath.org/getpage?target=Algebra.LinearAlgebra.CramersRule|
+
+this 'getpage' script will first look for this namespace
+item in the database.  if it doesn't exist, you get an
+'object not found'.  if it exists, it simply goes to our
+cacheroot on disk and looks for the file:
+
+\verb|$cacheroot/Algebra/LinearAlgebra/CramersRule|
+
+This cache could be stored on a compressed, loopback
+filesystem. look into this.
+
+\subsubsection*{classroom}
+
+the virtual classroom consists of lessons and problems cheifly. the classroom contains lesson objects in a serial fashion. the lessons have problems attached to them (in the same fashion as a proof hangs off a theorem)
+
+\subsubsection*{cookies}
+
+cookies will be used to track logged in users. only one cookie will ever be stored on the users machine. it will have the following information:
+
+ user name (plain text)
+ time first logged in + random garbage (md5 hash)
+
+when a user first logs in, a random string of 32 chars is created and appended to the date, an md5 hash of this value as well as the date is stored in the database in the users's record. A cookie is then put on the users computer.
+
+any time a users access our server and this cookie is displayed, a query will be made to the database to check the validity of the users identity (user is only valid if the hash matches). allow for an option whereby the users can specify an expiration date for their sessions (this can be stored in the database and used when the cookie is sent).
+
+if an invalid cookie is ever encountered, it is removed. this applies to cookies we do not recognize for security purposes.
+
+NOTE: simultaneous logins are impossible under this scenerio (think hard if this is a problem).
+
+according to www.cookiecentral.com a cookie with no expiration date is valid and used until the browser is closed (this may mean its never stored on disk which is good). also cookies with expiration dates are persistant across browser invocations.
+
+\subsubsection*{discussion}
+
+each object has two distinct discussion threads. one for comments on the object (questions, comments, related thoughts) and one strictly for posting problems with the object itself (corrections, modifications, errors). when viewing the object the user should be notified of any outstanding problems.
+
+when a message gets posted to the problem discussion, the author is notified via email (possibly configurable option) and is given some period of time to look into the problem. a cvs style bug tracking/modification scheme could be put in place to allow for versioning. if the user fails to handle the out standing problem in some period of time, they lose ownership of the object to the person who posted the correction. if necessary a moderator or trusted admin can deal with it personally.
+
+for the comment discussion, people will be forced to have an account to make posts. logged in users should have the option of rating the posts (via some simple scheme that addresses issues with spammers and quality control, look into how slashdot works). additionally, an option should exist for a user to "watch" a discussion on an object, where by the posted messages are forwarded on to his email address (look into automating the reply process so users can post to discussions via email, this will require security issues)
+
+\subsubsection*{filecache}
+
+A FileCache object is created by calling new FileCache(\$filename).  If the
+given file has been opened since last restart, and has not been modified
+since the last time it was opened, then an old copy of the file contents is
+returned.  This means that there is a stat call and a time call for each
+file request using a FileCache.  To obtain the contents, simply call the
+getText method on the object.  One can force a reload by calling the reload
+method on the object.  Otherwise a reload only occurs in the object
+constructor, and only if the modification time on the requested file is
+more recent than the last cache time.
+
+The point of this is so that files can be changed at runtime without
+requiring a restart of apache.  It's not a big deal, but neither was adding
+it.  Any stemplate can now be modified at runtime without any restart
+required.
+
+\subsubsection*{glossary}
+
+glossary
+
+contains, at the top level
+
+*) theorems - theorems have corollaaries, things that follow from them and require the theorem in the proof.  these are actually the same objects, in terms of data structures. - proof of the theorem
+*) definitions - results, these are interesting mathematical relationships that follow from the definition
+
+these objects have a specific classification which gives them a position in the heirarchy. this allows for definitions which are different in two different sub-disciplines 
+
+these glossary objects should also have types, literally telling what type of object it is (definition, theorem, etc).  these types would be numerically represented in the database.
+
+the glossary objects are definitions, theorems, and from these corollaries and proofs.  these are all essentially the same object (they have the same data fields and hence database schema), so they go in the same table.  however, we will never be doing a search on the LaTeX body of them. for this reason, we can put the LaTeX aside in an even lower level, "LaTeX object" table.
+
+this table will consist of nothing but uid's and a text field, indexed on the uid.  
+
+the glossary object table will be indexed on uid, object name, keywords, and perhaps other factors.
+
+\subsubsection*{language}
+
+think about providing info in multiple languages. this would be done by users who feel like doing a translation. additionally if users feel like submitting in a specific language (i.e., they only know spanish) we should provide for this.
+
+\subsection{latex}
+
+we will need to modify LaTeX2html fairly extensively. we need to add somtehing to interepret the following 
+
+\verb|\Planetmath{namespace.path.to.object}[embed]|
+\verb|\Planetmath{namespace.path.to.object}{link text}|
+
+additionally, every text environment will allow for latex. for example, not only will lessons and specific math objects allow for latex (defn, thm, crl, etc.) but so will messages. work on a latex2html renderer that looks good. this will need to be modular so we can just call a function and hand it some text that is the latex envi to be parsed and have it just spit out the html. should be callable from perl
+
+\subsection{newuser}
+
+we will follow kuro5hin's example with validating new users.  when a user applies for an account, we generate a unique hash based on their information and the time of submision (this gets stored in a table). we send them an email with this unique hash, and a URL back to our site where they verify they recieved the hash.  
+
+this procedure verifies the email address, so that should take care of most spammers.   
+
+getting a bunch of spam accounts then would require someone to own a large number of valid email accounts, perhaps their own machine.  this is doable, but more work...
+
+\subsection{object}
+
+an object has a place in the name space
+
+any object can have a discussion attached with it (set of messages, threaded) and corrections.
+
+all objects have a unique ID. this is because you can link to everything, and every link requires a unique ID to be resolved independently of the name space.
+
+\subsection{papers}
+
+category : publications
+
+papers will be able to be submitted by the authors or any planetmath user
+
+two submission methods:
+
+1 ) wget URL. if the URL to a copy of the paper, already online, is known, this can simply be given and a local wget or wget-like program on planetmath will download it
+
+2 ) ftp account.  users with space on planetmath, which is accessible by ftp, will be able to simply give a path relative to their web space to a file within it, presumeably a paper.
+
+\subsection{rank}
+
+we want to have a all-time-greats, ranking of all contributers. 
+
+\subsection{schema}
+
+these tables are owned by the pm user.
+
+note: these are raw schema! there are no indexes or
+specifiers of uniqueness, monotonicity, non-nullity, et
+cetera, at the current moment.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+ objid     & bigint       & not null           &  unique id of objects stored in cache \\
+ name      & varchar(256) &                    & namespace object name \\
+ valid     & integer      & not null default 0 & 1 if valid in cache, 0 if not  \\
+ build     & integer      & not null default 1 & 1 if object is being built, 0 if not \\
+\end{tabular}
+\end{center}
+\caption{cache}
+\end{table}
+
+Index: cache\_pkey
+
+the cache table is the structure necessary to maintain an accurate cache. it works like this: the table starts off empty. a user requests an object from browsing planetmath.  the request is served by a perl function which checks the cache table for the 'name'.  if the name is not present, it then calls a procedure which generates the page to the cache directory and proper sub directories (based on the namespace id string).  in the meantime, the entry in the database is still "0" for invalid, but "1" for build. this means all subsequent requests will end up waiting and rechecking the database every (some interval) for valid to go to "1", at which point the page will be served from the cache location.  when the page is doing being built, build goes to 0 and valid goes to 1.
+
+note: if the object is not in the table, this is essentially equivalent to a value of "0" for valid, except after the object goes valid, it should always have an entry in the table.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+ uid        & bigint       & autoinc            &  unique id of message  \\
+ objectid   & bigint       & not null           &  unique id of object owning message \\
+ objecttype & integer      & not null           &  type of object owning message \\
+ replyto    & bigint       &                    &  unique id of message this is a reply to \\
+ posted     & timestamp    & not null           &  time posted \\
+ userid     & bigint       & not null           &  unique id of user who posted \\
+ score      & integer      & default 0          &  score of message, for filtering \\
+ subject    & varchar(128) & not null default ''&  subject \\
+ type       & integer      & not null default 1 &  1 for discussion, 2 for correction \\
+ pending    & integer      & not null default 0 &  1 if pending, 0 if not? \\
+ body       & text         & not null default ''&  body 
+\end{tabular}
+\end{center}
+\caption{messages}
+\end{table}
+
+Indices: messages\_objectid\_idx,
+         messages\_uid\_idx,
+         messages\_userid\_idx	  
+
+
+this table is pretty self-explainatory, or at least intuitive.  a discussion should appear like this: a set of messages is pulled up that have the same objectid.  the top level should consist of messages with a blank replyto field, and under them goes the thread which is pulled from requests on the original set of messages having replyto field equal to the uid of the top-level message.  (implementation note: these are iterative sub-selects on the original set until every message is "attached" to a thread at some point, not sure how this could best be done efficiently). the messages are of course ordered by timestamp. 
+
+the "type" field would separate discussion messages from correction messages.  if type is set to correction, then the "pending" field is considered.  if there are pending corrections , then the object (the messages are attached to) could be flagged as having pending corrections.  when doing this, however, only top-level correction messages would be considered (any corrections with blank
+"replyto" fields).  
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+ uid       & bigint       &      &       unique id of object \\
+ type      & integer      &      &       object type  \\
+ userid    & bigint       &      &       unique id of creator of object \\
+ parentid  & bigint       &      &       unique id of parent object \\
+ next      & bigint       &      &       unique id of next object (serial objects~=lessons) \\
+ prev      & bigint       &      &       unique id of previous object \\
+ title     & varchar(128) &      &       title of object (freeform string) \\
+ dir       & varchar(128) &      &       namespace directory \\
+ name      & varchar(256) &      &       full namespace name (dir.name), not freeform  \\
+ created   & timestamp    &      &       timestamp of creation \\
+ data      & text         &      &       object data (LaTeX) 
+\end{tabular}
+\end{center}
+\caption{objects}
+\end{table}
+
+this is the core of the site.  it is pretty self-explainatory. one note: i separated 'dir' and 'name' because this facilitates doing a lookup of all objects in a particular namespace directory, it is simply a full string match.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+ type        & integer      & autoinc   type id (unique)  \\
+ name        & varchar(64)  & not null  type name \\
+ description & varchar(256) &           type description \\
+\end{tabular}
+\end{center}
+\caption{types}
+\end{table}
+				 
+this is a simple lookup table for the names of numeric types.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+ uid       & bigint    & not null              &  unique id of user logged in \\
+ hash      & char(32)  & not null              &  session hash \\
+ ltime     & timestamp & not null default 'now'&  timestamp of when logged in \\
+ atime     & timestamp & not null default 'now'&  timestamp of last access \\
+ ip        & char(15)  &                       &  ip address of client \\
+ hostname  & varchar(128) &                    &   hostname of client 
+\end{tabular}
+\end{center}
+\caption{sections}
+\end{table}
+
+this table allows us to keep track of who's logged in. i'm kind of sketchy on what we'll be doing here, so this will probably change.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+ uid       & bigint      & not null  &   user's unique id \\
+ objid     & bigint      & not null  &   the object id the action was performed on \\
+ actid     & integer     & not null  &   integer code for the action \\
+ data      & varchar(64) &           &   any data that went with the action \\
+ stamp     & timestamp   & not null  &   timestamp of the action 
+\end{tabular}
+\end{center}
+\caption{actions}
+\end{table}
+
+this table exists to keep track of user actions such as voting on objects (which may effect karma and similar count-based records).  
+
+you can sorta see how it would work based on the schema: say a user looks at a theorem object and likes what they see.  they could click on "yes" for "did you find this theorem useful?" , at which point some count for the object (or owner?) would be incremented, and an entry is made in this table.  now we have the info to refuse to let the user vote again, upon attempting to perform this same action (it will have the same actid) for the same object (same objid), we will see that there is already a matching record in the database.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+actid        & int          & default nextval('actids\_actid\_seq'::text) & action id \\
+descr        & varchar(128) & not null &  text description
+\end{tabular}
+\end{center}
+\caption{actids}
+\end{table}
+
+this is just a type lookup table for actions, so we can list them in a human-readble form.
+
+
+\begin{table}
+\begin{center}
+\begin{tabular}{llll}
+{\bf Attribute } & {\bf Type} & {\bf Modifier} & Notes \\
+uid          & bigint       & autoinc       & user's unique id \\
+joined       & timestamp    & default 'now' & timestamp of time joined PlanetMath \\
+username     & varchar(32)  & not null      & username (within PlanetMath, should be unique??) \\
+firstname    & varchar(64)  &               & real first name \\
+surname      & varchar(64)  &               & real surname \\
+email        & varchar(128) & not null      & email addy \\
+organization & varchar(128) &               & organization (university, etc) \\
+city         & varchar(128) &               & location junk \\
+state        & varchar(128) &               & \\
+country      & varchar(128) &               & \\
+password     & varchar(32)  &               & the user's password \\
+count        & integer      & default 00 0  & count of objects this user owns \\
+karma        & integer      & default 00 0  & karma value \\
+preferences  & varchar(256) &               & preferences string \\
+showinfo     & varchar(256) &               & showinfo string 
+\end{tabular}
+\end{center}
+\caption{users}
+\end{table}
+
+most of this is intuitive.  however, the last two require some explaining. they are just strings in the database, because i think this minimizes complexity and change required at the schema level in the future. the actual logical contents of the showinfo and prefs will be introduced at the script level.
+
+preferences, i envision to be a string formatted like:
+ 
+ "attribute1=val1,attribute2=val2,..."
+
+and showinfo:
+
+ "field1=threshold1,field2=threshold2,..."
+
+these would be parsed twice, once when the user joins the system, and once each time they log in.  at login time, these fields are parsed into variables in the user's cookie, and can be used by the site as the user moves through it.
+
+preferences are simply layout and other parameters. miscellaneous stuff goes here.  we can define these variables later, they require no changes in the database.
+
+showinfo i split off because it seems to be a logically separate thing, it contains the names of fields in the database like the location fields or the user's real name, paired with the karma level required for other users to be able to view them. this actually DOES depend on what fields are in the table, BUT adding or subtracting fields from the table wouldn't require any changes in the workings of this field.
+
+some examples:
+
+ preferences="frames=1,messagescore=-1,..."
+ showinfo="email=5,country=10,state=20,city=30,firstname=10,surname=100,..."
+
+both of these strings could be generated by the application script. showinfo, for example, could be made from a small text box next to each field the user enters data for, with comma seperated key values being left out ("don't ever show") if the user doesn't enter anything. i envision things like username and  email and country as having some default 
+values. 
+
+
+\subsubsection*{search}
+
+we want searching to primarily be done on keyword lists.  these will be supplied by the author of the object.
+
+but we also want to be able to find objects that mention something that was neglected in the keyword list. to do this, we want to preprocess the LaTeX of an object, and pull out all plaintext.  we can then run this through some more filters to pull out punctuation and weird characters, as well as trivial english words. (actually we just want to saerch on nouns, if we could somehow pull out verbs and prepositions and adjectives, that would be favourable).  this slimmed down text would then also be searched, weighted less than the keywords.
+
+we also want the ability to search on particular types (theorems, definitions, proofs).  
+
+consider two fields: keyword, and digest.  keyword is the raw keywords list as entered by the author, digest is described above as generated from the body text. 
+
+we do one search first, on the keyword field.  we use the facilities of the database to get numerical scores for these search results.  we hold these.  then do a search on the digest, and hold the numerical scores for these results.
+
+now, we adjust up the keyword scores, by perhaps some multiplicative factor, and maybe adjust down the digest scores.. then we take the union of those two selects, and add the scores for those results that appeared twice (the intersection).
+
+this should properly keep keywords as the most "important" search field, but not neglect hits from the body of an object.
+
+\subsubsection*{stemplates}
+
+The stemplates system is the successor template system to the original.
+All templates under this system reside under stemplate\_path.  Instead of
+referring to text to be expanded by a dollar sign and an identifier,
+pseudo-html tags are used instead:
+
+\verb|<PM:template identifier enctype>default value</PM:template>|
+
+This is a bit more verbose than the old way, but it solves a lot of
+problems.  The enctype attribute is optional, and so is the default
+value (which defaults to the empty string).  If the empty string is a
+suitable default, one can combine the opening and closing tags in the XML
+style, e.g.
+
+\verb|<PM:template identifier enctype/>|
+
+The enctype attribute specifies the type of encoding done to whatever value
+is substituted for the tag.  If it is not specified, its value is presumed to
+be html.  The supported values for enctype are:
+
+\begin{itemize}
+\item html - The default.  The value is passed through htmlescape
+\item htmlfull - The value is passed through htmlescape twice
+\item qhtml - The value is passed through htmlescape, and then all
+             double-quotes are converted to \verb|&quot|; (needed inside quoted
+             values for attributes of HTML tags)
+\item qhtmlfull - After qhtml encoding, the value is passed through
+                 htmlescape again
+\item query - The value is passed through urlescape
+\item raw - The value is substituted as-is
+\end{itemize}
+
+Thus, if the template is written correctly, you don't have to worry about
+proper encoding in the code.
+
+The interface to the new template system is through the new Template module,
+which implements an object of type Template.  To create a template object,
+call
+
+      my \$template = new Template(\$filename);
+
+This will load the template text from the given file (relative to
+stemplate\_path) into the object and return it.
+
+To associate a value with a template field, use the setKey method on a
+template object.  E.g.
+
+      \$template->setKey(\$key, \$value);
+
+One can also have the association made only if one doesn't already exist,
+by calling
+
+      \$template->setKeyIfUnset(\$key, \$value);
+
+One can also pass a hash (value, not reference) to the methods setKeys and
+setKeysIfUnset.  To unset a key, there is the unsetKey method, and to unset
+a list of keys, there is the unsetKeys method.
+
+To get the template object's text, with all the substitutions made, simply
+call the expand method on the object.  For keys that are unspecified (note,
+this is not the same as, say, \$template->setKey("emptyvalue", "");), the
+default value in the template (if any) is substituted.
+
+\subsubsection{taxonomy}
+
+http://www.ams.org/msc/
+http://www.math.niu.edu/~rusin/known-math/
+http://www.ams.org/mathweb/mi-classifications.html
+
+planetmath will be broken down into a taxonomy based on the ams's msc thing. these will be the leaves in the tree. high level encompasing topics will be constructed in a logical manner so that browsers can "explore" topics of math and find related information without knowing specific names.
+
+this taxonomy should be fixed on creation of planetmath. additionally, papers that are submitted for our online library, will be forced to fit into an ams msc thing and this will be used for creating refined searches over a broad range of thigns.
+
+\subsubsection{users}
+
+users should be required to have a unique name and valid email address, aditionally we may look into providing user space (http,ftp) and allowing for more information about the usre to be stored and queriable (specific access level allows for identification of users real name, profession, email address, etc..) in the worst case, all a browser should get is an alias.
+
+look into providing some form of one on one communication through the system so that email address are never actually revieled. this prevents spammers and ad companies from targeting our audience.

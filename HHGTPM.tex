@@ -1,0 +1,198 @@
+\documentclass[12pt,report]{memoir}
+\usepackage{mempatch}
+\chapterstyle{thatcher}
+
+\settrimmedsize{11in}{8.5in}{*}
+\settrims{0in}{0in}
+\settypeblocksize{9in}{6.5in}{*}
+\setlrmargins{1in}{*}{*}
+\setulmargins{1in}{*}{*}
+\setheadfoot{\onelineskip}{2\onelineskip}
+\setheaderspaces{*}{1.5\onelineskip}{*}
+
+\checkandfixthelayout
+
+\let\footruleskip\relax % for compatibility of memoir and fancyhdr
+\let\sl\ttfamily        % for compatibility of memoir and blindtext (silly, but it works)
+
+\let\tt\ttfamily
+\let\rm\rmfamily
+\let\sc\scshape
+\let\bf\bfseries
+\let\it\itshape
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\usepackage[usenames,dvipsnames]{color}
+\usepackage[colorlinks,urlcolor=black,linkcolor=black,citecolor=black]{hyperref}
+
+%% THINGS HERE
+\usepackage{ccicons}
+%% THINGS FROM PM AUTHORS:
+
+%\usepackage[OT2,T1]{fontenc}
+\usepackage[english]{babel}
+%\usepackage[latin1]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+%\usepackage{html}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+
+%
+\DeclareMathOperator{\Tr}{Tr} % needed as example
+\newcommand*{\BibTeX}{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\newcommand*{\Xy}{{\kern-.1em X\kern-.3em\lower.4ex\hbox{Y\kern-.15em}}}
+
+%\begin{htmlonly}
+\renewcommand*{\BibTeX}{Bib\TeX}
+\renewcommand*{\Xy}{Xy}
+%\end{htmlonly}
+
+%% LOADING LAST:
+\usepackage{memhfixc}
+
+\begin{document}
+
+\renewcommand{\abstract}[1]{\begin{center}\begin{quote}
+\emph{#1}
+\end{quote}\end{center}}
+
+\title{PlanetMath Documentation}
+\author{Joe Corneli\thanks{Often recycling work by others under the terms of \ccbysa.}}
+
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+\frontmatter
+
+\renewcommand{\cftchapterfont}{\scshape}
+\renewcommand{\cftchapterpagefont}{\scshape}
+
+\tableofcontents*
+\cleardoublepage
+
+\mainmatter
+
+\chapter{The PlanetMath FAQ}
+\input{PlanetMathFAQ.tex}
+
+\chapter{Community guidelines}
+
+\section{New User Guide}
+\input{NewUserGuide.tex}
+
+\section{PlanetMath Community Guidelines}
+\input{CommunityGuidelines.tex}
+
+\section{PM Rules of Compliance and Enforcement}
+\input{RulesOfEnforcement.tex}
+
+\section{Forum Policy}
+\input{ForumPolicy.tex}
+
+\chapter{Writing articles}
+
+\section{PlanetMath Content and Style Guide}
+\input{ContentAndStyleGuide.tex}
+
+\section{TeX Mathematical Formula Quick Reference}
+\input{MathFormulaQuickReference.tex}
+
+\section{Internationalization}
+\input{Internationalization.tex}
+
+\section{Graphics and PlanetMath}
+\input{Graphics.tex}
+
+\section{PlanetMath/Noosphere Scoring}
+\input{Scoring.tex}
+
+\section{PlanetMath Automatic Reference Linking}
+\input{AutomaticLinking.tex}
+
+\section{Controlling Linking}
+\input{ControllingLinking.tex}
+
+\section{Noosphere's Authority Model}
+\input{AuthorityModel.tex}
+
+\chapter{Nonprofit documentation/transparency}
+
+\abstract{This is based on a list created by Ray; see
+  below. There may be things to add to this list from
+  Joe's "transparency-enhancing" project from earlier in
+  2009, see for example
+  \url{http://aux.planetmath.org/doc/sponsor.html}.}
+
+\section{A half-page executive summary}
+\input{ExecutiveSummary.tex}
+
+\section{Vision, mission, and goals}
+\input{VissionMissionGoals.tex}
+
+\section{Contact information}
+\input{ContactInformation.tex}
+
+\section{Current personnel (board, administrators, staff, etc.)}
+\input{CurrentPersonnel.tex}
+
+\section{Membership and Subscriptions}
+\input{Membership.tex}
+
+\section{Donating to PlanetMath}
+\input{Donating.tex}
+
+\section{Finances and budget}
+\input{Finances.tex}
+
+\section{Current Committees and Policies}
+\input{Committees.tex}
+%\section{Content Committee Charter}
+%\input{ContentCommitteeCharter}
+
+\section{Current PlanetMath work plan}
+\input{CurrentWorkPlan.tex}
+
+\section{Governance and authority*}
+\section{Policies and procedures*}
+\section{Organizational roles and responsibilities*}
+\section{Member and user statistics*}
+\section{Foundational documents (articles of incorporation, bylaws, etc.)*}
+\section{Where you can find our annual reports, 990, and the like*}
+\section{Where you can find agendas and minutes of board meetings*}
+\section{Where you can find additional whitepapers*}
+
+\chapter{Noosphere developer documentation}
+
+\section{Noosphere Development Roadmap}
+\input{NoosphereDevelopmentRoadmap.tex}
+
+\section{Feature Requests}
+\input{FeatureRequests.tex}
+
+\section{Information from the noosphere SVN tree}
+\input{InformationFromNoosphereSVN.tex}
+
+\section{Information from Aaron's thesis*}
+\section{Information from the wiki*}
+
+
+\chapter{Creative Commons Attribution-ShareAlike License}
+
+\section{Human-readable summary}
+\input{CCHumanReadableSummary.tex}
+
+\section{Legal Code}
+\input{CCLegalCode.tex}
+
+\end{document}

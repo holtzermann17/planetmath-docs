@@ -1,0 +1,520 @@
+\subsection*{Before You Begin}
+We are working to make PlanetMath into a consistent, correct, and
+comprehensive, free mathematical resource.
+
+When we say ``free'', we are refering to \emph{freedom}, not price.
+The PlanetMath encyclopedia is released under the GNU Free
+Documentation License (FDL). Using this license for your work means that
+other people around the world will be able to copy and modify your
+contributions in ways you hadn't necessarily imagined.
+
+In order to be an effective PlanetMath contributor, you should be
+aware of the responsibilities you take on when contributing.
+
+One important responsibility is to only contribute your own writing,
+or other texts that you know you have a legal right to add. The last
+section of this document is about copyright, and it is important that
+you understand the issues presented there. The other sections of this
+document will help you understand the way the site works, and how to
+write good entries.
+
+One thing to bear in mind is that while we want our work to be
+consistent and correct, it is not expected that you get things perfect
+the first time. On the contrary, writing a correct and complete entry
+is an iterative process. We caution you against expecting to be
+precisely and exhaustively correct on your first (or second, or third)
+attempt! You should not be afraid of receiving corrections and
+suggestions from others, and in fact you should expect them.
+
+Do not expect to retain ``ownership'' of your entries if you will not
+have time to maintain them. There are plenty of people who will be
+willing to adopt abandoned entries. If you do not respond to
+corrections in a timely fashion, your entries will eventually be
+considered to have been abandoned, and they can then be adopted by
+someone else
+(for details see
+section ``The Adoption System'' in
+\htmladdnormallink{Noosphere's Authority Model}{http://planetmath.org/?op=getobj&from=collab&id=34}
+).
+
+Part of the benefit of PlanetMath is the collaborative nature of the
+project: math enthusiasts from all over the world want to share what
+they know, and learn through sharing and discussion. If you do not
+expect to learn and think you know it all beforehand, PlanetMath is
+probably not for you.
+
+\subsection*{Metadata}
+\textit{Metadata} is a word meaning ``data about data''. For our
+purposes, this means information about the main (\LaTeX) content of
+your entry. Much of this document is about metadata for PlanetMath
+entries. This includes titles, synonyms, defines (sub-definitions),
+type, keywords, and classification.
+
+To make your entry properly fit in with the rest of PlanetMath, it is
+important that you understand how to best write its metadata. This is
+not complicated, but perhaps not obvious to beginners, so read on to
+see how.
+
+
+\subsubsection*{Naming Your entry}
+There are a few entry naming conventions that have evolved so far
+which go a long way towards making PlanetMath a cohesive and
+consistent resource. Some of these are purely issues of style, but
+many have to do with the dynamics of linking between objects. Note that
+they also apply to other ``concept labels'' --- synonyms and defines.
+
+Here are the rules for naming your PlanetMath entries:
+
+\subsubsection{Capitalize for indexing}
+It is convention to capitalize your title as you would want it to appear in an index or list. Generally, this means that only proper nouns and adjectives derived from proper nouns are capitalized.
+
+\subsubsection{Do not use articles}
+Do not start entry titles with ``the'', ``a'', or ``an''. Articles add
+no useful information to your entry names.
+
+\paragraph{Examples.}
+\begin{description}
+\item[the binomial theorem]
+Wrong, should be ``binomial theorem''.
+\item[the bridges of Koenigsburg]
+Wrong, should be ``bridges of Koenigsburg''.
+\item[a proof of the binomial theorem] Wrong, should be ``proof of the
+binomial theorem'', or ``proof of binomial theorem'', or ``binomial
+theorem, proof of''.
+\end{description}
+Not only do we not want (for instance) a ton of entries appearing
+under "T/the ..." in the encyclopedia's index, we also do not want
+"the" to be hyperlinked in the body of the entries. (The same goes
+for other articles.)
+
+\subsubsection{Do not put subjects or sub-disciplines in titles}
+For homonyms (ambiguous terms like ``algebra'', ``domain'', or
+``complex''), it often seems appropriate to append a parenthesized
+``subject hint''. For example, one might think the smart thing to do
+is name an entry ``diagonalization (Cantor)'' to avoid conflation with
+the linear algebra sense of ``diagonalization''. However, the way this
+should officially be handled is to assign an appropriate subject
+classification to your ``diagonalization'' object.
+
+Adding a parenthesized ``subject hint'' to your title is acceptable
+provided the plain title is at least given as a synonym (and the entry
+is still properly classified.) You might want to do this with the
+encyclopedia index listing in mind (that is, it might be nice to see
+``diagonalization (linear algebra)'' in the index.)
+
+\paragraph{Example.}
+\begin{description}
+\item[diagonalization (linear algebra)] Usually wrong, should be
+``diagonalization'', and classified somewhere in MSC area 15 (linear
+and multilinear algebra)
+\end{description}
+
+\subsubsection*{Classification}
+You had a hint already of one reason why classification is important:
+homonyms abound. There are a large number of terms in mathematics that
+are ambiguous: you cannot tell from the term itself which concept is
+being referred to, and you need some sort of context (or semantic
+hint.) Classification serves this purpose well. In addition,
+classification allows entries to be browsed by subject, through a
+subject classification hierarchy.
+
+For classification, currently PlanetMath only supports MSC, the AMS
+Mathematical Subject Classification scheme. MSC is very widely used
+and is more or less exhaustive over known mathematics -- you probably
+will never run into an entry that can't be classified with MSC (at
+least to one level in the hierarchy.)
+
+The MSC takes some getting used to. In order to make things easier, we
+have set up a \htmladdnormallink{local copy}{http://aux.planetmath.org/msc}
+of the MSC which is hierarchically browseable and searchable, which
+is accessible from the menu.
+
+\subsubsection*{Types}
+There are a number of types which are available for describing what
+the mathematical form of your entry is. These are:
+\begin{itemize}
+\item Definition
+\item Theorem
+\item Conjecture
+\item Axiom
+\item Topic
+\item Biography
+\item Algorithm
+\item Data structure
+\item \textit{Proof}
+\item \textit{Result}
+\item \textit{Example}
+\item \textit{Derivation}
+\item \textit{Corollary}
+\item \textit{Application}
+\end{itemize}
+The entries in italics are meant to be attached to other entries. They
+do not show up in the encyclopedia index, so placing an entry under
+one of these categories has important practical as well as
+philosophical ramifications.
+
+An example of why types matter: a definition should not have proof,
+since definitions have no truth value -- but it may have a
+derivation. Hence, you cannot attach a proof to a definition
+(actually, you can, but it is discouraged.)
+
+A theorem may have a proof, and in fact it should be provided for a
+full acceptance of the theorem as a theorem. Hence, PlanetMath makes
+it easy for a proof to be attached to a theorem (and only a theorem.)
+As before, you actually can attach a theorem to anything, but doing so
+is less convenient and is discouraged.
+
+Examples are meant to be used everywhere. They allow some of the load
+to be taken off the primary entry author, by allowing the community of
+users to pedagogically enrich existing entries.
+
+The ``Conjecture'' type might be a little confusing to some. In terms
+of how the system treats conjectures, they are the same as
+theorems. That is, they are meant to have proofs attached to them, as
+well as results or corollaries. This makes sense, since a conjecture
+is basically treated as a yet-unproven theorem. However, when one
+looks at a topic like the Taniyama-Shimura conjecture (which has now
+been proven), its hard to decide which type is more
+appropriate. Proven conjectures may still be better left as
+conjectures by convention. The opposite situation is a conjecture
+which is considered a theorem before its time -- like Fermat's last
+theorem. Yet another situation might occur when it turns out a
+conjecture (like the Continuum Hypothesis) is unprovable (can only be
+used as an axiom). There is no single answer for these situations, you
+simply must take into account practical considerations (for instance,
+that conjectures won't show up in ``unproven theorems'') and
+convention on a case-by-case basis. Don't worry too much, however,
+about picking the absolute best type the first time around in such an
+ambiguous situation.
+
+\subsubsection*{Synonyms and Definitions}
+PlanetMath provides a ``synonym'' field for entries. The obvious
+things to put in here are alternate names for your entry. The
+not-so-obvious thing is that you should also be thinking of linking
+when you do this. That is, you should list all aliases for your entry
+that someone else might invoke in other entries, to faciliate
+automatic linking.
+
+You do not, however, need to make extra synonyms for variants of
+pluralization, possessiveness, or transmogrifying ``Blah, proof of''
+into ``proof of Blah''. \emph{These are done automatically by
+PlanetMath.}
+
+\paragraph{Examples.}
+{\bf title:} \emph{Euler's totient function}, {\bf synonym:}
+\emph{Euler totient function}. Wrong -- the synonym is just the
+nonpossessive of the title; leave that for the software to handle!
+
+{\bf title:} \emph{Cauchy-Schwarz inequality}, {\bf synonym:} \emph{Kantorovich's inequality}.
+Correct -- both names are used to refer to the same thing.
+
+{\bf title:} \emph{monotonic}, {\bf synonyms:} \emph{monotone,
+monotonically}. Correct -- we want all occurrences of ``monotonic'',
+``monotone'' and ``monotonically'' to link to the same object.
+
+{\bf title:} \emph{vector valued function}, {\bf synonyms:} \emph{vector-valued,
+vector-valued function, vector valued}. Correct -- we have to take care
+of variants in hyphenation as well as the particular set of words.
+
+In addition, there is a ``defines'' field which provides for
+``sub-definitions'' of your entry. This facility allows you to define
+some set of new concepts all at once in a single entry (for example,
+it might be better to define ``edge'' and ``vertex'' within a
+``graph'' entry, instead of separately). Each of these
+``sub-definition'' handles will be treated appropriate by PlanetMath's
+automatic linking when they are invoked in other entries (they will
+get hyperlinked, whereas multiple synonyms to the same entry will
+not.)
+
+Previously it was the case that ``synonyms'' were used to list these
+``sub-definition'' concept handles. This is no longer the case. The
+two types of handles have different ramifications for linking, and
+deserve to be separated.
+
+\paragraph{Examples.}
+\begin{itemize}
+\item An entry for ``graph'' may also define ``vertices'' and
+``edges'' and hence have ``vertices, edges'' as the ``defines''
+field.
+\item An entry for ``Zermelo-Fraenkel axioms'' may also list as
+sub-definitions each individual axiom, i.e. defines=``axiom of empty
+set, axiom of infinity, ...''
+\item An entry for ``Taniyama-Shimura conjecture'' might also have
+synonyms ``Taniyama-Shimura-Weil conjecture'', ``Taniyama-Shimura
+theorem'', and ``Taniyama-Shimura-Weil theorem'', and hence list
+these as synonyms. These would not be listed in the ``defines''
+field -- if two of these terms are invoked from the same entry, they
+should not both be linked, which will be the case if they are listed
+as synonyms.
+\end{itemize}
+It is important to note that there is no general rule for the exact
+``granularity'' of entries -- things that ``stand on their own''
+should be their own entry, but this is hardly a rigorous metric
+(however, if you choose to combine things that could be separate
+entries, you should provide a ``defines'' list for sub-definitions.)
+Use your best judgement, and you'll probably hear from others if
+there's disagreement.
+
+\subsection*{Corrections}
+What you should file corrections for:
+\begin{description}
+\item[Mathematical Errors] These may be as simple as a typo or as
+serious as a completely erroneous proof.
+\item[Typographical errors and grammatical errors] PlanetMath should
+be as ``professional'' as any published book or encyclopedia (in
+fact, there is little excuse for the quality of PlanetMath not to
+exceed fixed media for the set of ``stable'' entries.) As such,
+please point out even the smallest of mistakes, if they truly are
+mistakes.
+\item[Comprehensiveness] If more can be added, it probably should
+be. This includes showing relatedness to other branches of
+mathematics, and possibly applications. It includes alternate
+derivations, additional results and properties, and different
+methods of visualization or approaches to explanation. You don't
+have to write a book -- that would of course defeat the purpose of
+an encyclopedia. But the idea is to mention all of the important
+insights so that the reader knows what to look for if they'd like to
+study the idea in more detail.
+\item[Comprehensibility] Formal and concise statements tend to be
+useful for reference purposes, but they are not very useful for
+learning what one does not already know. More extensive
+explanations, visualizations, and examples are very powerful tools
+for teaching, and they should play a large part in nearly all
+entries.
+\item[Alternative conventions] This is a tough one for most. Often
+times there are conventions which vary from country to country,
+region to region, school to school, or even class to class. Think of
+PlanetMath in a global context when you write and critique entries,
+and it should become apparent that probably most alternatives should
+at least be mentioned, before a particular choice is made for usage.
+\item[Interconnectedness] By this we mean provisions for making
+PlanetMath as interlinked as possible. This includes tweaking
+mentions of concepts so that they trigger linking to a PlanetMath
+entry, or conversely, adding synonyms to entries or tweaking titles
+to conform with the way they are mentioned in entries. It includes
+adding explicit ``related'' (See also) links to other things in the
+encyclopedia when they should be there. Also important is reporting
+to an object owner when a link goes to the ``wrong'' entry, or there
+is a link where there should not be, and reporting the lack of a
+subject classification (which serves as a hint to automatic
+linking).
+\end{description}
+Likewise, you should expect to receive corrections when your entries
+are lacking in any of these areas.
+
+Corrections don't always go smoothly. Often you feel a correction was
+justified, but the author rejects it. The first thing to do in this
+situation is find out if there was a misunderstanding: you can post
+messages to the correction and discuss it. You can try filing another
+correction wording things differently. When it becomes clear the
+author is not going to do things your way, we suggest the approach
+from the next section. \textbf{Under no circumstances will the staff
+of PlanetMath mediate disagreements about corrections.}
+
+\subsection*{Alternate Entries}
+You should always run a search before writing an entry to see if
+someone else has already covered the same material. However, even if
+the ideas have already been discussed, there may still be reason for
+you to write an alternate entry. Alternate entries are justified when:
+\begin{itemize}
+\item you have a radically different treatment of the subject. This
+could be another educational level (as in introductory
+vs. advanced), or another method (as in a proof, which can have tens
+of alternatives).
+\item the author of the entry is discarding corrections. In this case
+the object will not eventually be orphaned for pending corrections,
+so you cannot force modifications to it (do \textbf{not} complain to
+the staff in this case; we won't force the other author to do
+anything).
+\end{itemize}
+We would prefer uniformity and cohesion on PlanetMath, but there is a
+natural limit to how far this can be stretched with so many different
+minds. The lack of scarcity (i.e. limited space) on PlanetMath also
+gives it an advantage over traditional media, allowing us to avoid
+standardization and provide extra value in yet another way.
+
+\subsection*{Copyright}
+While mathematical concepts can not be owned, their expression is
+subject to the strictest protection under copyright law. Furthermore,
+one cannot convey mathematical information without expressing it
+somehow. There is much more to ``expression'' than simply an
+author's choice of words and, accordingly, direct copying is only one
+of many sorts of copyright infringements.
+
+Below, we present some guidelines for writing entries that may help
+you avoid exposing yourself or PlanetMath.org to legal problems.
+
+\begin{itemize}
+\item Bear in mind that a text does not need to have a copyright
+notice attached to it in order to be copyrighted. Moreover,
+copyright protection has nothing to do with whether the work is
+published or unpublished, whether a work is still in print, or
+whether the publisher charges for copies of the work. In fact, the
+simple act of writing something down automatically confers copyright
+protection to the author. In particular, this means that class
+notes and handouts, webpages, and newsgroup postings are all legally
+protected.
+\item If you see the exposition of a certain mathematical topic on
+someone's homepage and think it would make a great addition to
+PlanetMath, you should do nothing unless you can first obtain the
+copyright holder's permission, in writing, to publish a copy of the
+work on PlanetMath. Likewise, you may not post a copy of notes that
+were handed out in a class, or even notes that you took on a spoken
+lecture, without first obtaining written permission. Asking for
+permission is also an opportunity to tell others about PlanetMath
+and the FDL. However, if you do not receive the author's permission
+to publish under FDL terms, you cannot post the work! If you do
+receive the copyright holder's permission to use the work,
+\emph{include their permissions statement as an attachment.}
+\item When dealing with published material, especially if it is still in
+print, keep in mind that authors sign contracts with their publishers
+which typically restrict the author's rights. Therefore, even if the
+author of a book or an article in a journal gives you permission to
+use his work, it may be and likely will be necessary to also obtain the
+publisher's permission.
+\item Copying from FDL'ed works is fine, but it requires us to follow
+a special protocol -- if you would like to copy from an FDL work,
+please post in the forum, so a site administrator can review the
+work's license and then take the necessary steps.
+\item Copying from public domain works is also fine. Mathematical
+works that are in the public domain are mostly those whose
+copyrights have expired, but also works that have been transfered to
+the public domain by their authors, as well publications of the US
+government. As a rule of thumb, works published in the ninteteenth
+century and earlier are in the public domain, but unless you can
+find proof to the contrary, twentieth century works are likely to be
+off-limits. It is of course wise to give a citation so that others
+can easily check the assignment (or expiry) of copyright for
+themselves -- and perhaps also find additional useful material from
+the same source.
+\footnote{When dealing with older works, keep the following points in
+mind: (a) The law on when copyright expires is somewhat different
+for unpublished works, so these need to be treated as a special
+case; (b) Before World War II, English was not the dominant language
+of the mathematical community. Therefore, older works are more
+likely than contemporary works to appear in a language other than
+English. Since translation is a creative act, translations are
+protected by copyright, even if the work that was translated is in
+the public domain. Thus, if you quote at length from an older work
+written in a foreign language, you should either do the translation
+yourself, or else find a translation which is also in the public
+domain (or FDL'ed).}
+\item As a rule of thumb, if you cannot provide at least a sketch of a
+given topic without referring to a source, you are probably not yet
+qualified to write an entry about that topic. Not only is this
+policy prudent from the legal standpoint, it also makes sense from the
+point of view of mathematical content. If you rely too heavily on a
+given source, you run the risk of perpetuating whatever mistakes and
+oversights may be present there. Furthermore, unless you have a
+fairly deep understanding of a given topic, you might misunderstand
+another author's use of a particular technical term, or forget to
+state assumptions which this other author stated in an earlier
+chapter. A document written from your own understanding will be much
+more useful than one that purports to present facts that you
+yourself do not understand. You needn't be a world expert to write
+a useful entry -- simply trying to state your own questions clearly
+will be much more helpful to everyone involved than it would be for
+you to try to mimic someone else's exposition.
+\item Cite all sources, including any web pages, lectures, or personal
+communications that have informed your work. If possible, summarize
+the relationship your article bears to the source or sources you
+used. Which parts of the article derive from which sources? Which
+parts are original?
+\item Keep in mind the fact that, as the copyright office says,
+``Acknowledging the source of the copyrighted material does not
+substitute for obtaining permission.'' To be sure, documenting the
+process you used while writing an article, and which sources you
+looked at, could help prove that you did not infringe on anyone
+else's copyright -- but whether or not you cite a particular work is
+not a factor in determining whether your work infringes on that
+work's copyright.
+\item Embellish your articles with examples, illustrations, proofs,
+and other extensions either of your own devising or drawn, bit by
+bit, from a variety of sources -- make your exposition truly your
+own. No one part of your article should be too close to anything
+drawn from any one source. In addition, neither the overall
+structure of your article nor any part of its structure should be
+too close to the structure or any non-trivial part of the structure of
+any one source.
+\item Bear in mind that the particular choice of words that an author
+uses is not the only thing that copyright protects: copyright
+protects expression in general, and even the particular selection of
+facts or ideas that an author chooses to talk about is protected.
+\item However, copyright does not protect individual facts, ideas,
+concepts -- so write about all these things! But always do it in
+your own words, and do not rely too heavily on one source. Even
+something as simple as a theorem statement or a non-trivial equation
+should be put in your own words, and expressed in a way that is
+consistent with other usage on PlanetMath.
+\end{itemize}
+
+PlanetMath staff will \emph{not} protect entry authors from the
+consequences of any copyright infringement, and rather will do
+everything in their power to protect the site from the irresponsible
+(though perhaps well-intentioned) actions of persons who seek to
+contribute things they do not have the right to.
+
+We do encourage you to find content written by others that you have
+been given permission use as part of PlanetMath. As mentioned above,
+a special protocol must be followed in order for us to use works that
+have been released under the GNU FDL. In particular, if you are
+adding material from a GNU FDL source that hasn't already been listed
+on PlanetMath's History page, an appropriate item will have to be
+added there; thus, if you are planning to upload all or part of an
+FDL'ed source, or a modified version thereof, you should get in touch
+with the site administrators first.
+
+When it comes to deciding whether some particular use of a copyrighted
+source is permissible, the distinction betwen a \emph{derivative work}
+and \emph{transformative use} needs to be kept in mind. While there
+is no space here to go into details and study examples, at least a
+brief description should suffice to make the reader aware of the legal
+principles that are in play here, and the fact that there is an
+important distinction between the two kinds of use.
+
+A \emph{derivative work} is one whose content has been derived from an
+already existing work. Examples include translations, abrigements, or
+adaptations. Even though a derivative work can contain a substantial
+changes or additions of new material and other original contributions,
+a derivative work cannot be prepared without the permission of the
+owner of the copyright of the original work on which it is based. (In
+fact, minor changes and additions to an existing work do not even
+qualify as derivative work, but rather as outright copying.) The FDL
+gives users permission to publish derivative works, so long as the
+derivative works are released under the terms of the FDL. In general,
+non-FDL'ed copyrighted works offer no such permission to their users.
+
+In contrast, \emph{transformative use} of copyrighted material
+consists of putting the material to a different use or function than
+that originally intended by the author of the original work. This is
+permitted as a fair use of copyrighted material but one needs to be
+careful not to take any more of the material than is necessary for
+this new purpose. In deciding whether a certain usage is suitably
+``transformative'', one consideration is whether or not the new work
+affects the marketability of the old work, or whether it in fact
+satisfies a purpose for which the original work was designed.
+
+One needs to remember that in deciding a copyright infringement case,
+courts will consider how much material may have been used without
+permission. Thus, it may be OK to have a single short entry that is
+rather close to the small section of an original work from which it
+derives; however, it is a more serious matter if a whole series of
+short entries are all based on the same source.
+
+For further discussion of copyright issues or questions, please use
+the \htmladdnormallink{forums}{http://planetmath.org/?op=forums}.
+
+\subsubsection*{An Important Note On Using MathWorld}
+In addition to the copyright guidelines above, a few more words need
+to be added concerning MathWorld.
+
+In short, we strongly suggest \textbf{not using MathWorld at all} in
+the process of researching an entry, and furthermore we suggest not
+linking to it in your articles.
+
+The owners of the copyright on the MathWorld content have a proven
+track record of aggressively defending their copyright. It is simply
+not worth the risk, even when you feel sure you'd only be making fair
+use of things you found there. Not only will this policy help us
+avoid potential legal snares, it will help to solidify in the minds
+of readers the difference between the two sites.

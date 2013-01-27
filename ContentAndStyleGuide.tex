@@ -1,0 +1,532 @@
+
+\subsection*{Rationale}
+
+This guide is meant to be a set of suggestions revealing the ``best way'' to write PlanetMath entries. One reason it is needed is because there are many common \LaTeX{} pitfalls that new or even intermediate \LaTeX{} writers may experience, and we hope to help them here. The second is because while there are many ways to do things both in terms of presentation style and \LaTeX{} use, we want to encourage writers to select the methods that will help make PlanetMath more consistent and hence easier to understand.
+
+We stress again that this is only a guide---not a forced set of rules. The owner of an entry is assumed to be its expert, not the PlanetMath staff or any other users of the site. However we appeal to each and every writer to heed this document, to help make PlanetMath a better resource for all learners.
+
+\subsection*{Content Guidelines}
+
+What to write.
+
+\subsection{Definitions}
+
+In definitions, the term (or terms) being defined should be distinguished by typesetting it in either \emph{italics} (preferred) or \textbf{boldface}.
+(See section \ref{sec:font-faces}.)
+
+A basic definition-entry should give only one name and one notation (when such exists) for what is being defined. This will make the definition as short as possible and thus easy to read. It will also encourage a common notation/term for use at PM.
+
+However, after the definition is given it is highly encouraged to mention examples, possible synonyms, alternative notations, etymology, and historical comments. These items could be placed in one or more additional sections, such as ``Examples'', ``Notes'',
+``Properties'', and so forth. Lengthy examples should have their own entries attached to the definition.
+
+Often an entry is lengthy, so that the definition might become difficult to distinguish from the surrounding text. This is especially noticeable if some introductory text precedes the definition. In such cases it is a good idea to somehow mark the definition so that it stands out. One way to do this is to use a ready-made ``definition'' environment (see below).
+
+Sometimes, many concepts must be defined at once in a single entry. For example, it is difficult to define ``graph'' without also defining ``nodes'' and ``edges''. It makes more sense to group these things together. These additional concepts can be listed as defined in the ``defines'' metadata field of the entry. Synonyms for the main concept should be listed in the ``synonyms'' field.
+
+
+\subsection{Theorems}
+In theorems, it should always be clear what the assumptions
+are and what are the implications. Also, one should try to eliminate
+any unnecessary notation from the formulation. In particular, the
+theorem formulation should not be used to set up the notation for
+a proof. Such unnecessary notation will make the theorem difficult
+to read.
+
+As with definitions, if the theorem is surrounded with explanatory text (as most theorems should be), it is probably a good idea to set it off from the surrounding text in some way. A ``theorem'' environment (see below) is a good way to do this. Some publication styles set theorems in slanted text to attract attention.
+
+\subsection{Proofs}
+
+Proofs may be included in the entry for the theorem itself if they are
+short; they should if possible be clearly marked as a proof, perhaps
+by using {\tt \verb|\begin{proof}| \ldots \verb|\end{proof}|}
+environment (see below). If the theorem contains its own proof, the
+appropriate checkbox should be set, so that the theorem does not
+appear on PlanetMath's ``unproved theorems'' list.
+
+If the proof is long, it should go in its own entry, attached to the theorem itself. There's an ``add proof'' button for just this purpose. Others may attach alternative proofs to your theorems as well.
+
+\subsection{Topics}
+
+\subsection*{Style Guidelines}
+How to write:
+
+Since entries at PM are entries in an encyclopedia, each entry should
+stand on its own.
+
+\subsection{Logic symbols versus words}
+
+Logic symbols like $\vee$, $\wedge$, $\forall$ and $\exists$ should be used sparingly. The reason is that their overuse leads to entries that look like a stream of gibberish, which are so dense they are difficult to read. The use of natural language logical connectives makes an entry much easier to read.
+
+\subsection{Choice of Title}
+
+The title should be descriptive, of course, of what the entry actually is: ``Fermat's last theorem'' is good, as is ``vector bundle'', but ``products of connected spaces'' suggests (vaguely) a list of properties of products of connected spaces; if the entry is actually just the theorem that such products are connected, it should read ``products of connected spaces are connected''. If the theorem is in fact an if and only if theorem but one direction is essentially trivial (as in this case), the easy direction can be left out of the title.
+
+You should write the title with capitalization as it would appear in an index. When using a term within an entry, the local capitalization style will be adopted by the automatic linker. Proper names and adjectives derived from
+proper names are to be capitalized to create a consistent look to the entries.
+Thus, Eulerian, Euclidean, Archimedean, Henselian, Noetherian, Artinian,
+Abelian, Lagrangian, and Gaussian are to be used.
+
+\subsection{Classification}
+
+It is important to select a good classification for your entry, as this helps readers find it while browsing, and helps to steer the automatic linking system. Classification on PlanetMath uses the AMS Mathematics Subject Classification scheme (AMS-MSC). You can search or browse this scheme, looking for categories that match your entry.
+
+A classification string is a list of comma-separated category codes, of the form \verb=scheme:code=, where \verb=scheme= is the classification scheme. If \verb=scheme:= is left out, \verb=msc= is assumed (as this is the only supported scheme at the time anyway). Codes look like \verb=NNLNN=, where \verb=N= is a number and \verb=L= is a letter.
+
+The order of the category codes in a classification string is important. The first code is considered the most important, the second is considered second-most important, and so on. In situations where one category code must be selected to ``represent'' the subject of the entry, the first code will be used.
+
+
+\subsection{Choice of Words}
+\subsection{Abbreviations and Latin terms}
+In scientific writing, Latin terms occur frequently. However, if these are overused,
+they tend to make the text quite formal. Thus, when possible, one should consider
+using the corresponding English terms.
+\begin{itemize}
+\item \emph{iff} is handy in notes, but in printed text, it is usually written out
+if and only if \cite{higham}.
+\item \emph{e.g.} is short for \emph{exempli gratia} (Latin: for example).
+\item \emph{i.e.} is short for \emph{id est} (Latin: that is, in other words).
+\begin{quote}
+Now $1/n$ converges to $0$, i.e., if $\epsilon>0$, there is an $N$ such that
+$1/n<\epsilon$ for all $n>N$.
+\end{quote}
+\item \emph{et al.} is short for \emph{et alia} (Latin: and others).
+\item \emph{cf.} is short for \emph{confer} (Latin: compare). This abbreviation
+is frequently used incorrectly to mean ``see'' \cite{higham}.
+For example, cf. [20] for a discussion, is incorrect.
+\item \emph{viz.} short for \emph{videlicet}, (Latin: it is permitted to see).
+\item \emph{sic.}
+\item \emph{ad hoc}
+\item \emph{mutatis mutandis} Latin for ``with the necessary changes having
+been made".
+\end{itemize}
+
+\subsection{Displaying Equations}
+
+Equations can be typeset as inline equations (like \fbox{$a=2$})
+or as a displayed equation;
+$$a=2.$$
+Typically, an equation is displayed if it needs to be numbered,
+if it is long (and therefore difficult to read inline), or if it
+defines an important quantity or is otherwise important \cite{higham}.
+\begin{itemize}
+\item If a sentence ends with a displayed equation, the displayed
+equation should end with a period \cite{higham}.
+\item If an equation is numbered, it should be referred to at least once.
+\item
+References to numbered items should indicate what is being
+numbered. For instance,
+``according to equation (2)'', ``by inequality (4)'' are much easier to read
+than ``according to (2)'', ``by (4)''.
+The abbreviation ``Eq.'' should not be used \cite{higham}.
+
+In order to refence a numbered item, use the command \verb+\label{tag}+
+where \emph{tag} is a unique identifier. Later you can use \verb+\ref{tag}+ in order to include the number at some other place.
+\end{itemize}
+
+
+
+\subsection{Emphasis}
+
+When emphasizing text, the usual way to do it is to use {\tt
+\verb|\emph{emphasized text}|}. This will look like \emph{this}, or
+\textit{like \emph{this} in italic text}, or \textbf{like \emph{this}
+in bold text}, or \textsl{like \emph{this} in slanted text}, or
+finally \texttt{like
+\emph{this} in typewriter text}. This is the way books are written,
+for good typographic reasons. If you really prefer boldface, it is
+available; you will have to keep track of whether it actually looks
+any different from the surrounding text.
+
+\subsection{Sentences}
+\subsection{Paragraphs}
+\subsection{Sectioning}
+\subsection{Grammar}
+\subsection{Punctuation}
+\subsection{Flow Between Text and Mathematics}
+
+What you write should be primarily text, in the following sense: the reader should be able to read the paragraph aloud, and it should be grammatically correct and clear, using English connectives such as ``and'' and ``but''. While it is possible to write many equations in one giant formula without explanation, it should be reserved for situations when the calculations are really self-explanatory. Even then, it is rare that more than four or five successive equalities appear in the same formula without english text.
+
+If you need small pieces of text to appear in your formulas, for example in piecewise definitions of functions (which you do using the
+{\tt \verb|\begin{cases}| \ldots \verb|\end{cases}|}
+environment), use
+{\tt \verb|\text{the text}|} which is provided by \texttt{amsmath} package. For instance if you type
+\begin{quote}
+\begin{verbatim}
+\delta(x)=\begin{cases}
+1 & \text{if }x=0\\
+0 & \text{otherwise}.
+\end{cases}
+\end{verbatim}
+\end{quote}
+then the result looks like this:
+\[
+\delta(x)=\begin{cases}
+1 & \text{if }x=0\\
+0 & \text{otherwise}.
+\end{cases}
+\]
+
+\subsection{Notation}
+
+If your entry depends on another entry in some essential way (say, you're proving a theorem, or you're defining a special kind of a type of object they define), you need to look at their page to check that you have the same thing in mind as the author. At the same time, you should look at their notation. If it's reasonable and you have no strong reason to use a different notation, use theirs. It makes life easier for PlanetMath users. On the other hand, if you're really working in a different field that uses different notation, by all means change it. Make sure readers won't be confused by the change in notation, by explaining it or asking the other author to explain it. If the other author is using notation that is so bad you don't feel you should use it in your entry, file a correction on their page, asking them to at least mention your notation. Then use yours in your entry.
+
+\subsection*{The Right Way\texttrademark}
+Tips, tricks, and advice on how to do things the right way.
+
+\subsection{Quotes}
+When writing text to be viewed on a computer screen, only one type
+of quote is used, either
+{\tt \verb|"|}
+ or
+{\tt \verb|'|}.\footnote{Some word processing or web publishing
+programs helpfully guess whether you meant to open or close the
+quotation and change the symbol. Often this happens in a non-portable
+way, making web pages look like they were written by illiterates.}
+However, when writing
+text to be typeset and printed, two types of quotes are used \fbox{``}
+and \fbox{''}
+or \fbox{`} and \fbox{'}. Those writing TeX documents should be mindful of the
+difference. So \emph{incorrect} usage is \verb|"wrong"| giving \fbox{"wrong"},
+while \emph{correct} usage is \verb|``right''| giving \fbox{``right''}.
+Note that in TeX both \verb|''| and \verb|"| produce the same symbol
+\fbox{"}, but the former is used more often because of symmetric appeal.
+
+\subsection{$\to$ vs. $\mapsto$}
+The symbols \verb|\to| ($\to$) and \verb|\mapsto| ($\mapsto$) are often
+confused, but, as their names suggest, are different. Writing
+$f\colon A\to B$ indicates that $f$ is a function from a set $A$ to a set $B$.
+On the other hand, $f\colon x\mapsto \sin x$ indicates that $f$ maps $x$ to
+$\sin x$, or equivalently that $f$ \emph{is} the $\sin$ function.
+
+\subsection{denoted vs. denoted by}
+In ``The set $\{x\in \mathbb{R}\mid x>0\}$, denoted $L$, is open", there is a
+missing ``by''.
+
+\subsection{Ambiguous words}
+\begin{itemize}
+\item \emph{this}: In ``From this the proof follows'', it is seldom completely clear what
+\emph{this} refers to. Instead, one could write something like
+``Combining equation (1) and (2) gives the result.''
+\item \emph{it} \cite{higham}: In ``Condition b. in Theorem 1 does not hold for the
+steepest descent method. Therefore, we shall not consider it.'',
+the word \emph{it} can refer to both Condition b. or the steepest descent method.
+\item \emph{etc.} is an abbreviation for \emph{et cetera}, Latin for ``and the others".
+An ambiguous example would be
+\begin{quote}
+We can now prove that $f$ is smooth, invertible, convex, etc.
+\end{quote}
+\end{itemize}
+
+\subsection{Theorem-like and Proof Environments}
+When presenting a theorem, lemma, definition, remark, and similar statements,
+it is customary to set it apart from the rest of the text to make them
+easier to notice. This can be done usig a \texttt{theorem}-like environment
+created with the {\tt \verb|\newtheorem|} macro. For example
+\begin{quote}
+\begin{verbatim}
+\newtheorem{thm}{Hard Theorem}
+\begin{thm}[Fermat]
+There are no positive integer solutions to the equation
+$x^n + y^n = z^n$ for $n>2$.
+\end{thm}
+\end{verbatim}
+\end{quote}
+gives
+\begin{quote}
+\newtheorem{thm}{Hard Theorem}
+\begin{thm}[Fermat]
+There are no positive integer solutions to the equation
+$x^n + y^n = z^n$ for $n>2$.
+\end{thm}
+\end{quote}
+A proof can be given using the \texttt{proof} environment provided
+by the \texttt{amsthm} package. For example
+\begin{quote}
+\begin{verbatim}
+\begin{proof}[Simple proof]
+See Wiles (1995).
+\end{proof}
+\end{verbatim}
+\end{quote}
+gives
+\begin{quote}
+\begin{proof}[Simple proof]
+See Wiles (1995).
+\end{proof}
+\end{quote}
+
+As mentioned above, \texttt{theorem}-like environments can be used for more
+than just theorems. This is facilitated by the \texttt{amsthm} package.
+It provides three default styles `plain', `definition', and `remark'.
+For example
+\begin{quote}
+\begin{verbatim}
+\theoremstyle{definition}
+\newtheorem*{defn}{Simple Definition}
+\begin{defn}
+An integer is \emph{even} if it is divisible by $2$.
+\end{defn}
+\end{verbatim}
+\end{quote}
+gives
+\begin{quote}
+\theoremstyle{definition}
+\newtheorem*{defn}{Simple Definition}
+\begin{defn}
+An integer is \emph{even} if it is divisible by $2$.
+\end{defn}
+\end{quote}
+Note that \verb|\newtheorem*| supresses numbering, unlike its
+unstarred cousin. Note that default theorem styles do not have to
+be used in the way they are named, they simply provide different
+choices of font styles for header and body of the new environment.
+
+All contributors to PlanetMath are strongly encouraged to make use
+of \texttt{theorem}-like environments. One reason is to set them apart
+from other text semantically, just as they are set apart visually.
+This is especially important in an online encyclop{\ae}dia which is
+subject to automatic indexing. Another important reason is consistency.
+If everyone uses a few standard styles, this adds greatly to
+a consistent look of PlanetMath as a whole. Definitions for such styles can be added to your default preamble so that they just appear when you write an entry.
+
+The \texttt{amsthm} package provides other useful features such as the
+ability to define custom theorem styles. More information can be
+found in \htmladdnormallink{guide to \texttt{amsthm}}{http://web.mat.bham.ac.uk/R.W.Kaye/latex/thm.pdf}
+by Richard Kaye.
+
+\subsection{Spacing}
+There is often confusion betwen punctuation and mathematical symbols
+or operators. The symbol itself may look the same, but it is typeset
+differently in different contexts. Usually, the difference is in spacing.
+There are several common mistakes.
+\subsubsection{${-}\colon{-}$ vs.\ ${-}:{-}$}
+The colon symbol (:) can be used as punctuation or as an operator, both
+in the context of a mathematical expression. If it is \emph{punctuation},
+the \verb|\colon| macro should be used. If it is an \emph{operator},
+then \verb|:| should be used. Here are some examples:
+\begin{itemize}
+\item \emph{incorrect} usage \verb|function $f: X \to Y$| gives
+\fbox{function $f: X \to Y$}, while \emph{correct} usage
+\verb|function $f\colon X \to Y$| gives
+\fbox{function $f\colon X \to Y$};
+\item \emph{incorrect} usage \verb|ratio $4\colon 3$| gives
+\fbox{ratio $4\colon 3$}, while \emph{correct} usage
+\verb|ratio $4:3$| gives \fbox{ratio $4:3$}.
+\end{itemize}
+
+\subsubsection{${-}<{-}>{-}$ vs.\ ${-}\langle{-}\rangle{-}$}
+There is common confusion between mathematical relational operators
+less-than ($<$) and greater-than ($>$), and punctuation angle brackets
+$\langle$ and $\rangle$. The difference must be respected. Here are
+some examples:
+\begin{itemize}
+\item \emph{incorrect} usage \verb|$<u,v>$| gives \fbox{$<u,v>$},
+while \emph{correct} usage \verb|$\langle u,v \rangle$| gives
+\fbox{$\langle u,v \rangle$};
+\item \emph{incorrect} usage \verb|$1 \langle 2$| gives \fbox{$1 \langle 2$},
+while \emph{correct} usage \verb|$1 < 2$| gives \fbox{$1<2$}.
+\end{itemize}
+
+\subsubsection{${-}|{-}$ vs.\ ${-}\mid{-}$}
+The vertical bar ($|$) symbol is often misused in mathematical expressions.
+It is mostly used to make vertical bars in tables and it keeps the same
+meaning in mathematical expressions. The corresponding mathematical operator is
+typeset with the \verb|\mid| macro. So \emph{incorrect} usage
+\verb"$\{ x | x > 0 \}$" gives \fbox{$\{ x | x > 0 \}$}, while \emph{correct}
+usage \verb|$\{ x \mid x > 0 \}$| gives \fbox{$\{ x \mid x > 0 \}$}. Similarly the relation ``divides into'' should be typeset as \verb"$n\mid m$" giving \fbox{$n\mid m$} and its negation should be typeset as \verb"$n\nmid m$" giving \fbox{$n\nmid m$}.
+
+
+\subsection{Operator and Function Names}
+\LaTeX{} provides predefined macros for typesetting the commonly used functions such as \verb|\sin|, \verb|\cos|, \verb|\exp|, \verb|\log|, \verb|\lim|, \verb|\liminf|, \verb|\limsup|, \verb|\min|, \verb|\max| and others. In case when the needed operator is not the one of them one can define custom operators using command \verb|\DeclareMathOperator| from package \texttt{amsmath}.
+\begin{quote}
+\begin{verbatim}
+\DeclareMathOperator{\Tr}{Tr} % in the preamble
+...
+Sometimes $\Tr M$ is used to denote the trace of $M$.
+\end{verbatim}
+\end{quote}
+The above produces
+% \DeclareMathOperator{\Tr}{Tr} is in the preamble
+\begin{quote}
+Sometimes $\Tr M$ is used to denote the trace of $M$.
+\end{quote}
+
+Do not use \verb|\rm| or \verb|\mathrm| to typeset operator name because these commands do not set the proper spacing. Compare: \verb|$x\mathrm{Tr}M$| produces \fbox{$x\mathrm{Tr}M$}, and \verb|$x\Tr M$| produces \fbox{$x\Tr M$}.
+Alternatively, if you do not intend to use a certain function or operator
+often, it can be typeset the same way using the \verb|\operatorname| macro,
+for example \verb|$x\operatorname{Tr}M$|.
+
+\subsection{Figures and Diagrams}
+Figures and diagrams really ``bring the math to life''. We encourage
+everyone to consider illustrating the concepts in their entries
+using figures, particularly for geometric, combinatorial, or algebraic
+entries.
+
+There are two main categories for digital encoding of images, raster
+and vector formats. Raster formats store the image as a two-dimensional
+array of colored pixels, while vector formats store drawing commands
+that can be reproduced to draw the image on any display medium.
+
+Vector formats are especially suited for mathematical diagrams and
+illustrations in a digital medium. Hence all diagrams included in
+PlanetMath should be in a vector format (inline, EPS, etc.)\ and not
+in a raster format (JPEG, PNG, GIF, etc.). Note that simply
+encapsulating a raster image in an EPS file is \emph{not} acceptable.
+If an image is drawn in the Gimp or MS~Paint\texttrademark,
+it will be a raster image no matter what format you save it in, and it will
+look awful in print or in page images mode.
+Moreover, in the interests of reproducibility and editability of
+the diagrams, the original editable sources should be provided. Of
+course, there are exceptions such as photographs or any other image
+whose raster nature is intrinsically justified.
+If you absolutely must provide such an image (an article about the Mandelbrot
+set, for example), provide it in the highest resolution you can, so that the
+print version has a chance of being legible.
+
+\subsubsection{Including Figures}
+There are two main ways of including diagrams in an entry: inline and
+externally.
+
+Inline diagrams are generated by code included directly in the \TeX\
+document. They are rendered using specific packages such as
+\texttt{xypic}, \texttt{pstricks}, \texttt{axodraw}, etc. However,
+some of them only work with PostScript output and cannot be compiled
+directly with PDF\LaTeX\ or PDF\TeX.
+
+External figures are usually EPS (Encapsulated PostScript), PostScript, or PDF files, which can be generated with a large number of programs (see below). Once created, they should be uploaded to the article's PlanetMath filebox, along with the source (for example, the FIG file if XFig was the drawing program). Including the source alleviates concerns about compliance with the FDL license, and is just the ``right thing'' to do.
+
+The recommended way of including uploaded figures in your entry is with the
+\texttt{graphicx} package, using the \verb|\includegraphics| macro.
+An example is:
+
+\begin{quote}
+\begin{verbatim}
+\includegraphics[scale=0.5]{fig1}
+\end{verbatim}
+\end{quote}
+
+The \texttt{graphicx} package allows scaling, rotation, cropping,
+and other operations on the included figure.
+
+Note: The reason that the
+extension of the external file is not written is portability. Files
+with the same base name but different extensions can be included by
+different flavors of \TeX\ during compilation. For instance, \LaTeX\
+would search for \verb|.ps| or \verb|.eps| files, while PDF\LaTeX\ would
+search for \verb|.pdf|, \verb|.png|, or \verb|.jpg| files.
+
+
+
+\subsubsection{Creating Postscript Figures}
+There are several interactive and non-interactive applications capable
+of generating mathematical or technical diagrams. If a figure is
+generated using one of these applications and included in PlanetMath
+(usually as an EPS file), the same figure should be included in the
+format native to that application. If the native format is not human
+readable, it should be readable by a widely accessible application,
+preferably an open source one. Examples of such applications are given
+below.
+
+\paragraph{xfig}
+\htmladdnormallink{XFig}{http://www.xfig.org/} is a general purpose vector graphics editor. It is powerful and
+simple to use, but it does have some limitations. Its figures can be
+exported in a variety of formats including PS, EPS, PDF, \LaTeX\ picture
+macros, as well as combinations of \LaTeX\ and EPS. If generated figures
+are included in a special way, the text in the figures can be formatted
+with the full power of \LaTeX.
+
+\paragraph{MetaPost}
+\htmladdnormallink{MetaPost}{http://cm.bell-labs.com/who/hobby/MetaPost.html}
+is an extension of Knuth's Metafont language designed to output
+EPS figures. It is a full blown programming language including the
+capability of solving implicit systems of linear equations. This ability
+makes it a very powerful tool for drawing diagrams that require
+precision. The learning curve for MetaPost is a little steep, but its
+output can be of very high quality. Text included in MetaPost figures
+can also be formatted using \TeX.
+
+\paragraph{eukleides}
+\htmladdnormallink{Eukleides}{http://perso.wanadoo.fr/obrecht/} is a
+Eulclidean geometry drawing language. It provides a command line as
+well as a graphical interface \texttt{xeukleides}. The language
+is fairly simple. Eukleides can be very useful for illustrating
+constructions in Euclidean geometry. Figures can be converted to
+EPS and other formats.
+
+\paragraph{gnuplot}
+\htmladdnormallink{Gnuplot}{http://www.gnuplot.info/}
+is a general purpose graphing and plotting tool. It is very
+powerful and fairly easy to use. By default it offers only a command
+line interface, but there are several GUI's that it can be used with.
+It includes a small library of commonly used mathematical functions,
+and it is very useful for making graphs of functions. It is also easy to
+create a graph of any function by taking its values from a data file.
+Gnuplot can output in a variety of formats including the ones described
+for XFig and a number of editable formats such as MetaPost, and XFig
+itself.
+
+\subsubsection{Creating Inline Graphics}
+There is a number of \LaTeX{} packages for drawing diagrams. Inline diagrams do not require special software, and they are easier to edit. Some of the graphics packages are described below.
+
+\paragraph{\Xy-pic}
+\htmladdnormallink{\Xy-pic}{http://www.ctan.org/tex-archive/macros/generic/diagrams/xypic/} is a diagram-description language that can produce anything from simple commutative diagrams to graphs and knots. The \htmladdnormallink{concise introduction}{http://www.ctan.org/tex-archive/macros/generic/diagrams/xypic/xy-3.7/doc/xyguide.ps.gz} and the \htmladdnormallink{full blown reference manual}{http://www.ctan.org/tex-archive/macros/generic/diagrams/xypic/xy-3.7/doc/xyrefer.ps.gz} come with the package. For simple category diagrams, it is not much more difficult than a table. For more complicated drawing, the learning curve is somewhat steep, but the effort pays off.
+
+\paragraph{pstricks}
+\htmladdnormallink{PSTricks}{http://www.tug.org/applications/PSTricks/}
+is a \TeX/\LaTeX macro package that uses PostScript code to produce
+graphics and other special effects in your document. PSTricks is
+capable of producing quite elaborate diagrams, but has a steep learning
+curve and should be used with care in order to create valid PostScript
+output.
+
+\paragraph{amscd}
+The package \texttt{amscd} is capable of producing simple commutative diagrams. It is very easy to learn, but does not have many of the capabilites of \Xy-pic. The documentation is included as a part of \AmS-\LaTeX{} documentation, and can be found \htmladdnormallink{here}{http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/}.
+
+\subsubsection{Color}
+Color can be an effective way to make diagrams and figures more comprehensible. However, some people can not perceive all color, and color is often lost at print time. Thus, it is a good policy to only use color to \emph{augment} an entry, rather than having the entry \emph{dependent} on the color. When considering the use of color in your entry, think of how to make it comprehensible in situations where color is not available or reliable.
+
+
+\subsection{Font Faces\label{sec:font-faces}}
+
+Everybody likes their text to look fancy, and that's what fonts are for, right? Well, no. Look at a printed math book sometime, and see what they use fonts for.
+
+Math books use fonts for setting theorems and definitions apart from the text: this is what theorem-like environments are for, and they often use font changes. So use them.
+
+Math books use fonts to indicate section and subsection headers, sometimes going as far as subsubsections and ``paragraphs''. In this context, ``paragraph'' is a technical term meaning a smaller unit than a subsubsection, usually several paragraphs devoted to one topic. \LaTeX\ provides commands for exactly this purpose, called \verb|\subsection*|, \verb|\subsection|, \verb|\subsubsection|, and \verb|\paragraph|, each taking one argument, the title of the piece of text. These versions are automatically numbered, and subsections are numbered within sections. If you don't want this numbering (for example, you might want to use subsections but their numbers look like ``0.1'' in page images mode) you can use \verb|\section*|, \verb|\subsection*|, and \verb|\subsubsection*|. This is probably appropriate for all but the longest entries.
+
+Math books use fonts to indicate \emph{emphasis}, for example, in the definition of a term, that term is usually emphasized. The \LaTeX\ command to do this is \verb|\emph{text}|. This takes care of a number of details, such as ensuring that the text looks different from the surrounding text (italicizing it if the text is upright and making it upright if the text is in italics) and adding a small extra space at the end if the text is in italics (so that the letters don't crash into the following letter: \emph{l}l rather than {\em l}l). You will occasionally see source code using a different syntax (\verb|{\em text}|) which is a holdover from the old days of plain \TeX\ and is not as smart about these things. This is not recommended.
+
+Math books occasionally use unusual fonts for various math symbols. These should be looked up in a \LaTeX\ book, since there are many ways to produce many different exotic fonts.
+
+Math books will occasionally use special fonts to indicate names of algorithms, proper names of authors, or other kinds of text that should receive special attention. Algorithms are sometimes set in \textsc{Small Caps} using \verb|\textsc{this}| or \textbf{bold} using \verb|\textbf{this}|.
+
+\subsection{Text in Math and Math in Text}
+
+When writing inline math, \LaTeX\ supports a number of possible syntaxes. You can write $a=b$ as \verb|$a=b$| or \verb|\(a=b\)|. There's no major reason to prefer one over the other. When writing displayed math, however, there is a \LaTeX\ way (\verb|\[a=b\]|) and primitive \TeX\ way (\verb|$$a=b$$|). The primitive \TeX\ way bypasses the \LaTeX\ formatting algorithms and can cause poor formatting if AMS math features are used. For numbered equations, use the \verb|\begin{equation}| environment; for more complicated things like multi-line equations, aligned sequences of equations, cases, and so on, look at the AMS math documentation.
+
+When writing math, it is often convenient to introduce a word or two of text into an equation:
+\[
+\mu:=\{\xi\in \mathbb{C}\text{ such that }\xi^n=1\text{ for some }n\}.
+\]
+This should be distinguished from operators that are normally typeset upright, such as $\sin$ or $\operatorname{Hom}$. To put text in a math context, use \verb|\text{ something like this}|. Note that math environments normally ignore spaces, so if you want word spaces before or after your text, you should include them in the argument to \verb|\text|. If you want to typeset an operator that does not have a \LaTeX\ macro already, use \verb|\operatorname{name}|. If you want to use an operator many times, put \verb|\DeclareMathOperator{\name}{name}| in your preamble.
+
+\subsection*{Bibliography}
+All authors are strongly encouraged to include bibliographies in their entries. Besides giving the proper credit to the original sources a bibiliography provides a pointer to the place where more information on the subject can be found.
+
+The preferred way for creating bibliography is using \texttt{thebibliography} environment. At the moment \BibTeX{} cannot be used directly. Instead the bibliography can be created offline, and then copy-pasted from the \texttt{.bbl} file. One should also be advised against using \texttt{amsrefs} package because in HTML rendering mode an \texttt{amsrefs} bibliography is rendered as graphics.
+
+When a source is available online (as a preprint, for example), then an hyperlink should be included using \texttt{\textbackslash{}PMlinkexternal} command (see \htmladdnormallink{relevant documentation}{http://planetmath.org/?op=getobj&from=collab&id=33} for syntax). Links to the pertinent \htmladdnormallink{MathSciNet}{http://www.ams.org/mathscinet/search} or \htmladdnormallink{Zentralblatt}{http://www.emis.de/ZMATH/} reviews also help the reader to find relevant sources.
+
+\begin{verbatim}
+\begin{thebibliography}{9}
+ \bibitem{higham}
+ N. J. Higham, \emph{Handbook of Writing for the Mathematical Sciences},
+SIAM, 1998.
+ \end{thebibliography}
+\end{verbatim}
+
+%% \begin{thebibliography*}{9}
+%%  \bibitem{higham}
+%%  N. J. Higham, \emph{Handbook of Writing for the Mathematical Sciences},
+%% SIAM, 1998.
+%%  \end{thebibliography*}

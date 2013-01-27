@@ -1,0 +1,121 @@
+\subsection*{Introduction}
+
+Noosphere's automatic linking system handles most inter-entry linking instances properly. However, a small fraction of the time, it does not have enough information based on concept label metadata (titles, synonyms, defines) and classification metadata to resolve ambiguous links. In these cases, something extra must be done to correct linking.
+
+There are two families of methods to accomplish this. The first involves improving the metadata, beyond concept labels and classification. We introduce \emph{linking policy} metadata to accomplish this.
+
+The second family of methods involves pseudo-\LaTeX{} commands to steer the linking. We call this the \emph{in-situ} method.
+
+In-situ controls should be considered a last resort, as it is much more elegant and labor-effective to separate link controls from the text. For example, consider a situation where someone points out a problem with a link in your entry, entry $A$. The errant link is due to a term defined in entry $B$. This problem could be fixed if the author of $B$ improved its linking policy, or if you used an in-situ link steering command in $A$. However, assume that the same linking problem is also present in 100 other entries, all of which link to $B$. Rather than fixing the 100 entries with in-situ commands, it makes much more sense for the author of $B$ to modify its linking policy once, solving all 100 errant link instances.
+
+The two families of methods are described below.
+
+\subsection*{Linking Policy}
+
+The linking policy of an entry is a text field containing a set of directives, one per line. The currently-supported directives are described below.
+
+\subsection{Link Priority}
+
+This directive has the following syntax:
+
+\begin{verbatim}
+ priority <N> [LABEL]
+\end{verbatim}
+
+ where \verb=<N>= is a number and \verb=[LABEL]= is an optional concept label defined by the entry. The default priority is 100, and integer values from 0 to 32767 are accepted. Smaller numbers mean higher priority. Examples are:
+
+\begin{verbatim}
+ priority 10 normal
+ priority 200 "mapping function"
+\end{verbatim}
+
+ This directive is used as a tie-breaker when classification directives and category-based link steering fail to find a unique destination. Setting the priority higher than normal (closer to zero) results in an entry (or concept) being linked to ``by default''. Setting it lower (above 100) would result in the entry or concept being linked to automatically only when the categorization of the other entry overlaps.
+
+\subsection*{In-Situ Link Controls}
+
+The in-situ methods involve pseudo-\LaTeX{} commands you can put in your entry to steer linking. As mentioned before, they should be considered a last resort, with proper concept labels, classification, and linking policy as the first lines of defense.
+
+\subsubsection*{Link Suppression}
+
+Sometimes it makes sense to block linking entirely for a portion of an entry, rather than simply steering a link to a different target. Below are a number of commands to do this:
+
+\begin{description}
+\item [\texttt{\textbackslash{}PMlinkescapetext}]
+ Usage: \texttt{\textbackslash{}PMlinkescapetext\{text\}} or \texttt{\{\textbackslash{}PMlinkescape text\}}\\
+ This will result in ``text'' appearing rendered verbatim with no reference link processing applied to it. Note that these only act upon the single body of ``text'' given.
+\item[\texttt{\textbackslash{}PMlinkescapeword}]
+ Usage: \texttt{\textbackslash{}PMlinkescapeword\{word\}}\\
+This will result in ``word'' being exempt from reference link processing anywhere it occurs, separated from other text by blanks, in the object. This tag can appear anywhere inside the text of the article (including at the end of the object, but \emph{not inside the preamble}). Note that this tag produces no output.
+\item[\texttt{\textbackslash{}PMlinkescapephrase}]
+ Usage: \texttt{\textbackslash{}PMlinkescapephrase\{phrase\}}\\
+ Results in the series of words ``phrase'' being exempt from reference link processing anywhere they occur in the object. In fact, this tag is currently implemented the same as \texttt{\textbackslash{}PMlinkescapeword}. However, it is conceivable that words and phrases may be treated differently at some point, so one should keep this in mind when deciding which command to use. Note that this tag produces no output.
+\end{description}
+
+\emph{Warning:} If you put \texttt{\textbackslash{}PMlinkescapeword} in your preamble, it may or may not work, and it may or may not cause random breakage of other things in your document. Do not do this!
+
+As an example, suppose I have an entry that looks like this:
+\begin{quote}
+\begin{verbatim}
+Fix a prime $p$.
+Then $p$ is odd if and only if $p\neq 2$.
+\end{verbatim}
+\end{quote}
+
+As it stands, the word ``fix'' will be autolinked to an entry on fixed points. This is not appropriate here. So we have two choices:
+\begin{quote}
+\begin{verbatim}
+\PMlinkescapetext{Fix} a prime $p$.
+Then $p$ is odd if and only if $p\neq 2$.
+\end{verbatim}
+\end{quote}
+or
+\begin{quote}
+\begin{verbatim}
+\PMlinkescapeword{Fix}
+\PMlinkescapeword{fix}
+Fix a prime $p$.
+Then $p$ is odd if and only if $p\neq 2$.
+\end{verbatim}
+\end{quote}
+
+In the first case, if ``fix'' occurs again in the document, it will be autolinked, even though the first occurrence is not. This is appropriate if the second occurrence is actually using it in the technical sense. In the second case, the word ``fix'' is never autolinked; if you do use it in the technical sense, you should use one of the commands below to link it.
+
+Both capitalizations are included in the entry above because the autolink suppression is very simple: it only suppresses links from identical text. So in order to prevent autolinking on ``fix'' as well as ``Fix'', we have to explicitly specify both.
+
+\subsubsection*{Link Steering}
+
+Using classification and linking policy, automatic linking can usually pick the correct destination for a link when there are multiple possibilities. However, when it fails, one might have to use a link steering command instead.
+
+\begin{description}
+\item[\texttt{\textbackslash{}PMlinkid}]
+ Usage: \texttt{\textbackslash{}PMlinkid\{anchor\}\{id\}}\\
+This links text ``anchor'' to the PlanetMath encyclopedia object with id ``id''. You can find out an object's id when you view it. Produces a single instance of ``anchor'' hyperlinked where the command is issued.
+\item[\texttt{\textbackslash{}PMlinkname}]
+ Usage: \texttt{\textbackslash{}PMlinkname\{anchor\}\{name\}}\\
+ This links ``anchor'' text to the PlanetMath encyclopedia object with name ``name''. Note that name is a PlanetMath canonical name. You can also find this out by viewing the object. Produces a single instance of ``anchor'' hyperlinked where the command is issued.
+\end{description}
+
+\subsubsection*{Manual Linking}
+
+There are instances where entirely ad hoc links are desired, such as to an external object on the web, or to a file box. For these instances, a manual linking pseudo-\LaTeX{} command is necessary. These commands are described below:
+
+\begin{description}
+\item[\texttt{\textbackslash{}PMlinkexternal}]
+ Usage: \texttt{\textbackslash{}PMlinkexternal\{anchor\}\{url\}}\\
+ This allows you link to any arbitrary URL on the web within your object. ``anchor'' is the text which will appear in your rendered object. URL is the address you want to point to. This corresponds to \texttt{<a href="url">anchor</a>}.
+\item[\texttt{\textbackslash{}PMlinktofile}]
+ Usage: \texttt{\textbackslash{}PMlinktofile\{anchor\}\{filename\}}\\
+ This links ``anchor'' text to ``filename'' in the object's filebox. One caveat: when previewing a new object, the URL generated for this command will not work.
+\end{description}
+
+\subsubsection*{Notes}
+Since there is no sophisticated parsing of the pseudo-\LaTeX{} commands, you can't put anything ``fancy'' inside the brackets for them. That is, plain text only. You cannot do something like \texttt{\textbackslash{}PMlinkescapetext\{\textbackslash{}emph\{function\}\}}, you'd have to do \texttt{\textbackslash{}emph\{\textbackslash{}PMlinkescapetext\{function\}\}}.
+
+These commands are implemented entirely in the code for PlanetMath, during the preprocessing that happens before the \LaTeX{} content is sent to the rendering back-end. They were modeled after \LaTeX{} commands in order to keep the overall content representation paradigm consistent.
+
+There is a package \texttt{\htmladdnormallink{pmath.sty}{http://aux.planetmath.org/files/objects/4630/pmath.sty}}
+that allows one to process the above commands if either of the following packages is used: \texttt{hyperref}, \texttt{html}, \texttt{url}. If no such package is used, then no hyperlinks are created.
+
+%It is possible at some point a PlanetMath LaTeX package will be created which %will allow one to usefully render a PlanetMath encyclopedia object in other %contexts. That is, the package would remove the \textbackslash{}PM tags, and %leave %the anchor texts. Or it could be really smart and translate all of the %internal %links to external links that point to the proper location in %PlanetMath. Nothing like this exists yet, however.
+
+All links are implemented using the actual \LaTeX{} \texttt{html} package, with the \texttt{\textbackslash{}htmladdnormallink} command.

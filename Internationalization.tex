@@ -1,0 +1,45 @@
+\subsection*{Introduction}
+Currently Noosphere does not support entries written in languages other than English, but it is possible to include text in foreign languages. This document explains how to do that.
+
+\subsection*{Accents}
+Most Latin languages use accents above the letters. In English there are two letters that have accents, `i' and `j', and they can be typeset by typing them directly. Any other letter can be typed as \texttt{\textbackslash\{accent\}\{letter\}} where \texttt{accent} is any one of the accents in the table below and \texttt{letter} is any letter except `i' and `j'. That would produce accent \texttt{accent} on top of letter \texttt{letter}. In order to replace the dot in `i' or `j' by some other accent use \texttt{\textbackslash\{accent\}\textbackslash{}i} and \texttt{\textbackslash\{accent\}\textbackslash{}j}. If \texttt{accent} is a letter, then the \texttt{letter} has to be enclosed in braces.
+
+\begin{center}
+\begin{tabular*}{.8\textwidth}{llll}
+\textbf{Accent}&\textbf{Code}&\textbf{Example(code)}&\textbf{Example(result)}\\\hline
+Acute&\verb|\'|&\verb|\'a \'\i|&\'a \'\i\\
+Grave&\verb|\`|&\verb|\`a \`\i|&\`a \`\i\\
+Circumflex&\verb|\^|&\verb|\^a \^\i|&\^a \^\i\\
+Tilde&\verb|\~|&\verb|\~a \~\i| & \~a \~\i\\
+Diaeresis&\verb|\"|&\verb|\"a \"\i|&\"a \"\i\\
+Double acute&\verb|\H|&\verb|\H{o} \H{e}|&\H{o} \H{e}\\
+Caron&\verb|\v|&\verb|\v{c} \v{D}|&\v{c} \v{D}
+\end{tabular*}
+\end{center}
+
+\subsection*{Typing directly}
+If your keyboard allows the input of characters in latin alphabet like \'e, \~n, \`o, \^a, \"e, you may use them directly in your entries by including
+\begin{quote}
+\begin{verbatim}
+\usepackage[latin1]{inputenc}
+\end{verbatim}
+\end{quote}
+on your document preamble. Users of Macintosh computers should use \texttt{applemac} instead of \texttt{latin1}. Some other available encondings are \texttt{cp1250, cp1257, macce} for users of eastern and central europe, baltic, Macintosh central Europe encodings.
+Package \texttt{inputenc.sty} obsoletes the packages \texttt{isolatin.sty} and \texttt{umlaut.sty} (see \htmladdnormallink{An essential guide to LaTex $2_\varepsilon$ usage}{http://www.tug.org/tex-archive/info/l2tabu/english/l2tabuen.pdf} )
+
+If you have a Unicode-complaint browser and you know how to type the foreign characters directly, you may do so. Currently, this is only supported for most characters found in Latin languages, and for Russian language. If you would like to see support for another language, please file \htmladdnormallink{a bug report}{http://bugs.planetmath.org/} which includes the \htmladdnormallink{Unicode range}{http://www.unicode.org/charts/} of the characters you want and their TeX encodings. \emph{Note:} Noosphere does not support direct typing of foreign characters in titles. Please, use accent commands and \textbackslash{}cyrXXX commands (see below).
+
+\subsection*{Russian}
+Russian text and other symbols in unicode work directly.
+
+\subsection*{C\'edilles}
+French, Portuguese, and Romanian use letters containing diacritical markings called c\'edilles.
+\begin{center}
+\begin{tabular*}{.8\textwidth}{llll}
+\textbf{Name}&\textbf{Code}&\textbf{Example(code)}&\textbf{Example(result)}\\\hline
+c\'edille & \verb+\c+ & \verb+\c{c} \c{s} \c{t}+ & \c{c} \c{s} \c{t} \\
+\end{tabular*}
+\end{center}
+
+\subsection*{Ligatures}
+\TeX{} will make the ligatures for ``fi'' and ``fl'' automatically. The German ligature ``{\ss}'' (for ``ss'') will only be made if explicitly indicated, by \verb+{\ss}+. (There is one other way, but this way generally works better with Noosphere.)

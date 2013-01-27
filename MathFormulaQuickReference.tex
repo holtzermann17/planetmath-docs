@@ -1,0 +1,465 @@
+Typesetting some formulas in \TeX{} is fairly straightforward and intuitive. Others are still easy provided one knows the syntax. And others require some lifting. This reference shall include almost all kinds of formulas one could possibly need to typeset in a typical mathematical paper, from the very simple to the very complicated.
+
+A good \TeX{} document begins with a preamble. PlanetMath supplies a default preamble for most kinds of documents it contains. Any formula using standard mathematical symbols can be typeset in PlanetMath without making any changes to the default preamble. Nothing in this reference requires you to make any changes to the default preamble. % Exceptions will be explicitly noted
+
+After some general remarks on math mode, what follows will be organized by mathematical branch, from elementary to advanced, each syntax placed in the most elementary branch it is likely to occur in. Naturally some of these will be open to debate. But the idea is that for the most part, these usually hold.
+
+\subsection*{Entering math mode}
+
+There are a few different ways of entering and leaving math mode. The two most commonly used on PlanetMath are the single dollar sign and the double dollar sign (this of course must be properly matched, if one closes with one too few or too many, an error occurs and rendering fails). The double dollar sign causes a linefeed before and after the formula, regardless of whether or not there is a linefeed in the source, and the formula is centered. This is recommended for most formulas where there is complicated nesting of expressions and/or several different levels with some particularly small elements.
+
+\subsection{Remarks on spacing in the source}
+
+Technically one could write in math mode and not use any spaces whatsoever, and the \TeX{} rendering engine will take care of spacing according to the conventions of mathematical typesetting. However, for the sake of readability when one needs to look at the source, it is good form to use spacing in the source. One can even use more spacing than will actually show. In this reference, the examples will use spacing that tries to mimic the spacing in the output.
+
+\subsection{Grouping}
+
+Often it is necessary to let the rendering engine know that two or more entities are to be treated as a single entity. This accomplished with ``curly braces''. Actually displaying these braces will be dealt with later.
+
+
+\subsection*{Arithmetic}
+
+Base 10 numbers are written with the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9, and the decimal point ``.'' Some operators can simply be typed in.
+
+\subsection{Addition and subtraction}
+
+The ``+'' key will do. But the ``-'' is technically not a subtraction operator, even though it is understood as a subtraction operator in most computer programming languages and computer algebra systems. It is understood that way too in \TeX{} but only in math mode. In math mode, the rendering engine renders an en dash as a true subtraction sign. Out of math mode it remains an en dash.
+
+$31 + 13 + 2 + 1$
+
+\verb=$31 + 13 + 2 + 1$=
+
+$100 - 53$
+
+\verb=$100 - 53$=
+
+\subsection{Multiplication}
+
+With multiplication we come to a veritable embarrasse de choix, though there are some guidelines to steer our choices by. The asterisk operator should generally only be used in programming language source code listings, not in math mode. In math mode, two options include the X-like cross ``$\times$'' and the central dot ``$\cdot$''.
+
+$2 \times 3 \times 7 + 1$
+
+\verb=$2 \times 3 \times 7 + 1$=
+
+$2 \cdot 3 \cdot 7 + 1$
+
+\verb=$2 \cdot 3 \cdot 7 + 1$=
+
+We'll get to the tacit multiplication operator soon. But first, exponentiation, a kind of iterated multiplication in which a single operand is repeatedly multiplied by itself a number of times, the operand being the ``base'' and the exponent, the number of times to multiply the operand by itself, being a small superscript to the right of the base. In the \TeX{} source we write the caret symbol so familiar to computer programmers, and the rendering engine will typeset a single entity to the right of the caret as a superscript to the right of the base in a smaller font.
+
+$2^3 - 1$
+
+\verb=$2^3 - 1$=
+
+$2^31 - 1$
+
+\verb=$2^31 - 1$=
+
+For the rendering engine, the most significant digit of the exponent counts as a single digit. We must let the rendering engine know if a group of digits is a single exponent.
+
+$2^{31} - 1$
+
+\verb=$2^{31} - 1$=
+
+$2^{131071} - 1$
+
+\verb=$2^{131071} - 1$=
+
+This suggests one way to do the tacit multiplication operator when the multiplicands have exponents.
+
+$2^2 3^2 5^2 7^2$
+
+\verb=$2^2 3^2 5^2 7^2$=
+
+$2^{19} 3^{17} 5^2 7^2$
+
+\verb=$2^{19} 3^{17} 5^2 7^2$=
+
+(Though it's good form to space them in the source).
+
+As for power towers, \TeX{} can handle these just as easily as the usual exponentiation with a single base and exponent, so long as the author makes sure each opening bracket has a matching closing bracket.
+
+$2^{2^3} + 1$
+
+\verb=$2^{2^3} + 1$=
+
+$5^{4^{3^{2^1}}}$
+
+\verb=$5^{4^{3^{2^1}}}$=
+
+Theoretically, a power tower can go as far as the rendering engine's maximum file size will allow. But for the sake of our older readers, power towers ought to be limited to three elements.
+
+For factorials, if one's keyboard has the closing exclamation mark ``!'', that's good enough for the factorial symbol in \TeX{}.
+
+$7!$
+
+\verb'$7!$'
+
+\subsection{Divisions and fractions}
+
+We may use either the forward slash ``/'' or the subtraction sign enmeshed with colon ``$\div$.''
+
+$81263 \div 47$
+
+\verb=$81263 \div 47$=
+
+$2^{1/2}$
+
+\verb=$2^{1/2}$=
+
+Generally, however, divisions should be expressed as fractions. There are two different ways of doing fractions, but the most straightforward is the backslash-frac-numerator enclosed by braces-denominator enclosed by braces syntax.
+
+$$\frac{1}{2} + \frac{1}{4} + \frac{1}{20}$$
+
+\verb=$$\frac{1}{2} + \frac{1}{4} + \frac{1}{20}$$=
+
+$$\frac{2^{13}}{7 + 19}$$
+
+\verb=$$\frac{2^{13}}{7 + 19}$$=
+
+$$4(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5} \times \frac{6}{5})$$
+
+\verb=$$4(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5} \times=
+
+\verb=\frac{6}{5})$$=
+
+\subsection{Parentheses}
+
+The parentheses available from the keyboard will do fine for most purposes. Occasionally, as the previous example shows, it is necessary to nudge the rendering engine to make the parentheses bigger with the use of the ``left('' and ``right)'' commands.
+
+$$4\left(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5} \times \frac{6}{5}\right)$$
+
+\verb=$$4\left(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5}=
+
+\verb=\times \frac{6}{5}\right)$$=
+
+\subsection{Comparisons}
+
+The symbols for the three most commonly used comparisons, less than, equal to and more than, are available from the keyboard (or at least in the standard American layout) and can simply be typed straight in.
+
+$3^2 < 2^4$
+
+\verb'$3^2 < 2^4$'
+
+$2^4 = 4^2$
+
+\verb'$2^4 = 4^2$'
+
+$3^4 > 4^3$
+
+\verb'$3^4 > 4^3$'
+
+For not equal to, neither ``<>'' nor ``!='' should be used, except of course in computer programming language source code listings. The correct symbol is ``$\neq$'', and its corresponding \TeX{} command is either \verb=\neq= or \verb=\ne=. Similarly, for greater than or equal to and less than or equal to, the commands are \verb=geq= (or \verb=\ge=) and \verb=leq= (or \verb=\le=).
+
+$$\left(\frac{1}{2}\right)^{(-1)} \leq 2$$
+
+\verb'$$(\frac{1}{2})^{(-1)} \leq 2$$'
+
+$(21 \times 3) \geq 60$
+
+\verb'$(21 \times 3) \geq 60$'
+
+For congruences, one has the option of putting the ``mod some number'' part in parentheses or not.
+
+$4^2 \equiv 1 \mod 21$
+
+\verb'$4^2 \equiv 1 \mod 21$'
+
+$5^3 \equiv 31 \pmod{47}$
+
+\verb'$5^3 \equiv 31 \pmod{47}$'
+
+Note that for the parenthesized version, the modulus must follow, preferrably bracketed.
+
+Most computer keyboards provide a broken pipe symbol which however shows up in math mode as the single line of the divisibility symbol. For the does not divide symbol, however, use \verb=\nmid=.
+
+$7 | 42$
+
+\verb'$7 | 42$'
+
+$2 \nmid 47$
+
+\verb'$2 \nmid 47$'
+
+For the two wavy lines of approximation, the command is \verb=\approx=.
+
+$$\frac{4}{7} \approx 0.5714286$$
+
+\verb'$$\frac{4}{7} \approx 0.5714286$$'
+
+\subsection{Radicals}
+
+As you probably already know, for square roots the superscript 2 is understood as the default and need not be the stated; the command then consists of ``sqrt'' followed by the operand enclosed by curly braces.
+
+$\sqrt{17} \approx 4.1231$
+
+\verb'$\sqrt{17} \approx 4.1231$'
+
+For other roots, ``sqrt'' is followed the exponent in ``straight'' braces ``['' and ``]'', followed by the operand in curly braces.
+
+$\sqrt[47]{8128}$
+
+\verb'$\sqrt[47]{8128}$'
+
+\subsection{Ellipses}
+
+In most cases, the horizontal ellipses ``ldots'' will be sufficient.
+
+Gau{\ss} and his classmates were tasked with calculating $1 + 2 + 3 + \ldots + 99 + 100$.
+
+\verb'Gau{\ss} and his classmates were tasked with calculating $1'
+
+\verb'+ 2 + 3 + \ldots + 99 + 100$.'
+
+$$1 + \frac{1}{3} - \frac{1}{5} + \frac{1}{7} + \ldots$$
+
+\verb'$$1 + \frac{1}{3} - \frac{1}{5} + \frac{1}{7} + \ldots$$'
+
+\subsection{Nested radicals and continued fractions}
+
+In \TeX{} we can nest radicals and divisions with an ease not possible in HTML. The only thing one needs to be careful about is closing each brace one opens.
+
+$\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\ldots}}}}}$
+
+\verb'$\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\ldots}}}}}$'
+
+$$3 + \frac{1}{{7} + \frac{1}{{15} + \frac{1}{{1} + \, \cdots}}}$$
+
+\verb'$$3 + \frac{1}{{7} + \frac{1}{{15} + \frac{1}{{1} + \,'
+
+\verb'\cdots}}}$$'
+
+\subsection{Binomial coefficients.} There are at least two different ways of doing binomial coefficients, but the most straightforward is the backslash-binom-top number enclosed by braces-bottom number enclosed by braces syntax. (Note the similarity between this and fractions.)
+
+$$\binom{7}{4}=\frac{7!}{(7-4)!4!}=35$$
+
+\verb'$$\binom{7}{4}=\frac{7!}{(7-4)!4!}=35$$'
+
+\subsection*{Algebra}
+
+By using non-numerical symbols to represent an unknown number, or any number, or any number that could be input, or all numbers of a kind or in a given range, or maybe even all numbers. In mathematical writings in English, the symbols most commonly used for this purpose are the uppercase and lowercase letters of the Greek alphabet and the uppercase and lowercase italicized letters of the English alphabet. For English letters, it is enough to type them in math mode, \TeX{} will take care of italicizing them.
+
+Shade the area between $y = 4x - 3$ and $y = -2x + 1$.
+
+\verb'Shade the area between $y = 4x - 3$ and $y = -2x + 1$.'
+
+Then $N = p_1p_2 \ldots p_n + 1$ is not divisible by any prime...
+
+\verb'Then $N = p_1p_2 \ldots p_n + 1$ is not divisible by any'
+
+\verb'prime...'
+
+For Greek letters, the command is the anglicized name of the Greek letter, with its first letter capitalized for the uppercase letters. At this point I'd like to mention that the use of non-numeric symbols is not limited to variables, but can also be used as a handy shortcut for constants that would be too cumbersome to write as literals each time they're needed.
+
+Clearly $2\epsilon < 1$ and $\Delta^3 > \sqrt\kappa$.
+
+\verb'Clearly $2\epsilon < 1$ and $\Delta^3 > \sqrt{\kappa}$.'
+
+The golden ratio $\phi = \frac{1 + \sqrt{5}}{2}$ applied to Doric columns...
+
+\verb'The golden ratio $\phi = \frac{1 + \sqrt{5}}{2}$ applied to'
+
+\verb'Doric columns...'
+
+Variant forms of some Greek letters are available for use in math mode, these are invoked by inserting ``var'' between the backslash and the letter name.
+
+Their handwriting was very similar, but Robert always wrote $\phi\prime$ while Catherine prefered $\varphi\prime$.
+
+\verb'Their handwriting was very similar, but Robert always wrote'
+
+\verb'$\phi\prime$ while Catherine prefered $\varphi\prime$.'
+
+See ``Greek alphabet'' in the PlanetMath encyclopedia for a complete listing.
+
+With the addition of parentheses, we can also use letters to stand for functions. Usually we can just type them from the keyboard.
+
+Define $f(n) = n^2 + m \mod a$ and iterate 7 times.
+
+\verb'Define $f(n) = n^2 + m \mod a$ and iterate 7 times.'
+
+Clearly $\Omega(n) > \omega(n)$ if $n$ is squarefull.
+
+\verb'Clearly $\Omega(n) > \omega(n)$ if $n$ is squarefull.'
+
+\subsection{Superscripts and subscripts}
+
+As shown, most of what was said about arithmetic applies to algebra as well. However, it now becomes useful to think of the caret as not being semantically tied down to exponentiation, but simply as a superscript symbol, as will become clear later on. \TeX{} will properly determine from context the correct nature and placement of the superscript. Subscripts are obtained with the underscore character.
+
+By $\phi^3(n)$ we mean $\phi(\phi(\phi(n)))$ and so on.
+
+\verb'By $\phi^3(n)$ we mean $\phi(\phi(\phi(n)))$ and so on.'
+
+For a prime $p$, $\sigma_3(p)$ is $1 + p^3$.
+
+\verb'For a prime $p$, $\sigma_3(p)$ is $1 + p^3$.'
+
+\subsection{Iterated sums and products}
+
+The basic syntax for iterated sums and products is well worth remembering as it comes in handy for other things later on. It consists of the ``sum'' or ``prod'' command followed by an underscore with the iterator initialization or iterator conditions (preferably grouped with braces), followed by the caret and the iterator's maximum value (grouped with braces if consisting of more than one entity), then the expression to be iteratily summed or multiplied. It's good form to include a space between the iterator end expression and the expression to be iterated.
+
+$$T_n = \sum_{i = 1}^n i$$
+
+\verb'$$T_n = \sum_{i = 1}^n i$$'
+
+$$\sum_{i = 0}^\infty (-1)^i \frac{1}{2i + 1}$$
+
+\verb'$$\sum_{i = 0}^\infty (-1)^i \frac{1}{2i + 1}$$'
+
+$$\prod_{i = 1}^\infty \left(\frac{i}{i + 1}\right)^{{(-1)}^i}$$
+
+\verb'$$\sum_{i = 0}^\infty (-1)^i \frac{1}{2i + 1}$$'
+
+\subsection*{Set theory}
+
+Generally uppercase letters are used to stand for sets. The command for the set membership symbol is \verb=\in=.
+
+Since any element $x$ satisfies both $x \in A$ and $x \in B$ ...
+
+\verb'Since any element $x$ satisfies both $x \in A$ and $x \in'
+
+\verb'B$ ...'
+
+To list the member elements of a set, curly braces are typically used as delimiters, but these braces have an important function in \TeX. Therefore, they must be ``escaped'' with a backslash.
+
+Given the set $H = \{ 1, 2, 4, 6 \}$, it is clear that...
+
+\verb'Given the set $H = \{ 1, 2, 4, 6 \}$, it is clear that...'
+
+The commands for union and intersection are ``cap'' and ``cup'' respectively.
+
+$\{ a, e, i, o, u, y \} \cap \{ b, c, d, f, \ldots x, y, z \} = \{ y \}$
+
+\verb'$\{ a, e, i, o, u, y \} \cap \{ b, c, d, f, \ldots x, y,'
+
+\verb'z \} = \{ y \}$'
+
+If $C = A \cup B$, then both $A$ and $B$ are subsets of $C$.
+
+\verb'If $C = A \cup B$, then both $A$ and $B$ are subsets of $C$.'
+
+\subsection{Blackboard bold}
+
+Certain special infinite sets which need frequent reference are symbolized by blackboard bold letters. The command is \verb=\mathbb{X}= where \verb=X= is replaced by the desired letter.
+
+$\mathbb{N} = \{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, \ldots \}$
+
+\verb'$\mathbb{N} = \{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, \ldots \}$'
+
+Even $(0 + 0i) \in \mathbb{C}$, thus $\mathbb{C} \cap \mathbb{R} = \mathbb{R}$.
+
+\verb'Even $(0 + 0i) \in \mathbb{C}$, thus $\mathbb{C} \cap'
+
+\verb'\mathbb{R} = \mathbb{R}$.'
+
+\subsection{Empty set}
+
+The empty set can simply be denoted as $\{ \}$, but the symbols $\emptyset$ and $\varnothing$ are also available.
+
+Obviously $\mathbb{J} \cap \mathbb{N} = \varnothing$.
+
+\verb'Obviously $\mathbb{J} \cap \mathbb{N} = \varnothing$.'
+
+If $A$ and $B$ have no elements in common then $A \cap B = \emptyset$.
+
+\verb'If $A$ and $B$ have no elements in common then $A \cap B = \emptyset$.'
+
+\subsection*{Trigonometry}
+
+The trigonometric functions are just strings of three or four lowercase English letters, but shouldn't just be typed in, or else they'll be italicized. It's enough to precede them with backslashes.
+
+The parametric equations in this case are $x = a + r \cos t$ and $y = b + r \sin t$.
+
+\verb'The parametric equations in this case are $x = a + r \cos t$'
+
+\verb'and $y = b + r \sin t$.'
+
+\subsection*{Calculus}
+
+Calculus has been described as the ``art of finding limits.'' Therefore we'll begin with limit notation. The syntax consists of the ``lim'' command followed by an underscore and the expression of limit enclosed by braces, then the expression of which we're stating the limit.
+
+Hadamard proved that $$\lim_{x \to \infty} \frac{\pi(x)}{\frac{x}{\ln(x)}} = 1.$$
+
+\verb'Hadamard proved that $$\lim_{x \to \infty} \frac{\pi(x)}'
+
+\verb'{\frac{x}{\ln(x)}} = 1.$$'
+
+As mentioned before, the underlying idea of the iterated sum and product comes in handy later on. Integration is also an iterated computation, and the syntax is the same, only we use ``int'' instead of ``sum'' or ``prod.''
+
+$$\int_0^x \frac{dt}{\ln t}$$
+
+\verb'$$\int_0^x \frac{dt}{\ln t}$$'
+
+Some people prefer to use the command ``limits'' to make the lower bound of integration appear lower and the upper bound of integration appear higher.
+
+$$\int\limits_0^x \frac{dt}{\ln t}$$
+
+\verb'$$\int\limits_0^x \frac{dt}{\ln t}$$'
+
+The same concept applies for substitution notation: The square brackets can simply be typed in (or ``left['' and ``right]'' used if bigger brackets are needed), then the underscore followed by the start value, and the caret followed by the end value.
+
+$$\Gamma(1) = \int_0^\infty e^{-t} \,dt = [-e^{-t}]_0^\infty = 1$$
+
+\verb'$$\Gamma(1) = \int_0^\infty e^{-t} \, dt = [-e^{-t}]_0^\infty'
+
+\verb'= 1$$'
+
+Note that the ``$dt$'' has an extra space in front of it --- this serves as
+a visual cue that $dt$ is to be taken as a unit. Likewise, when several
+differentials appear, it is good to separate them with spaces:
+$$\int_0^1 \int_x^1 \sqrt{x^2 + y^2} \, dy \, dx$$
+\verb' $$\int_0^1 \int_x^1 \sqrt{x^2 + y^2} \, dy \, dx$$'
+
+\subsection*{Logic}
+
+In any treatment of mathematical logic, certain words are bound to occur with a frequency that bloats a document and makes it seem rather verbose. Mathematicians have invented a standard set of symbols that abbreviate all these common words that pertain to logic, enabling conciseness. It is possible, even outside the study of logic, to use these symbols so pervasively that the use of a natural language like English is almost completely avoided, resulting in a very dense document. For guidance on the proper balance of English and logical symbols in PlanetMath, consult the section ``Logic symbols versus words'' in the {\it PlanetMath Content and Style Guide} (in the Docs group under Information). The examples in this section of this reference will of necessity skew towards a near-total avoidance of English.
+
+Just as variables can be symbolized in algebra by italicized letters of the English alphabet, so can propositions in logic.
+
+$\forall x\; (S(x) \to P(x))$
+
+\verb=$\forall x\; (S(x) \to P(x))$=
+
+$\forall x\; (S(x) \to \neg P(x))$
+
+\verb=$\forall x\; (S(x) \to \neg P(x))$=
+
+$\exists x\; (S(x) \wedge P(x))$
+
+\verb=$\exists x\; (S(x) \wedge P(x))$=
+
+$\exists x\; (S(x) \wedge \neg P(x)$
+
+\verb=$\exists x\; (S(x) \wedge \neg P(x)$=
+
+
+
+The logic symbols in the Latex2e editor are contained under the
+``Comparison, or Comparison 2'' menus:
+
+$$Exists = \exists ,$$
+
+$\ni$
+
+$$any = \forall$$
+
+$$negation = \neg = N $$
+$$vee = \vee$$
+$$wedge = \wedge , $$
+
+$$ Big vee =\bigvee$$,
+$$Big wedge = \bigwedge .$$
+The implication is however found as a double or single arrow under the arrows
+menu in the latex2e editor. For symbols used in conjuction with multi-valued
+or LM- logic algebras see for example:
+$$http://planetmath.org/encyclopedia/AlgebraicCategoryOfLMnLogicAlgebras.html$$.
+
+Of course, just as algebra can have literal numbers, so too can logic have literal propositions.
+
+$(x = |x|) \Leftrightarrow (\neg x = (-1)|x| \And x \neq 0)$
+
+\verb'$(x = |x|) \Leftrightarrow (\neg x = (-1)|x| \And x \neq 0)$'
+
+$\pi \neq \frac{a}{b} \therefore \pi \not \in \mathbb{Q}$
+
+\verb=$\pi \neq \frac{a}{b} \therefore \pi \not \in \mathbb{Q}$=
+
