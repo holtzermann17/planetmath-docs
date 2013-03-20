@@ -16,14 +16,14 @@ Now, suppose we have uploaded the file \texttt{pmlogo.eps} on the filebox at the
 
 \begin{Verbatim}
 \begin{center}
-\includegraphics{pmlogo}
+\includegraphics{./inputs/pmlogo}
 \end{center}
 \end{Verbatim}
 
 
 The centering is optional, and notice how we omitted the extension. The result after rendering is
 \begin{center}
-\includegraphics{pmlogo}
+\includegraphics{./inputs/pmlogo}
 \end{center}
 Notice the image is a bit blurry, the reason being that it is not a vector-based graphic, but a raster one (something to be avoided). See \ref{gfxformats} for information.
 
@@ -38,7 +38,7 @@ Now, \texttt{includegraphics} has several optional parameters that affect its ou
 Since \texttt{scale=0.5}, the resulting size image is halved:
 
 \begin{center}
-\includegraphics[scale=0.5]{pmlogo}
+\includegraphics[scale=0.5]{./inputs/pmlogo}
 \end{center}
 
 Sometimes you need to rotate your graphics. You can do that with the \texttt{angle=}\emph{x} option, where \emph{x} is the angle in degree by which the image is rotated counterclockwise.
@@ -50,7 +50,7 @@ Sometimes you need to rotate your graphics. You can do that with the \texttt{ang
 \end{quote}
 
 \begin{center}
-\includegraphics[scale=0.3,angle=90]{pmlogo}
+\includegraphics[scale=0.3,angle=90]{./inputs/pmlogo}
 \end{center}
 
 \subsubsection*{Placing labels and numbering}
@@ -70,7 +70,7 @@ Perhaps you want to put some lines of text and a number under your image (this i
 Now you get this result:
 \begin{figure}[h]
 \begin{centering}
-\includegraphics{pmlogo}
+\includegraphics{./inputs/pmlogo}
 \caption{The PlanetMath logo}
 \end{centering}
 \end{figure}
@@ -226,11 +226,11 @@ Here is a sample file \verb+onlygraphic.tex+ to illustrate the required steps.
 Now, after running \verb+dvips -E onlygraphic.dvi -o RightTriangle.eps+ we can upload \verb+RightTriangle.eps+ to the entry in order to obtain
 \begin{Verbatim}
 \begin{center}
-\includegraphics{RightTriangle}
+\includegraphics{./inputs/RightTriangle}
 \end{center}
 \end{Verbatim}
 \begin{center}
-\includegraphics{RightTriangle}
+\includegraphics{./inputs/RightTriangle}
 \end{center}
 \subsubsection{Other details.}
 The \verb+pst*+ packages should be loaded the latest on the preamble. Specifically \emph{after} other graphics packages like \verb+graphicx.sty+, \verb+color.sty+ which seem to break \verb+\psgrid+ and other commands.
