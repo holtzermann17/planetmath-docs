@@ -1,0 +1,1079 @@
+\subsection{Preamble}
+
+During the conversation with Joe and Deyan this afternoon, some of the
+proposals for NNexus reminded me of the PM-Xi project which Joe and I
+had discussed a few years back, so I suggested that looking back at
+that proposal might be useful. After the conversation, I looked
+through my records and retrieved the document which contained the
+final form of this proposal. Originally, I was just gong to sennd out
+the PM-Xi portion of that document but, after reading it over, I
+decided that maybe the whole document is worth looking over again
+now. Basically, this ``dreamlist'' outlines a coherent, comprehensive
+vision for a new improved PlanetMath which incorporates the various
+projects and proposals which we had been discussing in and around our
+summit in Madison. Now that we have rolled out the new platform and
+are again looking at the bigger picture, I think it might be worth
+pulling his document out, dusting it off, looking at it, and making
+use of it.  Whilst some of the details there need to be updated to
+reflect our current software platform, by and large I think that the
+ideas and plans proposed there are as relevant and useful now as they
+were in 2008, maybe more so now that we are in a position to start
+implementing them. -- \emph{Raymond Puzio, March 23, 2013}
+
+\subsection{Introduction}
+
+From its inception in 2001. the primary focus of PlanetMath has been on
+the production of free mathematical content, chiefly in the form of
+encyclopaedia entries. While I think that PlanetMath has been successful
+in this area and should continue doing this, at the same time, I think
+that it should broaden its horizons to indexing and presenting content
+produced elsewhere not only because this would allow it to carry out our
+mission more fully but also because, being uniqiuely situated to fill a
+role which is only now emerging in the landscape of online mathematics,
+it is presented with an opportunity which, if seized in a timely
+fashion, could launch the organization into a position of leadership
+within this landscape.
+
+When PlanetMath started seven years ago, it found itself in a unique
+role. At that time, the internet was just becoming available to the
+general public and most content was in the form of individual web pages
+or suites of pages written by at most a handful of users. At that time,
+the notion of a website writtten collaboratively by a sizable community
+of authors and the software platform underlying such an effort were
+quite novel ideas and there were at most a handful of other sites which
+oferred large quantities of mathematical content. As time went on and
+the novelty wore off, others have done similar enough things to the
+point where we no longer stand out. Collaboratively written sites are
+now quite common, web encyclopaedias are almost as common as people
+posting pictures of their pets, and there is plenty of mathematical
+content available from a number of sources. To be sure, we still have
+the distiction of having been first along with the concommitant
+experience and advantages of our headstart, but our position now is, at
+best, first among equals, not as a forerunner far in front of the crowd.
+
+Exactly this proliferation which no longer makes us as distinctive as we
+used to be has created a new opportunity for us to lead rather than lag.
+The mound of mathematical knowledge now available online is crying out
+for organization. Presently, the tool used for navigating this sea of
+assertions is the general purpose search engine, which is limited by its
+inability to understand specifically mathematical search criteria.
+PlanetMath could improve on this effort tremendously by channeling its
+collective expertise into CBPP projects which provide the data needed
+for intelligent searching of mathematical content and projects which
+directly organize and catalog content found in various sources.
+Undertaking such a project is not entirely a new direction because
+already the books section presents content which is primarily written
+elsewhere; rather, it is a matter of doing this on a much larger scale.
+
+The scenario described here is analogous to the evolution of the Great
+American Shopping Experience. In the early days, one had
+mom-and-pop-shops. Typically, these were located in a downtown business
+district or along a main street and each would specialize in some types
+of merchnadise such as stationry, hats, or candy. Then there came the
+department stores and supermarkets (not to mention combinations of both
+in a single business), which combined these various specialties under
+one roof in a unified fashion and a single check-out. Then there came
+the shopping mall which combined features of both earlier types. Built
+around one or more superstores, it also had places for smaller specialty
+stores, evoking the appearance of the row of storefronts along a street.
+By analogy, individual websites are like mom-and-pop-stores, offering
+some specialty such as Fibonnacci numbers, the reaearch interests of an
+individual, or a math department of a university. PlanetMath is like a
+department store offerring books, entries, and discussion on various
+areas of mathematics in one place. The next level which I propose here
+would be like a mall insofar as it would collect not just offerrings
+provided by the PlanetMath community, but also material from elsewhere
+in one location. Just as shopping malls offer the convenience of buying
+all sorts of things in one place rather than having to travel from place
+to place, so too this expanded version of PlanetMath would offer the
+convenience of being able to take care of most of their mathematical
+needs from within a single website. Just as erecting a shopping mall
+requires entails providing a building with stalls for shops but not
+furnishing the merchandise, so too the proposals described below calls
+for providing the infrastructure for hosting, indexing, and displaying
+various types of content, but not for generating the content, which
+instead will be harvested, transcluded, and linked from various other
+sources.
+
+By and large, the platform described here is based upon already
+well-known and established software architectures. In many cases, it
+should simply be possible to simply deploy already written programs, and
+where this is not possible, it should usually be a matter of writing a
+program along the lines of what has been done many times before as
+opposed to developing something new. Using familiar formats such as
+drag-and-drop desktops, social networking, etc. should make it easy for
+most new users to get started. Rather, most of the novelty here comes in
+integrating these genres and adapting them to the needs of
+mathematicians. For instance, one could go from a social networking
+directory to a math blog with entries in TeX describing progress on a
+research project to a desktop where one can participate in furthering
+that research. Having said this, it is worth noting that there are
+definitely ways in which new technology could be incorporated in a
+useful way. Most notably, the scholium system should provide a versatile
+foundation for implementing (or re-implementing) many features in a more
+flexible way. Likewise, relativistic databases, proof checkers, parsers,
+and the like could all be incorporated into this scheme in appropriate
+places to enhance users' capabilities.
+
+\subsection{Mathematical Web Directory}
+
+Goal: To present links to as many webpages about mathematical topics as
+possible, ideally all of them, along with metadata and descriptions of
+the same. Examples of types of pages which should go in such a directory
+are as follows: web sites and pages about mathematics, mathematical
+organizations' web pages, homepages of mathematicians with publications
+and similar mathematical content (as opposed to homepages of
+mathematicians which say nothing or next to nothing about mathematics),
+homepages of mathematics departments and institutes, open access math
+journals and preprint servers (and maybe also closed ones).
+
+\begin{itemize}
+\item
+  Provide links to web sites carrying mathematical content
+\item
+  Provide permanent links when possible.
+\item
+  Links and data will be added by users.
+\item
+  Each entry will have a description..
+\item
+  There will be various metadata fields for ease of reference.
+\item
+  Work towards time when, not only will most mathematical web sites be
+  listed here, but people will routinely look in this section to find
+  websites, and hence people with websites will be interested in making
+  sure their sites are listed.
+\item
+  Write letters to webmasters whose sites are listed. ** Promote
+  goodwill and accuracy by having them approve description. ** Encourage
+  linking to PM.
+\item
+  Provide unified interface to various web sites and services.
+\item
+  Work metadata into a metric-based search engine.
+\item
+  Provide space for user reviews and comments.
+\end{itemize}
+\subsection{PlanetMath Cross-index (PM-Xi)}
+
+\paragraph{Goal} To mutually reference as much of the mathematical literature as
+possible in a structure which cuts across mathematical works
+transversally to link portions which discuss the same subject material
+as well as to provide local metadata which helps index the various
+topics discussed in the literature for ease of retrieval. This would
+provide a directory to the literature in the form of a certain type of
+basic linking between works in a standardized format which later could
+be augmented with descriptions of the links and other types of links as
+well as be of use in compiling more specialized directories such as
+annotated bibliographies as well as generally in accessing and using the
+literature.
+
+\paragraph{Ontology}
+
+\begin{itemize}
+\item
+  The cross-index consists of factoids, loci, and allusions.
+\item
+  A factoid is an irreducible unit of mathematical exposition, e.g. **
+  Statement of a definition. ** Statement of a theorem. ** Proof of a
+  theorem. ** Example
+\item
+  A locus is a portion of a mathematical text which expresses a factoid.
+\item
+  An allusion is a portion of a mathematical text which refers to a
+  factoid but does not state it because it is assumed to be known by the
+  reader or the reader is referred elsewhere for an explanation.=
+\end{itemize}
+
+\paragraph{Tables}
+
+\begin{itemize}
+\item
+  Factoid table ** Metadata --- as a first approximation, we can take
+  the metadata fields attached to PM entries. ** Loci --- A list of loci
+  in which the factoid in question is described.
+\item
+  Locus table **Genre  This column describes the type of work in
+  which the item occurs, e.g.~book, journal article, web page, thesis,
+  lecture notes= , conference proceeding, etc. ** Work  The
+  particular work in which the item occurs. ** Location  Am
+  indication of exactly where in the work to find the item. The exact
+  form of data in this slot will depend upon the genre. As far as
+  feasible, this should be in a form which enables a computer to select
+  and highlight the locus in question from a digital version of the
+  work.
+\item
+  Allusion table **Genre  This column describes the type of work in
+  which the item occurs, e.g.~book, journal article, web page, thesis,
+  lecture notes= , conference proceeding, etc. ** Work  The
+  particular work in which the item occurs. ** Factoid --- The factoid
+  to which the allusion is made. ** Location Am indication of
+  exactly where in the work to find the item. The exact form of data in
+  this slot will depend upon the genre. As far as feasible, this should
+  be in a form which enables a computer to select and highlight the
+  locus in question from a digital version of the work.
+\end{itemize}
+
+\paragraph{Workflow}
+
+\begin{itemize}
+\item
+  Where possible, work indexing into other activities. ** Have loci
+  automatically be generated from TeX code, e.g.~make a theorem locus
+  automatically whenever a theorem environment is encountered. ** Set up
+  text viewer so that readers can add indexing on the fly. ** Allusions
+  are suggested on the fly by the autolinker; subsequently, readers will
+  confirm whether they were chosen correctly and automatically add
+  allusions to the database as appropriate.
+\item
+  As they are found by users, loci and allusions could go into a pool
+  for later attachment to factoids.
+\item
+  Users would own and maintain factoids much as they already maintain
+  entries.
+\item
+  There would be an inbox for suggesting loci to be added to a factoid
+  attached to that factoid.
+\item
+  One could file a correction to a factoid to point out mistakes or
+  omissions in metadata or inappropriate loci.
+\item
+  The maintainer of a factoid will be expected to answer corrections and
+  proopsals for extra loci in a timely fashion..
+\item
+  There will be a place for associating unattached allusions with
+  unattached loci; upon attaching the loci to factoids, the allusions
+  associated to them would automatically be attached to the factoids in
+  question,.
+\item
+  Since it is possible that two users may inadvertantly create two
+  copies of the same factoid with diffferent loci, there will be a
+  mechanism for merging factoids.
+\end{itemize}
+
+\subsection{Improved Papers and Exposition Sections}
+
+\paragraph{Goal} In addition to improving facilities for users to add their own
+publications, inculde pointers to papers found in online journals,
+preprint servers, private and institutional web pages, etc. Add value to
+the collection by aggregating various content, adding user comments and
+linking entries.
+
+\paragraph{Types of mirrored, transcluded or linked content}
+
+\begin{itemize}
+\item
+  Preprints
+\item
+  Open access journals
+\item
+  Theses
+\item
+  REU Reports
+\item
+  Online seminars from IRC channels and elsewhere
+\item
+  Recorded lectures
+\end{itemize}
+
+\paragraph{Added value to content hosted elsewhere}
+
+\begin{itemize}
+\item
+  Classification and other metadata
+\item
+  Metric-based search customized for mathematics.
+\item
+  Comments, discussion, introductions, and explanations by users
+\item
+  Annotated bibliographies and directories
+\item
+  User-supplied reviews and surveys
+\item
+  Ratings and recommendations by users
+\item
+  Automatic linking
+\item
+  Bibliographic linking, with clickable links to pull up linked articles
+  when available.
+\item
+  Standardization across different platforms of infromation providers.
+\item
+  One stop shopping
+\end{itemize}
+\subsection{Improved Books Section}
+
+\paragraph{Goal} To go beyond simply listing books to making a virtual reading room
+which serves as a locus for scholarly activities centred about math
+books.
+
+\begin{itemize}
+\item
+  Have users add value via discussions, introductions, notes, etc.
+\item
+  Build a community discussing books around the collection.
+\item
+  Have platform for creating, maintaining, reading, and searching the
+  following sorts of subsidiary works: ** Reviews ** Introductions **
+  Literature guides / Bibliographies
+\end{itemize}
+
+\subsection{Improved Collaboration Section}
+
+\paragraph{Goal} To make it easy for members to work together on projects of common
+interest, both in researching them and in writing up the results of
+research. Collaboration objects will serve as a central focus in which
+various resources relevant to a particular project can be centrally
+located on a shared desktop. The available resources come in several
+different types, it being up to the collaborators to choose ones which
+they find useful for their purposes. There are communications resources,
+such as discussed in the section on networking, which could be useful
+for discussing work. Computer algebra systems, proof assistants,
+numerical packages, and the like could be useful for carrying out
+computations. Editors, linked information managers typesetting programs
+could be useful for recording and presenting results.
+
+\paragraph{Design considerations}
+
+\begin{itemize}
+\item
+  Lifecycle of a mathematical collaboration can roughly be divided into
+  three phases: ** Brainstorming and collecting information **
+  Calculating and proving results ** Writing up results as journal
+  article, conference proceedings, book, etc.
+\item
+  Different software utilities help with these phases: ** For
+  brainstorming, communications platforms, mind mappers, and note
+  organizers. ** For calculation, numerical packages, graphic packages,
+  algebra systems, and proof asssistants. ** For writing up results,
+  editors, typesetters, and slide makers.
+\item
+  Smooth transition between these stages. ** Utilities to translate
+  calculating formats to typesetting formats. ** Ability to annotate
+  files with links and notes showing flow of ideas and work.
+\end{itemize}
+
+\paragraph{Communications channels}
+
+\begin{itemize}
+\item
+  These will be synchronous and asynchronous. They should be integrated
+  and the synchronous modes should have logging capability in order to
+  be treated uniformly with the asynchronous modes after the fact. **
+  Asynchronous modes: \emph{*} E-mail \emph{*} Forum \emph{*} Weblog **
+  Synchronous modes \emph{*} Whiteboard \emph{*} Text chat \emph{*}
+  Audio \emph{*} Video (still and moving)
+\item
+  Communications channels logs should be organizable by time and have
+  room for adding commentary.
+\end{itemize}
+
+\paragraph{Storage}
+
+\begin{itemize}
+\item
+  Each collaboration will come equipped with its own storage organized
+  as a hierarchical file system.
+\item
+  Each collaboration will have its own name space for its files.
+\item
+  Files from outside collaboration name spce can not only be accessed by
+  appending namespace but can be given local aliases.
+\item
+  Versioning (after the fashion of CVS) ** Each file can be stored in
+  multiple versions. ** Bare name of file will refer to default version
+  (typically latest version) but other versions can be accessed by
+  appending version specifier to file name. ** Preserves history of
+  editing and allows recovering data from older versions. ** File
+  history can be forked. ** Utilities to navigate history, editing
+  history trees, searching and comparing past versions.
+\end{itemize}
+
+\paragraph{Desktop}
+
+\begin{itemize}
+\item
+  Each collaboration comes with a virtual desktop where collaborators
+  can work. This workspace is configurable and persists between
+  sessions.
+\item
+  This desktop is organized as one or more screen layers, each of which
+  can hold icons and windows and has a menu sidebar.
+\item
+  Menu sidebar has program launcher, bookmarks for important files,
+  links to collaboration fora and similar communication hubs, and help
+  centre.
+\item
+  Collaborators can drag and drop icons for files and appplications on
+  the desktop.
+\item
+  Various applications are available from the sidebar menu, organized in
+  a launcher by type: ** Communications --- e-mail, messages,
+  conferencing, etc. ** Calculation --- numerical packages, computer
+  algebra, proof assistants, etc. ** Programming --- compliers,
+  interpreters, development environments, etc. ** Graphics --- plotting,
+  diagramming, graphical editing, curve fitting, etc. ** Text ---
+  editors, typesetters, word processors etc. ** Presentation --- slide
+  makers, etc. ** Utilities --- file format conversion, scheduling, etc.
+\item
+  Collaborators choose which applications to put on their launcher from
+  a master menu.
+\item
+  Button on the menu bar for adding or removing applications from
+  launcher.
+\item
+  For convenience, can set up a desktop according to one of several
+  ready-made packages, e.g.~numerical, statistical, algebra, etc., each
+  of which will have a selection of applications and the like which are
+  likely to be used for a certain type of collaborative project.
+\end{itemize}
+
+\subsection{Web Services}
+
+\paragraph{Goal} To provide online access through web frontends to working copies
+free computer programs of use to mathematicians along with documentation
+and auxiliary files.
+
+\paragraph{Types of Services}
+
+\begin{itemize}
+\item
+  Computer algebra systems
+\item
+  Autolinker for user-supplied documents
+\item
+  Bibliographic tool
+\item
+  Proof assistants / Logic checkers
+\item
+  Statistical packages
+\item
+  Numerical packages
+\item
+  Mathematical graphics
+\item
+  Scientific, engineering, and statistical calculators
+\end{itemize}
+
+\paragraph{Documentation}
+
+\begin{itemize}
+\item
+  Standardized location for documentation which comes with packages.
+\item
+  FAQ and README
+\item
+  Place for user-supplied documentation.
+\item
+  Place for user feedback and comments.
+\item
+  Links to package homepages, wikis, sources, etc.
+\end{itemize}
+
+\paragraph{Integration}
+
+\begin{itemize}
+\item
+  Links from entries to packages which implements algorithms described
+  there.
+\item
+  Include computational applets in entries.
+\item
+  Utilities for converting between formats.
+\end{itemize}
+
+\paragraph{Access}
+
+\begin{itemize}
+\item
+  Each service will be accessible through a webform on its homepage.
+\item
+  Where feasible, services might be embedded into entries and the like.
+  E.g. an entry on ideal basis might have a link to an algebra system
+  too compute bases for polynomials of number fields.
+\item
+  Services can be accessed via icons on desktops.
+\end{itemize}
+
+\subsection{Social and Professional Networking}
+
+\paragraph{Goal} To serve and extend the mathematical community by making a virtual
+setting for mathematical social interaction. this interaction could take
+the form of teaching, lecturing on results, discussing mathematical
+topics, etc. This will occur in a virtual space which not only provides
+a simulacrum of familiar haunts of mathematicians such as classrooms,
+conference halls, libraries, and offices but also extends the
+possibilities, in particular transcending spatial limitations (hyperreal
+inbstitute of mathematics). However, the relation here is meant to be
+complementary, not competitive --- in particular, notable via geographic
+data, the system is meant to link to the physical world and supplement
+it with extra capabilities as opposed to supplanting it.
+
+In order to bring together like-minded individuals who can make things
+happen in this setting, there will be social networking facilities along
+the lines of Facebook, MySpace, and similar Web 2.0 mainstays, but
+adapted towards mathematicians and integrated with the discussion media
+mentioned above. These facilities will allow participants to post
+profiles on their homepages, communicate with each other on various
+levels from the casual to the familiar, locate compatible individuals
+for projects, and set up meetings and collaborations.
+
+\paragraph{Conference facility}
+
+\begin{itemize}
+\item
+  Multiple coordinated synchronous communication channels ** Chat **
+  Simultanously editable text ** Whiteboard ** Internet telephony **
+  Video (still and moving)
+\item
+  Set up channels so that it easy to identify source. ** Have virtual
+  meeting table with placeholders of participants around it. ** Use
+  different colors or fonts to identify locutors in text-based channels
+  (e.g.~chat, simultaneous editing, perhaps different colored whiteboard
+  markers). ** Make telephone voices appear to come from different
+  locations corresponding to locations around virtual table. ** Place
+  video feeds at location of table of their originator. ** In sddition
+  to table, have priveleged locations in the form of a virtual podium
+  and projector which may be occupied by a particular participant or
+  rotate between participants, depending on format of meeting.
+\item
+  Log these channels in a coordinated fashion. ** Look into voice
+  recognition for offline transcription preparation. ** Be able to
+  replay recordings online. ** Be able to attach annotations to the logs
+  in appropriate places. ** Bundle transcriptions with summarries and
+  annotations in some structured format.
+\item
+  Scheduling ** Calendar for planning ** Automatic invitations,
+  reminders, and RSVP for participants.
+\end{itemize}
+
+\paragraph{Member directories}
+
+\begin{itemize}
+\item
+  Locate fellow mathematicians according to various organizational
+  schemes. ** Geographical \emph{*} Map of members foldable to different
+  resolutions. \emph{*} Locator to find members within given areas. **
+  Subject areas \emph{*} List members by subject areas of interest.
+  \emph{*} Indicate level of knowledge in various areas. ** Potential
+  relationships \emph{*} Student (looking for teacher) \emph{*}
+  Teacher.tutor (looking for student) \emph{*} Researcher (looking for
+  collaborator) ** Participation in the directory is completely
+  voluntary and members can opt in our out out of any portions as they
+  desire.
+\item
+  Matchmaking serivce to suggest relationships based on above.
+\item
+  Facility for adding comments, ratings, and endorsements.
+\item
+  Place in directory listing for people to supply biography,
+  publications, credentials, and like material to enhance their
+  desirability and establish their reputations.
+\item
+  Have neutral place for people to meet and post messages to each other
+  in order to negotiate arrangements.
+\end{itemize}
+
+\paragraph{Homepages}
+
+\begin{itemize}
+\item
+  Central place for a member to post personal profile and face to the
+  world.
+\item
+  Standardized formats and locations for various sorts of information:
+  ** Personal profile ** Biography ** Publications and self-archiving **
+  Mathematical interests ** Social and professional networking interests
+  (i.e.. student, teacher, etc.as above). ** Pictures, avatars,
+  signatures, etc. ** Directory information (see above) ** Contact
+  information ** Personal tidbits and trivia
+\item
+  Place to store personal files, such as notebooks from sessions with
+  computer algebra system.
+\item
+  Personalizable desktop for applications used by member.
+\item
+  Varying levels of privacy:
+\item
+  Public profile and information for all comers.
+\item
+  Part of profile only available to buddies to avoid potential abuse by
+  anonymous strangers (e.g.~spamming to e-mail address).
+\item
+  Certain information only available to students, collaborrators, or
+  other such groups and individuals.
+\item
+  Confidential information for one's eyes only.
+\item
+  This can be implemented via access control lists on everything.
+\item
+  Incorporate recommendations for homepages from International Congress
+  of Mathematicians.
+\item
+  People can leave public and private messages on homepage.
+\item
+  TeX will be enabled for messages and other postings to facilitate
+  communicating math.
+\item
+  Members can make various types personal websites devoted to their
+  interests accessible from their homepages. ** Individual webpages or
+  suites of pages ** Weblogs ** Standardized websites (e.g.~wiki,
+  noosphere)\\ ** Directories, annotated biblographies, and similar
+  references. ** Discussion fora
+\end{itemize}
+
+\paragraph{Groups}
+
+\begin{itemize}
+\item
+  Members can form associations at various levels from, like, loose,
+  informal groups of buddies of a member to more tight and formal groups
+  like a virtual calculus class.
+\item
+  Each group can share resources and a virtual space. ** Group homepage
+  and attached websites. ** Desktop (cf. section on collaborations) **
+  Mailing list and like media internal to group.
+\item
+  Some reasons for forming groups ** Virtual classroom ** Collaboration
+  ** Virtual seminar or conference ** Study group on a certain work or
+  subject area ** Discussion or brainstorming group ** Counterpart to a
+  physical association
+\item
+  Ownership ** Initially owner is founder of group, but can be
+  transferred. ** Owner manages membership in group. (This privelege can
+  be shared with trusted members.) ** Owner allocates access to
+  resources. (This privelege can be shared with trusted members.) **
+  Members have access to group resources which may not be availabe or
+  only partially available (e.g.~read only) to general public.
+\end{itemize}
+\subsection{Planetary Mathematical Editions}
+
+\paragraph{Goal} To provide online editions of all mathematical works whose
+copyrights have expired as well as more recent out-of-print works whose
+authors have granted permission and born-free math books, especially
+works derived from content produced by CBPP.
+
+\paragraph{Subgoals}
+
+\begin{itemize}
+\item
+  Have preliminary editions of all math books in the public domain ready
+  by 2012.
+\item
+  Eventually typeset all these books in a dialect of TeX which encodes
+  meaning of equations and layout, not just apperarance on the page so
+  as to facilitate uptake into PM-Xi and HDM.
+\item
+  Offer the finished product in three forms: ** Online version readable
+  in situ. ** Electronic version in various file formats. ** Paper
+  version via on demand print shop.
+\end{itemize}
+
+\paragraph{Fringe Benefits}
+
+\begin{itemize}
+\item
+  Publicity for PM.
+\item
+  Viral advertising via books.
+\item
+  Attracting new members.
+\item
+  Revenue from sponsorships, dedications, and purchases.
+\end{itemize}
+
+\paragraph{Defining differences}
+
+\begin{itemize}
+\item
+  Focus on math books.
+\item
+  Interest in unrenewed copyrights.
+\item
+  Preparing digital editions, not just scanning.
+\end{itemize}
+
+\paragraph{Types of works by date}
+
+\begin{itemize}
+\item
+  Before 1923 --- suffices to check publication date
+\item
+  1923-1963 --- need to check renewal record
+\item
+  Afer 1963 --- need to obtain permission of copyright holder
+\end{itemize}
+
+\paragraph{Scale}
+
+\begin{itemize}
+\item
+  Approximntely 5000 math books (ca. 1.5E6 pp.) published before 1923.
+\item
+  Approximately 10000 math books (ca.3E6 pp.) whose copyrights were not
+  renewed.
+\item
+  To finish the project in a reasonable time, we should have at least
+  1000 pp entered daily when project is up to speed.
+\item
+  Assumming 10 pp.~daily for the average participant, this would require
+  100 or so volunteers.
+\end{itemize}
+
+\paragraph{Workflow}
+
+\begin{enumerate}
+\item Locate a book in the public domain. 
+\item Have the book scanned in.. 
+\item Run scanned immages through OCR program. 
+\item Check output and correct as necessarry. 
+\item Release preliminary edition. 
+\item Recast into a semantically informed dialect of TeX. 
+\item Proofread. 
+\item Release Planetary Edition.
+\end{enumerate}
+
+\paragraph{Sponsoring preparation of books}
+
+\begin{itemize}
+\item
+  Price of sponsorship will cover cost of scanning (around 30 dollars)
+  and costs of running project (20 dollars).
+\item
+  Total price of sponsorship is comparable to price of book.
+\item
+  The sponsor will be named on the title page of the Planetary edition.
+\item
+  Sponsors will be thanked on the project's donor page by level.
+\item
+  There will be a page for sponsoring books.
+\item
+  The unit of sponsorship is a single book.
+\item
+  Sponsoring a bookshelf means underwriting 20 books.
+\item
+  Sponsoring a bookcase means underwriting 200 books.
+\item
+  For sponsoring five books, the donor recieves a paperback version of a
+  book (\$15 value for \$250 donation).
+\item
+  For sponsoring a bookshelf or a bookcase, the donor recieves a
+  hardbound version of a book (\$50 value for \$1000 or \$10000
+  donation).
+\item
+  Bookshelf sponsors will be invited, free of additional charge, to the
+  annual awards dinner where they will be thanked publicly for their
+  generosity with some token of appreciation (e.g.~plaque, certificate).
+\item
+  Donors can sponsor an edition in memory of someone.
+\end{itemize}
+
+\paragraph{Sponsoring project}
+
+\begin{itemize}
+\item
+  Fund platform, salaries, and other infrastructure.
+\item
+  Be thanked on donor page.
+\item
+  Offer differrent packages and incentives: ** Logo and link on all
+  pages ** Matching donations --- pay certain amount for every private
+  dedication. ** Thank corporate sponsors on title page. ** Sponsorhip
+  of new sections, features, and events.
+\end{itemize}
+
+\paragraph{Grants}
+
+\begin{itemize}
+\item
+  Do not depend on them or put too much effort towards them.
+\item
+  Should an agency or program which fits our objectives well arise, it
+  may be worth applying.
+\item
+  Cultivate relationships with people who grant providers respect.
+\end{itemize}
+
+\paragraph{Partners}
+
+\begin{itemize}
+\item
+  A scanning project (e.g.~Internet Archive)
+\item
+  An on-demand printer (e.g.~Lulu)
+\item
+  PG, DP?
+\item
+  Math digital library projects.
+\item
+  Free content advocates
+\end{itemize}
+
+\paragraph{Workforce}
+
+\begin{itemize}
+\item
+  The work of editing and proofreading TeX will be done by PM members.
+\item
+  The editor-in-chief will take care of assmembling the contributions
+  into a whole, taking care of whatever technical details need
+  attention, and overseeiing the operations.
+\item
+  Participants will be awarded PM points for their contributions.
+\item
+  To prevent abuse, points will only be awarded for pages successfully
+  edited.
+\item
+  As an added incentive, someone who has edited 1000 pages will recieve
+  a PM mug. (\$10 value, breaking down to a cent per page)
+\item
+  There will be a prize for the person who has edited the most pages in
+  a year.
+\end{itemize}
+
+\paragraph{Platform}
+
+\begin{itemize}
+\item
+  There will be a list of books describing how many pages have been
+  checked, how many have been double checked and how many remain to be
+  processed..
+\item
+  By clicking on a book on that page, one arrives at a page listing the
+  pages of the book.
+\item
+  By clicking on a page which is not yet edited in this listing, one
+  arrives at a web page which shows scanned input, the rendering of TeX
+  produced by Infty, an edit box containing this TeX source,
+  instructions. and a button labelled ``Submit''. One can then edit the
+  source to make the rendered output match the image, then press a
+  button to enter this edit
+\item
+  Once the page has been entered, its status is changed to ``checked''
+  and this new status is then reflected on web pages.
+\item
+  There will be a page available to the editor-in-chief or people
+  trusted by the editor-in-chief for double-checking work. On this page,
+  there will appear the original scanned image, a rendering of the
+  edited source code, and buttons labelled ``Accept'' and ``Reject''.
+\item
+  If the editor-in-chief presses ``Accept'', the status becomes
+  ``double-checked'', which is reflected appropriately on web pages and
+  the proofreader recieves credit.
+\item
+  If the editor-in-chief presses ``Reject'', the changes are discarded.
+  The status reverts to ``unedited'' and the proofreader recieves no
+  credit.
+\item
+  In addition to the listing of pages of books, there will be a button
+  somewhere which one can click to have the system assign a page for
+  proofreading.
+\end{itemize}
+
+\paragraph{Webpages}
+
+\begin{itemize}
+\item
+  Homepage (static)
+\item
+  About Planetary Mathematical Editions (static)
+\item
+  Our Benefactors (dynamic)
+\item
+  Our Partners (static)
+\item
+  Bookstore (form)
+\item
+  Catalogue (dynamic form)
+\item
+  Reading Room (dynamic)
+\item
+  Sponsor a Book (form)
+\item
+  Volunteer (static)
+\item
+  F.A.Q. (static)
+\item
+  Feedback (form) ** A box for entering comments ** Contact information
+  ** A box for pointing out errata.
+\end{itemize}
+
+\paragraph{Architecture}
+
+\begin{itemize}
+\item
+  Storage: A database for holding information about editing and a
+  directory for holding files of pages.
+\item
+  Backend: A set of commands to manipulate these data.
+\item
+  Gatekeeper: Only allows authorized users to carryout commands.
+\item
+  Frontend: Coommand-line, web, mail, graphic and other interfaces to
+  the commands of the backend.
+\end{itemize}
+
+\paragraph{Tables}
+
+\begin{itemize}
+\item
+  Books ** Identifier --- Numerical identifier of book within database.
+  ** Title ** Author ** LC call number ** MSC classification ** Date of
+  original publication ** Date entered into system ** Dedication text **
+  Acknowledgement of sponsor of book
+\item
+  Pages ** Book --- Identifier of book to which page belongs. ** Number
+  --- Number of page ** Graphic --- Graphic image of page (or pointer to
+  file). ** OCR --- Output of OCR program. ** Edited --- Human-edited
+  version of the above, otherwise blank. ** Status --- Either Available,
+  Being-checked, Checked, or Double-check= ed. ** Proofreader ---
+  Identifier of user who edited the page, otherwise blank.
+\item
+  Events ** Book added ** Book removed (presumably done editing) ** Page
+  assigned for editing ** Page unassigned (e.g.~took too long) ** Page
+  edited ** Page edit accepted ** Page edit rejected ** Dedication added
+  ** feedback recieved
+\end{itemize}
+
+\paragraph{Scalar data}
+
+\begin{itemize}
+\item
+  Next available numerical identifier for a book
+\end{itemize}
+
+\paragraph{Backend functions}
+
+\begin{itemize}
+\item
+  {\bf list-books}  Generate a list of all books in the system.  Input:
+  none.  Output: A list, each of whose items is a list of seven items
+  as follows:
+  \begin{itemize}
+  \item numerical identifier of book 
+  \item Title of
+    book 
+  \item Author of book 
+  \item Total number of pages 
+  \item
+    Number of pages which have been proofread 
+  \item Number of pages
+    which have been double checked 
+  \item Number of pages available for
+    proofreading.
+  \end{itemize}
+\item
+  {\bf list-pages}  List all the pages of a book along with their status. 
+  Input: Identifier of book.  Output: List of pairs of page numbers and
+  their respective status.
+\item
+  {\bf describe-book}  Return information which the system stores about a
+  book.  Input: Numerical identifier of book.  Output: A list of data
+  which the system stores about that book.
+\item
+  {\bf view-page}  View a given page of a given book.  Input: Numerical
+  identifier of book, internal number of page.  Output: Graphic file of
+  scanned page, current TeX file, rendering thereof.
+\item
+  {\bf check-out}  Check out a page for editing. The status of the page is
+  marked as B and the proofreader has three days to tweak the TeX and
+  check it back in.\\  Input: Numerical identifier of book, internal
+  number of page.  Output: TRUE (success) or FALSE (failure)
+\item
+  {\bf check-in}  Check an edited page back in. If the TeX compiles
+  properly, the status gets upped to C, otherwised an error message is
+  given so one has to try again.  Input: Numerical identifier of book,
+  internal number of page, edited TeX file.  Output: A list whose first
+  element is one of four keywords indicating outcome:
+  \begin{itemize}
+  \item SUCCESS
+    -- if page was checked out by same user and TeX compiles. Tail of list
+    empty. 
+  \item NOT-CHECKED-OUT --- if page was never checked out Tail
+    of list contains status of page. 
+  \item WRONG-USER --- if someone
+    tries to check in a page which someone else is working on. Tail of
+    list empty. 
+  \item TeX-ERROR --- if the TeX does not compile. Tail
+    of list contains error messge from TeX program.
+  \end{itemize}
+\item 
+  {\bf abort-edit}  Make a page that was checked out avilable for editing
+  again without checking in any edits.  Input: Numerical identifier of
+  book, internal number of page.  Output: A list whose first element is
+  one of three keywords indicating outcome:
+\begin{itemize}
+ \item ABORTED -- if page
+  was checked out by same user. Tail of list empty. 
+\item
+  NOT-CHECKED-OUT --- if page was never checked out Tail of list
+  contains status of page. 
+\item WRONG-USER --- if someone tries to
+  check in a page which someone else is working on. Tail of list empty.
+\end{itemize}
+\item
+  {\bf double-check}  Indicate that a checked page has been reviewed by an
+  editor so its status can be promoted to D.  Input: Numerical
+  identifier of book, internal number of page.  Output: A list whose
+  first element is one of three keywords indicating outcome:
+  \begin{itemize}
+  \item
+    DOUBLE-CHECKED --- if page had correct status and user is authorized.
+    Tail of list empty. 
+  \item INSUFFICIENT-PERMISSION --- if user is
+    nor authorized by editor. Tail of list empty. 
+  \item NOT-PROOFREAD
+    --- if page was not proofread Tail of list contains status of page.
+  \end{itemize}
+\item
+  {\bf reject-edit}  Indicate that an edit is not up to the demanding
+  standards of an editor, so its status is demoted to A.  Input:
+  Numerical identifier of book, internal number of page.  Output: A
+  list whose first element is one of three keywords indicating outcome:
+  \begin{itemize}
+  \item REJECTED --- if page had correct status and user is
+    authorized. Tail of list empty. 
+  \item INSUFFICIENT-PERMISSION ---
+    if user is nor authorized by editor. Tail of list empty. 
+  \item
+    NOT-PROOFREAD --- if page was not proofread Tail of list contains
+    status of page.
+  \end{itemize}
+\item
+  {\bf assign-page}  Pick an available page for editing. At least in later
+  versions, this will be done strategically, so as to favor books which
+  have been in the system longer or books in which only a few pages
+  remain for proofreading.  Input: None.  Output: Numerical
+  identifier of a book and internal identifier of a page in that book.
+\item
+  {\bf add-book}  Adds a new book to the system for proofreading.  Input:
+  A list of data about the book to be stored in the system.  Output:
+\item
+  {\bf remove-book}  Removes a book from the system, returning the files
+  which have been edited. This is to be used when everyone is done
+  proofreading and double-checking a work so it is time to release an
+  edition.  Input: identifier of book to be removed.  Output: files
+  related to book packaged in a convenient format
+\end{itemize}
+
+\paragraph{News}
+
+\begin{itemize}
+\item
+  Newsletter
+\item
+  Annual Report
+\item
+  Press Releases
+\item
+  Announcements of special events
+\end{itemize}
+
+\paragraph{Forms}
+
+\begin{itemize}
+\item
+  Thank-you letter for donation
+\item
+  Letter thanking volunteers for doing 1000 pages.
+\end{itemize}
