@@ -788,9 +788,15 @@ works derived from content produced by CBPP.
   meaning of equations and layout, not just apperarance on the page so
   as to facilitate uptake into PM-Xi and HDM.
 \item
-  Offer the finished product in three forms: ** Online version readable
-  in situ. ** Electronic version in various file formats. ** Paper
-  version via on demand print shop.
+  Offer the finished product in three forms: 
+  \begin{itemize}
+  \item
+    Online version readable in situ. 
+  \item  
+    Electronic version in various file formats. 
+  \item  
+    Paper version via on demand print shop.
+  \end{itemize}  
 \end{itemize}
 
 \paragraph{Fringe Benefits}
@@ -900,10 +906,18 @@ works derived from content produced by CBPP.
 \item
   Be thanked on donor page.
 \item
-  Offer differrent packages and incentives: ** Logo and link on all
-  pages ** Matching donations --- pay certain amount for every private
-  dedication. ** Thank corporate sponsors on title page. ** Sponsorhip
-  of new sections, features, and events.
+  Offer differrent packages and incentives: 
+  \begin{itemize}
+  \item
+    Logo and link on all pages 
+  \item  
+     Matching donations --- pay certain amount for every 
+     private dedication. 
+  \item 
+     Thank corporate sponsors on title page. 
+  \item   
+     Sponsorhip of new sections, features, and events.
+  \end{itemize}   
 \end{itemize}
 
 \paragraph{Grants}
@@ -1041,22 +1055,69 @@ works derived from content produced by CBPP.
 
 \begin{itemize}
 \item
-  Books ** Identifier --- Numerical identifier of book within database.
-  ** Title ** Author ** LC call number ** MSC classification ** Date of
-  original publication ** Date entered into system ** Dedication text **
-  Acknowledgement of sponsor of book
+  Books
+  \begin{itemize}
+  \item
+    Identifier --- Numerical identifier of book within database.
+  \item
+    Title 
+  \item  
+    Author 
+  \item  
+    LC call number 
+  \item  
+    MSC classification 
+  \item  
+    Date of original publication 
+  \item 
+    Date entered into system 
+  \item  
+    Dedication text 
+  \item  
+    Acknowledgement of sponsor of book
+  \end{itemize}  
 \item
-  Pages ** Book --- Identifier of book to which page belongs. ** Number
-  --- Number of page ** Graphic --- Graphic image of page (or pointer to
-  file). ** OCR --- Output of OCR program. ** Edited --- Human-edited
-  version of the above, otherwise blank. ** Status --- Either Available,
-  Being-checked, Checked, or Double-check= ed. ** Proofreader ---
-  Identifier of user who edited the page, otherwise blank.
+  Pages 
+  \begin{itemize}
+  \item
+    Book --- Identifier of book to which page belongs. 
+  \item  
+    Number --- Number of page 
+  \item  
+    Graphic --- Graphic image of page (or pointer to file). 
+  \item  
+    OCR --- Output of OCR program. 
+  \item  
+    Edited --- Human-edited version of the above, otherwise blank. 
+  \item  
+    Status --- Either Available, Being-checked, Checked, or 
+    Double-checked. 
+  \item  
+    Proofreader --- Identifier of user who edited the page, 
+    otherwise blank.
+  \end{itemize}  
 \item
-  Events ** Book added ** Book removed (presumably done editing) ** Page
-  assigned for editing ** Page unassigned (e.g.~took too long) ** Page
-  edited ** Page edit accepted ** Page edit rejected ** Dedication added
-  ** feedback recieved
+  Events 
+  \begin{itemize}
+  \item
+    Book added 
+  \item  
+    Book removed (presumably done editing) 
+  \item  
+    Page assigned for editing 
+  \item  
+    Page unassigned (e.g.~took too long) 
+  \item  
+    Page edited 
+  \item  
+    Page edit accepted 
+  \item  
+    Page edit rejected 
+  \item  
+    Dedication added
+  \item
+    Feedback recieved
+  \end{itemize}
 \end{itemize}
 
 \paragraph{Scalar data}
@@ -1102,12 +1163,12 @@ works derived from content produced by CBPP.
   {\bf check-out}  Check out a page for editing. The status of the page is
   marked as B and the proofreader has three days to tweak the TeX and
   check it back in.\\  Input: Numerical identifier of book, internal
-  number of page.  Output: TRUE (success) or FALSE (failure)
+  number of page.\\  Output: TRUE (success) or FALSE (failure)
 \item
   {\bf check-in}  Check an edited page back in. If the TeX compiles
   properly, the status gets upped to C, otherwised an error message is
-  given so one has to try again.  Input: Numerical identifier of book,
-  internal number of page, edited TeX file.  Output: A list whose first
+  given so one has to try again.\\  Input: Numerical identifier of book,
+  internal number of page, edited TeX file.\\  Output: A list whose first
   element is one of four keywords indicating outcome:
   \begin{itemize}
   \item SUCCESS
