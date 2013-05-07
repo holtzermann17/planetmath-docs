@@ -1,0 +1,1293 @@
+In order to represent mathematical content, PlanetMath uses the \TeX{} typesetting language, which has become the standard amongst mathematical researchers and publishers.  The purpose of this document is describe the peculiarities of using \TeX{} on PlanetMath and to provide a quick reference for some of the more commonly used commands.   Since providing a proper introduction, let alone a full account of the subject, is beyond the scope of a document of this size, we will only scratch the surface.  Nevertheless, this document should suffice as a first introduction for newcomers to \TeX{} who would like to be able enter simple math.  For further information, the reader is referred to \TeX{} manuals and tutorials.
+
+\subsection{Preambles}
+
+If you are used to \LaTeX{}, one of the first differences you will likely notice upon coming to PlanetMath is that here, the input file is split into two parts, the preamble and source.  Roughly speaking, the preamble consists of the part of the file located between the initial \texttt{\textbackslash documentclass} command and the \texttt{\textbackslash begin \{document\}} command, consisting of definitions and packages to load, whilst the source consists of the stuff between the \texttt{\textbackslash begin \{document\}} and \texttt{\textbackslash end \{document\}} commands, consisting of the text of your entry.  The system automatically provides the  \texttt{\textbackslash documentclass}, \texttt{\textbackslash begin \{document\}}, and \texttt{\textbackslash end \{document\}} commands, so you should not type them in.  Furthermore, you don't provide title, author, abstract, or the like in the preamble because Planetary has its own mechanisms for handling that sort of information.
+
+PlanetMath supplies a default preamble for most kinds of documents it contains. Most formulae using standard mathematical symbols can be typeset in PlanetMath without making any changes to the default preamble.  Except where noted explicitly, nothing in this reference requires you to make any changes to the default preamble.  In order not to waste time loading packages which may not be used, several of the packages in the default preamble have been commented out.  If you need them, you should uncomment them by removing the percentage sign in front of them.
+
+After some general remarks on \TeX{}, what follows will be organized by mathematical branch, from elementary to advanced, each syntax placed in the most elementary branch it is likely to occur in. Naturally some of these will be open to debate. But the idea is that for the most part, these usually hold.
+
+\subsection{General Remarks}
+
+\subsubsection{Entering math mode}
+
+There are a few different ways of entering and leaving math mode. The two most commonly used on PlanetMath are the single dollar sign and the delimiters $\backslash [$ and $\backslash ]$ (this of course must be properly matched, if one closes with one too few or too many, an error occurs and rendering fails). The signs$\backslash [$ and $\backslash ]$ causes a linefeed before and after the formula, regardless of whether or not there is a linefeed in the source, and the formula is centered. This is recommended for most formulas where there is complicated nesting of expressions and/or several different levels with some particularly small elements.  If you would like the equation to be numbered for future reference, use \texttt{\textbackslash begin\{equation\}} and \texttt{\textbackslash begin\{equation\}} instead.
+
+\medskip
+
+$ x = y $
+
+\smallskip
+
+\verb"$ x = y $"
+
+\bigskip
+
+\[
+x = y
+\]
+
+\medskip
+
+\verb"\["
+
+\verb"x = y"
+
+\verb"\]"
+
+\bigskip
+
+\begin{equation}
+x=y
+\end{equation}
+
+\verb"\begin{equation}"
+
+\verb"x=y"
+
+\verb"\end{equation}"
+
+\bigskip
+
+As above, we will illustrate points made in the text with examples, each which will be followed by the input used to typeset it.  By the way, the way we display the input is by using the $\backslash\mathrm{verb}$ command.
+
+\medskip
+
+To print \verb"\verb", I typed \verb'\verb"\verb"'
+
+\smallskip
+
+\verb?To print \verb"\verb", I typed \verb'\verb"\verb"'?
+
+
+\subsubsection{Remarks on spacing in the source}
+
+Technically one could write in math mode and not use any spaces whatsoever, and the \TeX{} rendering engine will take care of spacing according to the conventions of mathematical typesetting. However, for the sake of readability when one needs to look at the source, it is good form to use spacing in the source. One can even use more spacing than will actually show. In this reference, the examples will use spacing that tries to mimic the spacing in the output.
+
+However, blank lines are \textbf{not} treated as ignorable whitespace by \TeX.  Rather, they denote paragraph breaks and put one where it doesn't belong often will cause an error. 
+
+Should you require actual space, you need to type in a command to insert that space.
+
+\medskip
+
+\begin{tabular}{l l l l}
+negative space  & \verb"\!" & \verb"$o\!o$"  & $o\!o$ \\
+no space  &  & \verb"$o o$"  & $o o$ \\
+small space & \verb"\," & \verb"$o\,o$"  & $o\,o$ \\
+medium space & \verb"\:" & \verb"$o\:o$"  & $o\:o$ \\
+large space & \verb"\;" & \verb"$o\;o$"  & $o\;o$ \\
+huge space & \verb"\quad" & \verb"$o\quad o$"  & $o\quad o$ \\
+enormous space & \verb"\qquad" & \verb"$o\qquad o$"  & $o\qquad o$ \\
+\end{tabular}
+
+\medskip
+
+Also, there are the commands  \texttt{\textbackslash smallskip},\texttt{\textbackslash medskip}. and \texttt{\textbackslash bigskip} which add vertical space.  You can insert them in between paragraphs or other vertical elements when extra space would be appropriate.  For instance, a \texttt{\textbackslash medskip} was used to keep the bottom of the table from bumping into the beginning of this paragraph.
+
+\subsubsection{Grouping}
+
+Often it is necessary to let the rendering engine know that two or more entities are to be treated as a single entity. This accomplished with ``curly braces''. Also, it is necessary to let the engine know that certain words and symbols are intended as commands rather than as words and symbols which will appear in the document.  That is accomplished by preceding them with a backslash. Actually displaying these braces and backslashes will be dealt with later.
+
+\subsubsection{Comments}
+
+All text appearing between a percentage sign (\%) and the end of a line in your input file will be ignored by \TeX{} and not appear in the output.  This is intended as a mechanism for making private notes to yourself and others who might edit the document.  It is also for useful for tracking down bugs--- if rendering your document is producing errors, you might want to comment out the portion the input where you suspect the problem lies; if it renders properly after this operation, you have isolated the bug, otherwise you need to look elsewhere in the input.
+
+Should you need a percentage sign---as in the above paragraph or if you're writing about percents in arithmetic---you can make it appear by typing a percentage sign preceded by a backslash.  Likewise, if you need a dollar sign, you can make it appear by preceding it with a backslash as well.
+ 
+\medskip
+
+If one invests \$1000 in a 5-year CD with annual interest rate of 5\%, how much interest will accrue to it?
+
+\smallskip
+
+\verb=If one invests \$1000 in a 5-year CD with annual interest rate=
+
+\verb=of 5\%, how much interest will accrue to it?=
+
+\subsubsection{Non-mathematical text}
+
+Typically, you type in non-mathematical text just as you expect it to appear in the output.  However, there are a few notable exceptions which are common enough that everyone should be aware of them.
+\begin{enumerate}
+\item To type quotes, do not use the quote sign key on the keyboard; instead use to two left apostrophes to begin a quote and two right apostrophes to end it.
+\item Two or three hyphens in a row produce a longer dash --- ``en dashes'' and ``em dashes'' in typographers' lingo.
+\item To get the spacing right after an abbreviation ending in a period, use a backslash; otherwise the computer will mistake it for the end of a sentence.
+\item To ensure that a line break does not occur at a certain space, type a tilde instead of a space there.
+\end{enumerate}
+
+\medskip
+
+The proof of this identity may be found on pp. 212--213 of ``Treatise on the Binomial Theorem'' by Dr.\ Moriarty. 
+
+\smallskip
+
+\verb=The proof of this identity may be found on pp. 212--213 of =
+
+\verb=``A Treatise on the Binomial Theorem'' by Dr.\ Moriarty.=
+
+\bigskip
+
+From time to time you may want to emphasize text (this is commonly used for introducing new terminology) or set it in boldface.
+
+\smallskip
+
+is called \emph{Jerusalem artichoke}.  Despite the name, it is \textbf{not} an artichoke.
+
+\smallskip
+
+\verb"is called \emph{Jerusalem artichoke}.  Despite the name,"
+
+\verb" it is \textbf{not} an artichoke."
+
+\subsubsection{Accents}
+
+Many languages use accents above the letters. In English there are two letters that have accents (in the typographical sense), `i' and `j', and they can be typeset by typing them directly. Any other letter can be typed as \texttt{\textbackslash\{accent\}\{letter\}} where \texttt{accent} is any one of the accents in the table below and \texttt{letter} is any letter except `i' and `j'. That would produce accent \texttt{accent} on top of letter \texttt{letter}. In order to replace the dot in `i' or `j' by some other accent use \texttt{\textbackslash\{accent\}\textbackslash{}i} and \texttt{\textbackslash\{accent\}\textbackslash{}j}. If \texttt{accent} is a letter, then the \texttt{letter} has to be enclosed in braces.
+
+\begin{center}
+\begin{tabular*}{.8\textwidth}{llll}
+\textbf{Accent}&\textbf{Code}&\textbf{Example(code)}&\textbf{Example(result)}\\\hline
+Acute&\verb|\'|&\verb|\'a \'\i|&\'a \'\i\\
+Grave&\verb|\`|&\verb|\`a \`\i|&\`a \`\i\\
+Circumflex&\verb|\^|&\verb|\^a \^\i|&\^a \^\i\\
+Tilde&\verb|\~|&\verb|\~a \~\i| & \~a \~\i\\
+Dot&\verb|\.|&\verb|\.a \.o| & \.a \.o \\
+Diaeresis&\verb|\"|&\verb|\"a \"\i|&\"a \"\i\\
+Double acute&\verb|\H|&\verb|\H{o} \H{e}|&\H{o} \H{e}\\
+Caron&\verb|\v|&\verb|\v{c} \v{D}|&\v{c} \v{D} \\
+C\'edille & \verb+\c+ & \verb+\c{c} \c{s} \c{t}+ & \c{c} \c{s} \c{t} \\
+Dot-under & \verb+\d+ & \verb+\d{o}+ & \d{o} \\
+Bar-under & \verb+\b+ & \verb+\b{o}+ & \b{o} \\
+Macron & \verb+\=+ & \verb+\=a \=o+ & \=a \=o \\
+Breve & \verb+\u+ & \verb+\u{a} \u{o}+ & \u{a} \u{o}\\
+\end{tabular*}
+\end{center}
+
+Also, some foreign languages have special characters and ligatures which can be typed in as follows:
+
+\begin{center}
+\begin{tabular*}{.8\textwidth}{ll}
+\textbf{Code}&\textbf{Example(code)} \\ 
+\hline
+\verb"\AA , \aa" & \AA, \aa \\
+\verb"\AE , \ae" & \AE, \ae \\
+\verb"\OE , \oe" & \OE, \oe \\
+\verb"\O , \o" & \O, \o \\
+\verb"\L , \l" & \L, \l \\
+\verb"\ss" & \ss \\
+\end{tabular*}
+\end{center}
+
+\subsubsection{Lists}
+
+To enter a numbered list, use the enumerate environment and, to enter an unnumbered list, use the itemize environment.  These can be nested recursively to produce sublists.
+
+\begin{enumerate}
+  \item First item
+  \begin{enumerate}
+    \item First subitem
+    \item Second subitem
+  \end{enumerate}
+  \item Second item
+\end{enumerate}
+
+\verb=\begin{enumerate}=
+
+\verb=  \item First item=
+
+\verb=  \begin{enumerate}=
+
+\verb=    \item First subitem=
+
+\verb=    \item Second subitem=
+
+\verb=  \end{enumerate}=
+
+\verb=  \item Second item=
+
+\verb=\end{enumerate}=
+
+\begin{itemize}
+  \item Something
+  \item Something else
+  \begin{itemize}
+    \item A subitem
+    \item Another subitem
+  \end{itemize}
+\end{itemize}
+
+\verb=\begin{itemize}=
+
+\verb=  \item Something=
+
+\verb=  \item Something else=
+
+\verb=  \begin{itemize}=
+
+\verb=    \item A subitem=
+
+\verb=    \item Another subitem=
+
+\verb=  \end{itemize}=
+
+\verb=\end{itemize}=
+
+\subsection{Arithmetic}
+
+Base 10 numbers are written with the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9, and the decimal point ``.'' Some operators can simply be typed in.
+
+\subsubsection{Addition and subtraction}
+
+The ``+'' key will do. But the ``-'' is technically not a subtraction operator, even though it is understood as a subtraction operator in most computer programming languages and computer algebra systems. It is understood that way too in \TeX{} but only in math mode. In math mode, the rendering engine renders an en dash as a true subtraction sign. Out of math mode it remains a hyphen.
+
+\medskip
+
+$31 + 13 + 2 + 1$
+
+\smallskip
+
+\verb=$31 + 13 + 2 + 1$=
+
+\bigskip
+
+$100 - 53$
+
+\smallskip
+
+\verb=$100 - 53$=
+
+\subsubsection{Multiplication}
+
+With multiplication we come to a veritable embarrasse de choix, though there are some guidelines to steer our choices by. The asterisk operator should generally only be used in programming language source code listings, not in math mode. In math mode, two options include the X-like cross ``$\times$'' and the central dot ``$\cdot$''.
+
+\medskip
+
+$2 \times 3 \times 7 + 1$
+
+\smallskip
+
+\verb=$2 \times 3 \times 7 + 1$=
+
+\medskip
+
+$2 \cdot 3 \cdot 7 + 1$
+
+\smallskip
+
+\verb=$2 \cdot 3 \cdot 7 + 1$=
+
+\bigskip
+
+We'll get to the tacit multiplication operator soon. But first, exponentiation, a kind of iterated multiplication in which a single operand is repeatedly multiplied by itself a number of times, the operand being the ``base'' and the exponent, the number of times to multiply the operand by itself, being a small superscript to the right of the base. In the \TeX{} source we write the caret symbol so familiar to computer programmers, and the rendering engine will typeset a single entity to the right of the caret as a superscript to the right of the base in a smaller font.
+
+\medskip
+
+$2^3 - 1$
+
+\smallskip
+
+\verb=$2^3 - 1$=
+
+\medskip
+
+$2^31 - 1$
+
+\smallskip
+
+\verb=$2^31 - 1$=
+
+\bigskip
+
+For the rendering engine, the most significant digit of the exponent counts as a single digit. We must let the rendering engine know if a group of digits is a single exponent.
+
+\medskip
+
+$2^{31} - 1$
+
+\smallskip
+
+\verb=$2^{31} - 1$=
+
+\medskip
+
+$2^{131071} - 1$
+
+\smallskip
+
+\verb=$2^{131071} - 1$=
+
+\bigskip
+
+This suggests one way to do the tacit multiplication operator when the multiplicands have exponents.
+
+\medskip
+
+$2^2 3^2 5^2 7^2$
+
+\smallskip
+
+\verb=$2^2 3^2 5^2 7^2$=
+
+\medskip
+
+$2^{19} 3^{17} 5^2 7^2$
+
+\smallskip
+
+\verb=$2^{19} 3^{17} 5^2 7^2$=
+
+\bigskip
+
+(Though it's good form to space them in the source).
+
+As for power towers, \TeX{} can handle these just as easily as the usual exponentiation with a single base and exponent, so long as the author makes sure each opening bracket has a matching closing bracket.
+
+\medskip
+
+$2^{2^3} + 1$
+
+\smallskip
+
+\verb=$2^{2^3} + 1$=
+
+\medskip
+
+$5^{4^{3^{2^1}}}$
+
+\smallskip
+
+\verb=$5^{4^{3^{2^1}}}$=
+
+\bigskip
+
+Theoretically, a power tower can go as far as the rendering engine's maximum file size will allow. But for the sake of our older readers, power towers ought to be limited to three elements.
+
+For factorials, if one's keyboard has the closing exclamation mark ``!'', that's good enough for the factorial symbol in \TeX{}.
+
+\medskip
+
+$7!$
+
+\smallskip
+
+\verb'$7!$'
+
+\bigskip
+
+\subsubsection{Divisions and fractions}
+
+We may use either the forward slash ``/'' or the subtraction sign enmeshed with colon ``$\div$.''
+
+\medskip
+
+$81263 \div 47$
+
+\smallskip
+
+\verb=$81263 \div 47$=
+
+\medskip
+
+$2^{1/2}$
+
+\smallskip
+
+\verb=$2^{1/2}$=
+
+\bigskip
+
+Generally, however, divisions should be expressed as fractions. There are two different ways of doing fractions, but the most straightforward is the backslash-frac-numerator enclosed by braces-denominator enclosed by braces syntax.
+
+\[ \frac{1}{2} + \frac{1}{4} + \frac{1}{20} \]
+
+\verb=\[ \frac{1}{2} + \frac{1}{4} + \frac{1}{20} \]=
+
+\[ \frac{2^{13}}{7 + 19} \]
+
+\verb=\[ \frac{2^{13}}{7 + 19} \]=
+
+\[ 4(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5} \times \frac{6}{5}) \]
+
+\verb=\[ 4(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5} \times=
+
+\verb=\frac{6}{5}) \]=
+
+\subsubsection{Parentheses}
+
+The parentheses available from the keyboard will do fine for most purposes. Occasionally, as the previous example shows, it is necessary to nudge the rendering engine to make the parentheses bigger with the use of the ``left('' and ``right)'' commands.
+
+\[ 4\left(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5} \times \frac{6}{5}\right) \]
+
+\verb=\[ 4\left(\frac{2}{3} \times \frac{4}{3} \times \frac{4}{5}=
+
+\verb=\times \frac{6}{5}\right) \]=
+
+\subsubsection{Comparisons}
+
+The symbols for the three most commonly used comparisons, less than, equal to and more than, are available from the keyboard (or at least in the standard American layout) and can simply be typed straight in.
+
+\medskip
+
+$3^2 < 2^4$
+
+\smallskip
+
+\verb'$3^2 < 2^4$'
+
+\medskip
+
+$2^4 = 4^2$
+
+\smallskip
+
+\verb'$2^4 = 4^2$'
+
+\medskip
+
+$3^4 > 4^3$
+
+\smallskip
+
+\verb'$3^4 > 4^3$'
+
+\bigskip
+
+For not equal to, neither ``<>'' nor ``!='' should be used, except of course in computer programming language source code listings. The correct symbol is ``$\neq$'', and its corresponding \TeX{} command is either \verb=\neq= or \verb=\ne=. Similarly, for greater than or equal to and less than or equal to, the commands are \verb=geq= (or \verb=\ge=) and \verb=leq= (or \verb=\le=).
+
+\[ \left(\frac{1}{2}\right)^{(-1)} \leq 2 \]
+
+\verb'\[ (\frac{1}{2})^{(-1)} \leq 2 \]'
+
+\medskip
+
+$(21 \times 3) \geq 60$
+
+\smallskip
+
+\verb'$(21 \times 3) \geq 60$'
+
+\bigskip
+
+For congruences, one has the option of putting the ``mod some number'' part in parentheses or not.
+
+\medskip
+
+$4^2 \equiv 1 \mod 21$
+
+\smallskip
+
+\verb'$4^2 \equiv 1 \mod 21$'
+
+\medskip
+
+$5^3 \equiv 31 \pmod{47}$
+
+\smallskip
+
+\verb'$5^3 \equiv 31 \pmod{47}$'
+
+\bigskip
+
+Note that for the parenthesized version, the modulus must follow, preferably bracketed.
+
+Most computer keyboards provide a broken pipe symbol which however shows up in math mode as the single line of the divisibility symbol. For the does not divide symbol, however, use \verb=\nmid= to get the spacing right.
+
+\medskip
+
+$7 | 42$
+
+\smallskip
+
+\verb'$7 | 42$'
+
+\medskip
+
+$2 \nmid 47$
+
+\smallskip
+
+\verb'$2 \nmid 47$'
+
+\bigskip
+
+For the two wavy lines of approximation, the command is \verb=\approx=.
+
+\[ \frac{4}{7} \approx 0.5714286 \]
+
+\verb'\[ \frac{4}{7} \approx 0.5714286 \]'
+
+\subsubsection{Radicals}
+
+As you probably already know, for square roots the superscript 2 is understood as the default and need not be the stated; the command then consists of ``sqrt'' followed by the operand enclosed by curly braces.
+
+\medskip
+
+$\sqrt{17} \approx 4.1231$
+
+\smallskip
+
+\verb'$\sqrt{17} \approx 4.1231$'
+
+\bigskip
+
+For other roots, ``sqrt'' is followed the exponent in ``straight'' braces ``['' and ``]'', followed by the operand in curly braces.
+
+\medskip
+
+$\sqrt[47]{8128}$
+
+\smallskip
+
+\verb'$\sqrt[47]{8128}$'
+
+\bigskip
+
+\subsubsection{Ellipses}
+
+In most cases, the horizontal ellipses ``ldots'' and ``cdots'' will be sufficient.
+
+\medskip
+
+Gau{\ss} and his classmates were tasked with calculating $1 + 2 + 3 + \ldots + 99 + 100$.
+
+\smallskip
+
+\verb'Gau{\ss} and his classmates were tasked with calculating $1'
+
+\verb'+ 2 + 3 + \ldots + 99 + 100$.'
+
+\[ 1 + \frac{1}{3} - \frac{1}{5} + \frac{1}{7} + \cdots \]
+
+\verb'\[ 1 + \frac{1}{3} - \frac{1}{5} + \frac{1}{7} + \cdots \]'
+
+\subsubsection{Tables}
+
+Tables, such as multiplication tables, tables of annuities, etc. can be entered using the tabular command.  Right after the command, you specify the layout of the table by specifying one of the letters l,c,r for each column --- `l' means justify left, `c' menas centre, and `r' means justify right.  Then you type the contents of your table row-by-row, using ampersands to separate columns and putting a double backslash at the end of each row.
+
+\medskip
+
+\begin{tabular} {c r l}
+Sphere & $S= 4 \pi r^2$ & $V=\frac{4}{3} \pi r^3$ \\
+Cone & $S= \pi r (r + \sqrt{r^2 + h^2})$  & $V= \frac{1}{3} \pi r^2 h$ \\
+Cylinder & $S= 2 \pi r (r + h)$  & $V= \pi r^2 h$ \\
+\end{tabular}
+
+\medskip
+
+\verb"\begin{tabular} {c r l}"
+
+\verb"Sphere & $S= 4 \pi r^2$ & $V=\frac{4}{3} \pi r^3$ \\"
+
+\verb"Cone & $S= \pi r (r + \sqrt{r^2 + h^2})$  & $V="
+
+\verb"\frac{1}{3} \pi r^2 h$ \\"
+
+\verb"Cylinder & $S= 2 \pi r (r + h)$  & $V= \pi r^2 h$ \\"
+
+\verb"\end{tabular}"
+
+\bigskip
+
+Oftentimes, in laying out tables, it helps to insert lines.  Vertical lines are inserted by typing a single or double pipe character in the braces after the command and hoerizontal lines are inserted with the hline command. 
+
+\medskip
+
+\begin{tabular}{r || l | l | l}
+\textbf{angle} & \textbf{sin} & \textbf{cos} & \textbf{tan} \\
+\hline
+0 & 0 & 1 & 0 \\
+5 & 0.09 & 0.99 & 0.09 \\
+10 & 0.17 & 0.98 & 0.18 \\
+15 & 0.26 & 0.96 & 0.27 \\
+20 & 0.34 & 0.93 & 0.36 \\
+25 & 0.42 & 0.90 & 0.47 \\
+30 & 0.5 & 0.86 & 0.58 \\
+35 & 0.57 & 0.81 & 0.70 \\
+40 & 0.64 & 0.75 & 0.84 \\
+45 & 0.71 & 0.71 & 1 \\
+\end{tabular}
+
+\smallskip
+
+\verb"\begin{tabular}{r || l | l | l}"
+
+\verb"\textbf{angle} & \textbf{sin} & \textbf{cos} & \textbf{tan} \\"
+
+\verb"\hline"
+
+\verb"0 & 0 & 1 & 0 \\"
+
+\verb"5 & 0.09 & 0.99 & 0.09 \\"
+
+\verb"10 & 0.17 & 0.98 & 0.18 \\"
+
+\verb"15 & 0.26 & 0.96 & 0.27 \\"
+
+\verb"20 & 0.34 & 0.93 & 0.36 \\"
+
+\verb"25 & 0.42 & 0.90 & 0.47 \\"
+
+\verb"30 & 0.5 & 0.86 & 0.58 \\"
+
+\verb"35 & 0.57 & 0.81 & 0.70 \\"
+
+\verb"40 & 0.64 & 0.75 & 0.84 \\"
+
+\verb"45 & 0.71 & 0.71 & 1 \\"
+
+\verb"\end{tabular}"
+
+\subsubsection{Nested radicals and continued fractions}
+
+In \TeX{} we can nest radicals and divisions with an ease not possible in HTML. The only thing one needs to be careful about is closing each brace one opens.
+
+\medskip
+
+$\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\ldots}}}}}$
+
+\smallskip
+
+\verb'$\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\sqrt{1+\ldots}}}}}$'
+
+\[ 3 + \frac{1}{{7} + \frac{1}{{15} + \frac{1}{{1} + \, \cdots}}} \]
+
+\verb'\[ 3 + \frac{1}{{7} + \frac{1}{{15} + \frac{1}{{1} + \,'
+
+\verb'\cdots}}} \]'
+
+\subsubsection{Binomial coefficients.} There are at least two different ways of doing binomial coefficients, but the most straightforward is the backslash-binom-top number enclosed by braces-bottom number enclosed by braces syntax. (Note the similarity between this and fractions.)
+
+\[ \binom{7}{4}=\frac{7!}{(7-4)!4!}=35 \]
+
+\verb'\[ \binom{7}{4}=\frac{7!}{(7-4)!4!}=35 \]'
+
+\subsection{Algebra}
+
+By using non-numerical symbols to represent an unknown number, or any number, or any number that could be input, or all numbers of a kind or in a given range, or maybe even all numbers. In mathematical writings in English, the symbols most commonly used for this purpose are the uppercase and lowercase letters of the Greek alphabet and the uppercase and lowercase italicized letters of the English alphabet. For English letters, it is enough to type them in math mode, \TeX{} will take care of italicizing them.
+
+\medskip
+
+Shade the area between $y = 4x - 3$ and $y = -2x + 1$.
+
+\smallskip
+
+\verb'Shade the area between $y = 4x - 3$ and $y = -2x + 1$.'
+
+\medskip
+
+Then $N = p_1p_2 \ldots p_n + 1$ is not divisible by any prime...
+
+\smallskip
+
+\verb'Then $N = p_1p_2 \ldots p_n + 1$ is not divisible by any'
+
+\verb'prime...'
+
+\bigskip
+
+For Greek letters, the command is the anglicized name of the Greek letter, with its first letter capitalized for the uppercase letters. At this point I'd like to mention that the use of non-numeric symbols is not limited to variables, but can also be used as a handy shortcut for constants that would be too cumbersome to write as literals each time they're needed.
+
+\medskip
+
+Clearly $2\epsilon < 1$ and $\Delta^3 > \sqrt\kappa$.
+
+\smallskip
+
+\verb'Clearly $2\epsilon < 1$ and $\Delta^3 > \sqrt{\kappa}$.'
+
+\medskip
+
+The golden ratio $\phi = \frac{1 + \sqrt{5}}{2}$ applied to Doric columns...
+
+\smallskip
+
+\verb'The golden ratio $\phi = \frac{1 + \sqrt{5}}{2}$ applied to'
+
+\verb'Doric columns...'
+
+\bigskip
+
+Variant forms of some Greek letters are available for use in math mode, these are invoked by inserting ``var'' between the backslash and the letter name.
+
+\medskip
+
+Their handwriting was very similar, but Robert always wrote $\phi\prime$ while Catherine preferred $\varphi\prime$.
+
+\smallskip
+
+\verb'Their handwriting was very similar, but Robert always wrote'
+
+\verb'$\phi\prime$ while Catherine preferred $\varphi\prime$.'
+
+\bigskip
+
+See ``Greek alphabet'' in the PlanetMath encyclopedia for a complete listing.
+
+With the addition of parentheses, we can also use letters to stand for functions. Usually we can just type them from the keyboard.
+
+\medskip
+
+Define $f(n) = n^2 + m \mod a$ and iterate 7 times.
+
+\smallskip
+
+\verb'Define $f(n) = n^2 + m \mod a$ and iterate 7 times.'
+
+\medskip
+
+Clearly $\Omega(n) > \omega(n)$ if $n$ is squarefull.
+
+\smallskip
+
+\verb'Clearly $\Omega(n) > \omega(n)$ if $n$ is squarefull.'
+
+\bigskip
+
+\subsubsection{Math Accents}
+
+Since one can easily run out of letters in a complicated problem, mathematicians resort to putting accents letters to create more symbols or to denote an operation.  Since the accents available in math mode are somewhat different form the accents for text mode which were presented earlier, we present a list of them.
+
+\medskip
+
+\begin{tabular}{l l c l l}
+\textbf{Code} & \textbf{Result} &~~~& \textbf{Code} & \textbf{Result}\\
+\hline
+\verb"$\hat{x}$"  & $\hat{x}$ &&
+\verb"$\acute{x}$" & $\acute{x}$ \\
+\verb"$\bar{x}$ " & $\bar{x}$ &&
+\verb"$\dot{x} $" & $\dot{x} $ \\
+\verb"$\breve{x}$" & $\breve{x}$ &&
+\verb"$\check{x}$" & $\check{x}$  \\
+\verb"$\grave{x}$" & $\grave{x}$ && 
+\verb"$\vec{x}$" & $\vec{x}$ \\
+\verb"$\dot{x}$" & $\dot{x}$ &&
+\verb"$\ddot{x}$" & $\ddot{x}$ \\         
+\verb"$\tilde{x}$" & $\tilde{x}$ &&
+\verb"$x'$" & $x'$ \\
+\verb"$x''$" & $x''$
+\end{tabular}
+
+\subsubsection{Superscripts and subscripts}
+
+As shown, most of what was said about arithmetic applies to algebra as well. However, it now becomes useful to think of the caret as not being semantically tied down to exponentiation, but simply as a superscript symbol, as will become clear later on. \TeX{} will properly determine from context the correct nature and placement of the superscript. Subscripts are obtained with the underscore character.
+
+\medskip
+
+By $\phi^3(n)$ we mean $\phi(\phi(\phi(n)))$ and so on.
+
+\smallskip
+
+\verb'By $\phi^3(n)$ we mean $\phi(\phi(\phi(n)))$ and so on.'
+
+\medskip
+
+For a prime $p$, $\sigma_3(p)$ is $1 + p^3$.
+
+\smallskip
+
+\verb'For a prime $p$, $\sigma_3(p)$ is $1 + p^3$.'
+
+\bigskip
+
+\subsubsection{Iterated sums and products}
+
+The basic syntax for iterated sums and products is well worth remembering as it comes in handy for other things later on. It consists of the ``sum'' or ``prod'' command followed by an underscore with the iterator initialization or iterator conditions (preferably grouped with braces), followed by the caret and the iterator's maximum value (grouped with braces if consisting of more than one entity), then the expression to be iteratively summed or multiplied. It's good form to include a space between the iterator end expression and the expression to be iterated.
+
+\[ T_n = \sum_{i = 1}^n i \]
+
+\verb'\[ T_n = \sum_{i = 1}^n i \]'
+
+\[ \sum_{i = 0}^\infty (-1)^i \frac{1}{2i + 1} \]
+
+\verb'\[ \sum_{i = 0}^\infty (-1)^i \frac{1}{2i + 1} \]'
+
+\[ \prod_{i = 1}^\infty \left(\frac{i}{i + 1}\right)^{{(-1)}^i} \]
+
+\verb'\[ \sum_{i = 0}^\infty (-1)^i \frac{1}{2i + 1} \]'
+
+\subsubsection{Simultaneous equations}
+
+In order to have simultaneous equations look good on the page, they should be lined up.  This is done using the align command.  Within each equation, you put an ampersand at the point which you would like to line up with the other equations and end each equation with a double backslash. 
+
+\medskip
+
+\begin{align}
+x + y &= 8 \\
+x + 3 y &=26 \\
+3 x + 2 y + 15 z &=  -19 
+\end{align}
+
+\smallskip
+
+\verb"\begin{align}"
+
+\verb"x + y &= 8 \\"
+
+\verb"x + 3 y &=26 \\"
+
+\verb"3 x + 2 y + 15 z &=  -19"
+
+\verb"\end{align}"
+
+\bigskip
+
+As seen in the example above, the default behavior of align is to number the equations.  To turn this off, follow the command by an asterisk, as in the next example, which shows how align can also be used to wrap around equations which are too long to comfortably fit in one line.
+
+\begin{align*}
+y = 64 \frac{(x-3)(x-1)(x+1)}{(4-3)(4-1)(4+1)} 
+&+ 27 \frac{(x-4)((x-1)(x+1)}{(3-4)(3-1)(3+1)}
++ \frac{(x-4)(x-3)(x+1)}{(1-4)(1-3)(1+1)} \\
+&- \frac{(x-4)(x-3)(x-1)}{(-1-4)(-1-3)(-1-1)}
+\end{align*}
+
+\verb"\begin{align*}"
+
+\verb"y = 64 \frac{(x-3)(x-1)(x+1)}{(4-3)(4-1)(4+1)} "
+
+\verb"&+ 27 \frac{(x-4)((x-1)(x+1)}{(3-4)(3-1)(3+1)}"
+
+\verb"+ \frac{(x-4)(x-3)(x+1)}{(1-4)(1-3)(1+1)} \\"
+
+\verb"&- \frac{(x-4)(x-3)(x-1)}{(-1-4)(-1-3)(-1-1)}"
+
+\verb"\end{align*}"
+
+\bigskip
+
+Align can also handle more than one equation per line.  Use extra ampersands to separate equations that appear on the same line.
+
+\begin{align*}
+x_1 &= 1 & x_2 &= -1 \\
+y_1 &= 5 & y_2 &= 2
+\end{align*} 
+
+\verb"\begin{align*}"
+
+\verb"x_1 &= 1 & x_2 &= -1 \\"
+
+\verb"y_1 &= 5 & y_2 &= 2"
+
+\verb"\end{align*} "
+
+\subsubsection{Vectors and Matrices}
+
+To typeset matrices and vectors, we use the matrix environment.  In this environment, you list the elements row-by-row, using ampersands to separate successive elements in a row and double backslashes to separate rows.
+
+\medskip
+
+$\begin{matrix} a & b \\  c & d \end{matrix}$
+
+\smallskip
+
+\verb'$\begin{matrix} a & b \\  c & d \end{matrix}$'
+
+\bigskip
+
+It is permissible to leave blank spaces, as in the next example, where we use typeset a commutative diagram.  As this example shows, the matrix environment is useful for drawing all sorts of notations which can be described as arrays of symbols, not just matrices and vectors.
+
+\[ \begin{matrix} A & \rightarrow & B \\
+    \downarrow & & \downarrow \\
+     C & \rightarrow & D \end{matrix} \]
+
+\verb"\[ \begin{matrix} A & \rightarrow & B \\"
+
+\verb" \downarrow && \downarrow \\"
+
+ \verb" C & \rightarrow & D \end{matrix} \]"
+
+\bigskip
+
+To surround a matrix with some delimiter, such as in typesetting a determinant, use $\backslash\mathrm{right}$ and $\backslash\mathrm{left}$.
+
+\medskip
+
+$\left| \begin{matrix} 1 & 2 \\  3 & 4 \end{matrix} \right| = -2$
+
+\smallskip
+
+\verb"$\left| \begin{matrix} 1 & 2 \\  3 & 4 \end{matrix} \right| = -2$"
+
+\bigskip
+
+Since matrices surrounded by parentheses occur frequently, they get a special command pmatrix to save typing.
+
+\medskip
+
+$\begin{pmatrix} 1  & 1 \end{pmatrix}
+ \begin{pmatrix} 1  & 2 \\ 3 & 4 \end{pmatrix}
+ \begin{pmatrix} 1 \\ -1 \end{pmatrix} 
+  = -2$
+
+\smallskip
+
+\verb"$\begin{pmatrix} 1  & 1 \end{pmatrix}"
+
+\verb" \begin{pmatrix} 1  & 2 \\ 3 & 4 \end{pmatrix}"
+
+\verb" \begin{pmatrix} 1 \\ -1 \end{pmatrix} "
+
+\verb"  = -2$"
+
+\bigskip
+
+Also note that we enter row and column vectors as $1 \times n$ and $n \times 1$ matrices.
+
+\subsection{Set theory}
+
+Generally uppercase letters are used to stand for sets. The command for the set membership symbol is \verb=\in=.
+
+\medskip
+
+Since any element $x$ satisfies both $x \in A$ and $x \in B$ ...
+
+\smallskip
+
+\verb'Since any element $x$ satisfies both $x \in A$ and $x \in'
+
+\verb'B$ ...'
+
+\bigskip
+
+To list the member elements of a set, curly braces are typically used as delimiters, but these braces have an important function in \TeX. Therefore, they must be ``escaped'' with a backslash.
+
+\medskip
+
+Given the set $H = \{ 1, 2, 4, 6 \}$, it is clear that...
+
+\smallskip
+
+\verb'Given the set $H = \{ 1, 2, 4, 6 \}$, it is clear that...'
+
+\bigskip
+
+The commands for union and intersection are ``cap'' and ``cup'' respectively.
+
+\medskip
+
+$\{ a, e, i, o, u, y \} \cap \{ b, c, d, f, \ldots x, y, z \} = \{ y \}$
+
+\smallskip
+
+\verb'$\{ a, e, i, o, u, y \} \cap \{ b, c, d, f, \ldots x, y,'
+
+\verb'z \} = \{ y \}$'
+
+\medskip
+
+If $C = A \cup B$, then both $A$ and $B$ are subsets of $C$.
+
+\smallskip
+
+\verb'If $C = A \cup B$, then both $A$ and $B$ are subsets of $C$.'
+
+\bigskip
+
+\subsubsection{Blackboard bold}
+
+Certain special sets which need frequent reference are symbolized by blackboard bold letters. The command is \verb=\mathbb{X}= where \verb=X= is replaced by the desired letter.
+
+\medskip
+
+$\mathbb{N} = \{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, \ldots \}$
+
+\smallskip
+
+\verb'$\mathbb{N} = \{ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, \ldots \}$'
+
+\medskip
+
+Even $(0 + 0i) \in \mathbb{C}$, thus $\mathbb{C} \cap \mathbb{R} = \mathbb{R}$.
+
+\smallskip
+
+\verb'Even $(0 + 0i) \in \mathbb{C}$, thus $\mathbb{C} \cap'
+
+\verb'\mathbb{R} = \mathbb{R}$.'
+
+\subsubsection{Empty set}
+
+The empty set can simply be denoted as $\{ \}$, but the symbols $\emptyset$ and $\varnothing$ are also available.
+
+\medskip
+
+Obviously $\mathbb{J} \cap \mathbb{N} = \varnothing$.
+
+\smallskip
+
+\verb'Obviously $\mathbb{J} \cap \mathbb{N} = \varnothing$.'
+
+\medskip
+
+If $A$ and $B$ have no elements in common then $A \cap B = \emptyset$.
+
+\smallskip
+
+\verb'If $A$ and $B$ have no elements in common then $A \cap B = \emptyset$.'
+
+\subsubsection{Arrows}
+
+Arrows are often used to denote mappings, with different styles of arrows used to indicate different types of maps.  A good number of the common commands for arrows can be constructed according to the following rules:
+\begin{itemize}
+\item Prepend one of the words ``left, right, leftright, up, down, updown'' to the word
+``arrow''.  This will determine whether the arrow is horizontal or vertical and on which end (or bot) the arrowhead will go.
+\item Prepend ``long'' to horizontal arrows to make them longer.
+\item Make the first letter upper casel for a double shaft, lower case for a single shaft.
+\end{itemize}
+
+$A \rightarrow B \longleftrightarrow C \Leftarrow D$
+
+\smallskip
+
+\verb"$A \rightarrow B \longleftrightarrow C \Leftarrow D$"
+
+\bigskip
+
+In addition, the following arrow symbols are also available:
+
+\medskip
+
+\begin{tabular}{l l l l}
+$\mapsto$ & \verb"$\mapsto$" &
+$\longmapsto$ & \verb"$\longmapsto$" \\
+$\hookleftarrow$ & \verb"$\hookleftarrow$" &
+$\hookrightarrow$ & \verb"$\hookrightarrow$" \\
+$\circlearrowright$ & \verb"$\circlearrowright$" &
+$\circlearrowleft$ & \verb"$\circlearrowleft$" \\
+$\curvearrowleft$ & \verb"$\curvearrowleft$"  &
+$\curvearrowright$ & \verb"$\curvearrowright$" \\
+$\leftharpoonup$ & \verb"$\leftharpoonup$" &
+$\leftharpoondown$ & \verb"$\leftharpoondown$"  \\
+$\rightharpoonup$ & \verb"$\rightharpoonup$" &
+$\rightharpoondown$ & \verb"$\rightharpoondown$"  \\
+$\nearrow$ & \verb"$\nearrow$" &
+$\searrow$ & \verb"$\searrow$" \\
+$\swarrow$ & \verb"$\swarrow$" &
+$\nwarrow$ & \verb"$\nwarrow$"
+\end{tabular}
+
+\bigskip
+
+As illustrated in the section of this document on matrices, one can use the matrix command to make simple diagrams involving arrows.  For more complicated diagrams, you will probably want to use one of the packages describen in the graphics document.
+
+Sometimes, arrowscome decorated with explanatory text.  This can be accomplished using the overset and underset commands.  To use both at the same time, you need an extra pair of curly braces.
+
+\medskip
+
+$A \overset{\alpha}\rightarrow B \overset{\beta}{\underset{n}\longleftrightarrow} C \underset{k}\Leftarrow D$
+
+\subsection{Geometry and Trigonometry}
+
+In geometry, some special symbols are used to denote angles, figures, and the like.
+
+\medskip
+
+Since $\overline{AC} \bot \overline{BD}$ and $\overline{AB} \| \overline {CD}$ in $\Box ABCD$ and $\triangle COB$ is isosceles, the arc $\widehat{AB}$ is $\frac{1}{4}$ of the circumference of $\odot O$.
+
+\smallskip
+
+\verb"Since $\overline{AC} \bot \overline{BD}$ and $\overline{AB}"
+
+\verb" \| \overline {CD}$ in $\Box ABCD$ and $\triangle COB$ is" 
+
+\verb"isosceles, the arc $\widehat{AB}$ is $\frac{1}{4}$ of the" 
+
+\verb"circumference of $\odot O$."
+
+\bigskip
+
+The trigonometric functions are just strings of three or four lowercase English letters, but shouldn't just be typed in, or else they'll be italicized and the spacing will be wtrong. It's enough to precede them with backslashes.
+
+\medskip
+
+The parametric equations in this case are $x = a + r \cos t$ and $y = b + r \sin t$.
+
+\smallskip
+\
+\verb'The parametric equations in this case are $x = a + r \cos t$'
+
+\verb'and $y = b + r \sin t$.'
+
+\bigskip
+
+For function abbereviations which don't have standard commands, you can use the command operatorname.
+
+\medskip
+
+$\operatorname{haversin}(c) = \operatorname{haversin}(a - b) + \sin(a) \sin(b) \, \operatorname{haversin}(C)$
+
+\smallskip
+
+\verb"$\operatorname{haversin}(c) = \operatorname{haversin}(a - b) +" 
+
+\verb"\sin(a) \sin(b) \, \operatorname{haversin}(C)$"
+
+\bigskip
+
+For how to include diagrams, please see the document on graphics in PlanetMath.
+
+\subsection{Calculus}
+
+Calculus has been described as the ``art of finding limits.'' Therefore we'll begin with limit notation. The syntax consists of the ``lim'' command followed by an underscore and the expression of limit enclosed by braces, then the expression of which we're stating the limit.
+
+\medskip
+Hadamard proved that \[ \lim_{x \to \infty} \frac{\pi(x)}{\frac{x}{\ln(x)}} = 1. \]
+
+\verb'Hadamard proved that \[ \lim_{x \to \infty} \frac{\pi(x)}'
+
+\verb'{\frac{x}{\ln(x)}} = 1. \]'
+
+\bigskip
+
+As mentioned before, the underlying idea of the iterated sum and product comes in handy later on. Integration is also an iterated computation, and the syntax is the same, only we use ``int'' instead of ``sum'' or ``prod.''
+
+\[ \int_0^x \frac{dt}{\ln t} \]
+
+\verb' \[\int_0^x \frac{dt}{\ln t} \]'
+
+\bigskip
+
+Some people prefer to use the command ``limits'' to make the lower bound of integration appear lower and the upper bound of integration appear higher.
+
+\[ \int\limits_0^x \frac{dt}{\ln t} \]
+
+\verb'\[ \int\limits_0^x \frac{dt}{\ln t} \]'
+
+\bigskip
+
+The same concept applies for substitution notation: The square brackets can simply be typed in (or ``left['' and ``right]'' used if bigger brackets are needed), then the underscore followed by the start value, and the caret followed by the end value.
+
+\[ \Gamma(1) = \int_0^\infty e^{-t} \,dt = [-e^{-t}]_0^\infty = 1 \]
+
+\verb'$$\Gamma(1) = \int_0^\infty e^{-t} \, dt = [-e^{-t}]_0^\infty'
+
+\verb'= 1$$'
+
+\bigskip
+
+Note that the ``$dt$'' has an extra space in front of it --- this serves as
+a visual cue that $dt$ is to be taken as a unit. Likewise, when several
+differentials appear, it is good to separate them with spaces:
+$$\int_0^1 \int_x^1 \sqrt{x^2 + y^2} \, dy \, dx$$
+\verb' $$\int_0^1 \int_x^1 \sqrt{x^2 + y^2} \, dy \, dx$$'
+
+\subsection{Logic}
+
+In any treatment of mathematical logic, certain words are bound to occur with a frequency that bloats a document and makes it seem rather verbose. Mathematicians have invented a standard set of symbols that abbreviate all these common words that pertain to logic, enabling conciseness. It is possible, even outside the study of logic, to use these symbols so pervasively that the use of a natural language like English is almost completely avoided, resulting in a very dense document.  The examples in this section of this reference will of necessity skew towards a near-total avoidance of English.
+
+\medskip
+
+\begin{tabular}{l l c}
+\textbf{Operation} & \textbf{Command} & \textbf{Symbol} \\
+\hline
+Exists & \verb"\exists" & $\exists$ \\
+Any & \verb"\forall" & $\forall$ \\
+Such that & \verb$\ni$ & $\ni$ \\
+And & \verb"\wedge" & $\wedge$ \\
+Cumulative and & \verb"\bigwedge" & $\bigwedge$ \\
+Or & \verb"\vee" & $\vee$ \\
+Not & \verb"\neg" & $\neg$ \\
+If & \verb$\Rightarrow$ & $\Rightarrow$ \\
+Iff & \verb$\Leftrightarrow$ & $\Leftrightarrow$ \\
+Therefore & \verb$\therefore$ & $\therefore$
+\end{tabular}
+
+\bigskip
+
+Just as variables can be symbolized in algebra by italicized letters of the English alphabet, so can propositions in logic.
+
+\medskip
+
+$\forall x\; (S(x) \Rightarrow P(x))$
+
+\smallskip
+
+\verb=$\forall x\; (S(x) \Rightarrow P(x))$=
+
+\medskip
+
+$\forall x\; (S(x) \Rightarrow \neg P(x))$
+
+\smallskip
+
+\verb=$\forall x\; (S(x) \Rightarrow \neg P(x))$=
+
+\medskip
+
+$\exists x\; (S(x) \wedge P(x))$
+
+\smallskip
+
+\verb=$\exists x\; (S(x) \wedge P(x))$=
+
+\medskip
+
+$\exists x\; (S(x) \wedge \neg P(x)$
+
+\smallskip
+
+\verb=$\exists x\; (S(x) \wedge \neg P(x)$=
+
+\bigskip
+
+Of course, just as algebra can have literal numbers, so too can logic have literal propositions.
+
+\medskip
+
+$(x = |x|) \Leftrightarrow (\neg x = (-1)|x| \And x \neq 0)$
+
+\smallskip
+
+\verb'$(x = |x|) \Leftrightarrow (\neg x = (-1)|x| \And x \neq 0)$'
+
+\medskip
+
+$\pi \neq \frac{a}{b} \therefore \pi \not \in \mathbb{Q}$
+
+\smallskip
+
+\verb=$\pi \neq \frac{a}{b} \therefore \pi \not \in \mathbb{Q}$=
+
+\subsubsection{Theorems}
+
+Since the days of Euclid, mathematicians have used terms like ``definition'', ``proposition'', and ``theorem'' to distinguish key statements and organized their reasoning into proofs.  To support this organization, \LaTeX has theorem and proof environments.
+
+Unlike the commands described previously, these require adding declarations to the preamble to work properly.  For instance, if you want to have a theorem in your entry, you need to add someting like the following to the preamble:
+
+\medskip
+
+\verb"\newtheorem{thm}{Theorem}"
+
+\bigskip
+
+The first pair of curly braces encloses the name you will use to refer to this sort of object (You get to make it up, but have to be consistent in using it once you've declared it.) and the second pair encloses what \LaTeX will print out.
+
+Once you've done that, you are entitled to type in something like this:
+
+\begin{thm}
+Using \TeX on PlanetMath is fun!
+\end{thm}
+
+\smallskip
+
+\verb"\begin{thm}"
+
+\verb"Using \TeX on PlanetMath is fun!"
+
+\verb"\end{thm}"
+
+\bigskip
+
+Every theorem cries out for a proof, and this one is no exception.
+
+\medskip
+
+\begin{proof}
+Look at the smile on your face while reading this document.
+\end{proof}
+
+\smallskip
+
+\verb"\begin{proof}"
+
+\verb"Look at the smile on your face while reading this document."
+
+\verb"\end{proof}"
