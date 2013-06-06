@@ -1,0 +1,1307 @@
+\documentclass{article}
+
+\usepackage[frenchlinks]{hyperref}
+
+\setcounter{tocdepth}{1}
+\usepackage{paralist}
+
+\begin{document}
+
+\title{Planetary System Metadata ``Rosetta Stone''}
+\author{Joseph Corneli}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+
+\section*{Introduction}
+
+This file serves as a guide to the data structures used in
+the Planetary System.  Many of these structures correspond
+to structures used on PlanetMath.org.  Complete
+information on the legacy implementation of PlanetMath is
+given in \cite{KrowneThesis}.  The legacy schema is summed
+up at
+\href{http://trac.mathweb.org/planetary/browser/pmredux-extras/pm-table-schema.txt?rev=HEAD}{pm-table-schema.txt}.
+
+Work on a metadata translation started with articles; our
+current bindings for articles are defined in
+\href{http://trac.mathweb.org/planetary/browser/src/sty/planetmath-specials.sty.ltxml?rev=HEAD}{planetmath-specials.sty.ltxml}.
+These bindings are reviewed below, along with numerous
+other types of system objects.
+
+Our strategy is to map metadata it is provided in the
+original source format into Vanilla (or garden) database
+tables, and into linked data forms suitable for publishing
+as RDF or RDFa.  The original sources are typically
+PlanetMath database tables, sometimes with a corresponding
+user-editable source file.
+
+For the Linked Data component, we draw on the following
+ontologies (see also pp. 361--363 of \cite{LangeThesis}
+for an index to an overview of these and other related
+resources):
+
+\bigskip
+
+\begin{compactitem}
+\item \href{http://www.w3.org/TR/rdf-concepts/}{RDF}: Resource Description Framework (RDF) \url{http://www.w3.org/1999/02/22-rdf-syntax-ns#}
+\item \href{http://www.w3.org/TR/2004/REC-rdf-schema-20040210/}{RDFS}: RDF Vocabulary Description Language (``RDF Schema'') \url{http://www.w3.org/2000/01/rdf-schema#}
+\item \href{http://www.w3.org/TR/2009/REC-owl2-overview-20091027/}{OWL}: Web Ontology Language (OWL) \url{http://www.w3.org/2002/07/owl#}
+\item \href{http://dublincore.org/documents/dces/}{DCT}: Dublin Core \url{http://purl.org/dc/terms/}
+\item \href{http://sioc-project.org/ontology}{SIOC}: Semantically-Interlinked Online Communities \url{http://rdfs.org/sioc/ns#}
+\item \href{http://www.loc.gov/standards/mads/rdf/}{MADS} Metadata Authority Description Schema in RDF \url{http://www.loc.gov/mads/rdf/v1#}
+\item \href{http://www.w3.org/TR/skos-reference/skos.html}{SKOS}: Simple Knowledge Organization System \url{http://www.w3.org/2004/02/skos/core#}
+\item \href{http://kwarc.info/projects/docOnto/omdoc.html}{OMDoc}: OMDoc (Open Mathematical Documents) \url{http://omdoc.org/ontology#}
+\item \href{http://xmlns.com/foaf/spec/}{FOAF}: Friend of a Friend \url{http://xmlns.com/foaf/0.1/}
+\item \href{http://alpha.planetmath.org/spec/}{PM}: Our own \emph{ad hoc} vocabulary is turning into a proper ontology at \url{http://alpha.planetmath.org/pm/ns#}, however we will try to use existing standards instead where possible!
+\item \href{http://alpha.planetmath.org/spec/}{VERSIONING}: tentative PlanetMath versioning vocabulary (\url{http://alpha.planetmath.org/pm/versioning#}), but we're trying to find a better one
+\item \href{http://bblfish.net/work/atom-owl/2006-06-06/AtomOwl.html}{AWOL}: AtomOwl \url{http://bblfish.net/work/atom-owl/2006-06-06/#}
+\item \href{http://moat-project.org/ontology}{MOAT}: Meaning of a Tag \url{http://moat-project.org/ns#}
+\item \href{http://liris.cnrs.fr/Documents/Liris-4737-slides-sioca.pdf}{SIOCA}: \url{http://rdfs.org/sioc/actions#}
+\item \href{http://motools.sourceforge.net/event/event.html}{EVENT}: \url{http://purl.org/NET/c4dm/event.owl#}
+
+\end{compactitem}
+
+\bigskip
+
+Note: in what follows ``TBA'' stands for To-Be-Added or
+To-Be-Addressed later -- maybe by someone other than me!
+
+\section{Articles}
+
+
+Note that unlike the other legacy objects, legacy articles
+are drawn from PlanetMath's hand-rolled XML-formatted
+version management system, not the database.
+
+Articles have been reformatted to include a metadata block
+like this:
+
+\begin{verbatim}
+\pmowner{jac}{4316}
+\pmmodifier{jac}{4316}
+\pmcreated{2008-03-20 20:20:20}
+\pmmodified{2008-11-03 11:11:11}
+\pmtitle{Made up article}
+\pmtype{Definition}
+\pmauthor{jac}{4316}
+\pmclassification{msc}{03B05}
+\pmclassification{msc}{03G05}
+\pmsynonym{hocus pocus}{made up concept}
+\pmrelated{Mathematosis}
+\end{verbatim}
+(Some additional information can be supplied but isn't
+required.)  The information is currently mapped as
+follows:
+
+\begin{verbatim}
+(the article itself) -> sioc:Item
+  [or some more specific pm:Article]
+\pmselfproof{}       -> pm:selfproof
+\pmcomment{}         -> pm:comment
+
+  [hopefully we can find something in a suitable
+  changeset ontology (TBA); not rdfs:comment though!]
+
+\pmdefines{}         -> pm:defines        (uri)
+
+  [rdfs:subPropertyOf owl:inverseOf rdfs:isDefinedBy]
+
+\pmrelated{}         -> skos:related      (uri)
+\pmsynonym{}{}       -> skos:exactMatch   (uri)
+                     skos:altLabel     (literal)
+
+  [the altLabel can be inferred from the
+  skos:prefLabel of the skos:exactMatch object]
+
+\pmkeyword{}         -> dct:subject       (uri)
+
+\pmparent[]{}        -> pm:parent         (uri)
+
+  [rdfs:subPropertyOf owl:inverseOf sioc:attachment]
+
+\pmowner{}{}         -> sioc:has_owner    (uri)
+\pmmodifier{}{}      -> sioc:has_modifier (uri)
+
+\pmrecord{}{}        -> dct:hasVersion
+\pmcanonicalname     -> dct:identifier
+\pmcreated           -> dct:created       (xsd:date)
+\pmmodified          -> dct:modified      (xsd:date)
+\pmtitle             -> dct:title
+                     skos:prefLabel    (literal)
+
+\pmauthor            -> sioc:has_creator       (uri)
+  [for compatibility we might additionally create dct:creator and foaf:maker]
+\pmclassification    -> dct:subject       (uri)
+
+\pmtype              -> rdf:type
+
+  [Existing types of PlanetMath articles are mapped like so:
+
+  Axiom              -> omdoc:Axiom
+  Conjecture         -> omdoc:Conjecture
+  Corollary          -> omdoc:Corollary
+  Definition         -> omdoc:Definition
+  Example            -> omdoc:Example
+  Proof              -> omdoc:Proof
+  Derivation         -> omdoc:Proof
+  Result             -> omdoc:Theorem
+  Theorem            -> omdoc:Theorem
+  Bibliography       -> omdoc:Bibliography
+
+    [available in OMDoc]
+
+  Algorithm          -> zomgdoc:Algorithm
+  Data Structure     -> zomgdoc:DataStructure
+  Problem            -> zomgdoc:Problem
+  Solution           -> zomgdoc:Solution
+
+    [should be in OMDoc; Problems and Solutions
+    were not on the original version of PlanetMath]
+
+  Application        -> omdoc:omtext
+  Biography          -> omdoc:omtext
+  Feature            -> omdoc:omtext
+
+    [Specific kinds of nonmathematical text
+    will be annotated with Tags, see that
+    section.]
+
+  Topic              -> pm:Topic
+
+    [rdfs:subClassOf skos:Concept]]
+\end{verbatim}
+
+Note that some of the \emph{ad hoc} terms could be
+replaced by elements of the SOIC vocabulary
+(e.g. \verb|sioc:has_parent|, \verb|soic:has_modifier|).
+
+%  ``changeset'' vocabulary, see
+% \url{http://vocab.org/changeset/schema.html}.
+
+The item that seems worth making a special comment about
+here is {\tt synonym}, which is a triple relating two
+terms (concepts).  The syntax used above doesn't make this
+immediately clear.  The other triples relate the article
+to its metadata in an obvious fashion.
+
+The most recent version of each article will appear in
+Vanilla as follows:
+
+\begin{verbatim}
+CanonicalName    -> GDN_Article:ArticleID
+\pmauthor        -> GDN_Article:InsertUserID
+\pmmodifier      -> GDN_Article:UpdateUserID
+\pmtitle         -> GDN_Article:Title
+\pmtitle         -> GDN_Article:TitleXHTML
+\pmtitle         -> GDN_Article:Name
+ArticleContents  -> GDN_Article:Body
+ArticleFormatted -> GDN_Article:BodyXHTML
+\pmcreated       -> GDN_Article:DateInserted
+\pmmodified      -> GDN_Article:DateUpdated
+\end{verbatim}
+
+The database mapping defined in {\tt src/importeLegacy.pl}
+is:
+
+\begin{verbatim}
+objects:uid        -> GDN_Article:ArticleID
+objects:type       -> GDN_Article:ArticleTypeID
+objects:userid     -> GDN_Article:InsertUserID
+                  GDN_Article:UpdateUserID
+objects:created    -> GDN_Article:DateInserted
+objects:modified   -> GDN_Article:DateUpdated
+objects:title      -> GDN_Article:Title
+                      GDN_Article:TitleXHTML
+objects:data       -> GDN_Article:Body
+                      GDN_Article:BodyXHTML
+objects:name       -> GDN_Article:Name
+
+objects:parentid   -> nil
+objects:preamble   -> nil
+objects:related    -> nil
+objects:synonyms   -> nil
+objects:defines    -> nil
+objects:keywords   -> nil
+objects:hits       -> nil
+objects:self       -> nil
+objects:pronounce  -> nil
+objects:version    -> nil
+objects:linkpolicy -> nil
+\end{verbatim}
+
+\verb|CanonicalName|, \verb|ArticleContents|, and
+\verb|ArticleFormatted| all need to be found, inferred, or
+otherwise produced by whatever function is in charge of
+caching articles in the database.
+
+\subsection{Mathematical Subject Classification (access method)}
+
+We made a quick (and not quite accurate conversion) of the
+AMS MSC \cite{MSC2000}, which is used on PlanetMath as one
+of the primary ways to access articles.  We will soon
+switch to a more accurate conversion that comes from
+\LaTeX ML.
+
+In brief, the MSC translation uses SKOS terms like
+\verb|hasTopConcept|, \verb|narrower|, \verb|Concept| to
+depict the MSC's hierarchy.  We can then make SPARQL
+queries like the following (which retrieves the parent
+label for a given base concept):
+
+\begin{verbatim}
+PREFIX msc: <http://purl.org/ontology/mo/msc#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+ select $parent $label where {
+   $parent skos:narrower msc:00A05;
+      skos:prefLabel $label
+\end{verbatim}
+
+In addition to being directly useful, the MSC serves as a
+proof of concept for future metadata-based access methods.
+
+\subsection{Collaboration objects} \label{collab}
+
+Collaboration objects are effectively just articles that
+contain their own preambles.  Their database schema also
+includes support for locks (which we will presumably
+handle in a more generic way).  Effectively collaboration
+objects are a first use case for tags; see Section
+\ref{tags}.
+
+\begin{verbatim}
+\pmtag{collab}
+\pmtag{published}
+\pmtag{sitedoc}
+\end{verbatim}
+
+\section{Forum Posts}
+
+Here we see an example of ``system-owned'' metadata vs
+``user owned'' metadata.  For ease of communication, we
+will pretend that this metadata is stored in
+\LaTeX\ documents in a similar fashion to the above, but
+at least in the legacy system this is definitely not the
+case.  This way of writing is maintained throughout
+subsequent sections.
+
+\begin{verbatim}
+\sysPostContext{CanonicalName}            % messages:objectid
+\sysPostInReplyTo{msg28342138}            % messages:replyto
+\sysPostThread{}                          % messages:threadid
+\sysPostCreated{2002-12-19 01:34:11}      % messages:created
+\sysPostBy{jac}                           % messages:userid
+\pmPostSubject{Awesome idea!!}            % messages:subject
+\pmPostBody{We should do this.}           % messages:body
+\end{verbatim}
+
+In terms of the metadata store, the mappings are as
+follow:
+
+\begin{verbatim}
+(the post itself)   -> sioc:Post
+\sysPostContext{}   -> sioc:has_container (sioc:Forum)
+\sysPostInReplyTo{} -> sioc:reply_of
+\sysPostThread{}    -> sioc:has_container (sioc:Thread)
+\sysPostCreated{}   -> dct:created (xsd:date)
+\sysPostBy{}        -> sioc:has_creator
+\pmPostSubject{}    -> dct:title
+\pmPostBody{}       -> awol:content
+\end{verbatim}
+
+This is how to model the body of a post.  We create explicit content objects that have MIME types.  One content object can refer to another one, from which it has been generated, e.g.\ XHTML+MathML could have been generated from a {\LaTeX} source.
+
+\begin{verbatim}
+@prefix :     <http://somewhere.in.planetary/.../database#> .
+@prefix awol: <http://bblfish.net/work/atom-owl/2006-06-06/#> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+
+:post123
+  a sioc:Post;
+  awol:content :text123 .
+
+:text123
+  a awol:Content;
+  awol:type "application/xhtml+xml";
+  awol:body "Hello <math><mi>x</mi></math>";
+  awol:src :latex123 .
+
+:latex123
+  a awol:Content;
+  awol:type "application/x-latex";
+  awol:body "Hello $x$" .
+\end{verbatim}
+
+See also Section \ref{argumentation}.
+
+There will be a representation in Vanilla as follows.
+(This will be more clear when I've had a chance to look at
+the relevant
+\href{http://vanillaforums.org/addon/replyto-plugin}{threaded
+  forum plugin}.)
+
+\begin{verbatim}
+messages:objectid   -> GDN_Discussion:DiscussionID
+
+  [which we will have to retrieve from somewhere]
+
+messages:objectname -> GDN_Article:Name
+messages:replyto    -> GDN_Comment:ParentCommentID
+
+  [If using the above-mentioned plugin.]
+
+messages:threadid   -> GDN_Discussion:DiscussionID
+messages:created    -> GDN_Discussion.DateUpdated
+                       GDN_Discussion.DateLastComment
+
+messages:userid     -> GDN_Comment:InsertUserID
+messages:subject    -> GDN_Discussion:Name
+
+  [But only if it is a new discussion.]
+
+messages:body       -> GDN_Comment:Body
+\end{verbatim}
+
+\subsection{Personal Mail}
+
+Personal mail is effectively a forum that anyone can post
+to, but only one person can read.
+
+\begin{verbatim}
+\sysMailFrom{jac}                % mail:userfrom
+\pmMailTo{rpuzio}                % mail:userto
+\pmMailSubject{talk?}            % mail:subject
+\pmMailBody{I'm free at 5 GMT.}  % mail:body
+\pmMailSent{2001-08-25 18:34:09} % mail:sent
+\sysMailRead{1}                  % mail:_read
+\end{verbatim}
+
+We will skip the Linked Data step for this material for
+now (at the very least it depends on a good implementation
+of permissions, see Section \ref{permissions}).
+
+Vanilla implements private messaging with
+``Conversations''.  Conversations are at least one step
+better than PlanetMath insofar as they support multiple
+recipients.  Several tables are used to provide support
+for conversations, namely \verb|GDN_Conversation|,
+\verb|GDN_UserConversation|, and
+\verb|GDN_ConversationMessage|.
+
+\begin{verbatim}
+mail:userto   -> GDN_User:Contributors
+                 GDN_Conversation:Contributors
+
+  [GDN_Conversation has to be written in a special format,
+  see below.]
+
+mail:userfrom -> GDN_User:Contributors
+                 GDN_Conversation:Contributors
+                 GDN_ConversationMessage:InsertUserID
+
+mail:subject  -> GDN_Conversation:Name                (add)
+
+mail:body     -> GDN_ConversationMessage:Body
+mail:sent     -> GDN_Conversation.DateInserted
+                 GDN_ConversationMessage.DateInserted
+
+mail:_read    -> GDN_User.CountUnreadConversations    (increment)
+
+  [I think the application is broken; we can count all
+  mail as unread for now I think, that's simplest.]
+\end{verbatim}
+
+The format of \verb|GDN_Conversation.Contributors| is
+revealed as follows:
+
+\begin{verbatim}
+<?php
+print_r(unserialize('a:2:{i:0;s:1:"1";i:1;s:1:"2";}
+'));
+?>
+
+=>
+
+Array
+(
+    [0] => 1
+    [1] => 2
+)
+\end{verbatim}
+
+where the array contents {\tt 1} and {\tt 2} are the IDs
+of the participating users.  Since Noosphere only allows
+two correspondents per thread, it will be easy to
+translate the legacy data into the appropriate form.
+
+\subsection{Notices}
+
+Notices are effectively ``personal mail'' that originate
+from the system itself.  Notices are primarily associated
+with Watches (see Section \ref{watches}).
+
+\begin{verbatim}
+\sysNoticeTo{rpuzio}                        % notices:userid
+\sysNoticeFrom{relatedBot}                  % notices:userfrom
+\sysNoticeSubject{new "related" client bar} % notices:title
+\sysNoticeCreated{2002-08-25 11:11:09}      % notices:created
+\sysNoticeBody{Your article foo has been
+              automatically linked to bar.} % notices:data
+\sysNoticeRead{1}                           % notices:viewed
+\sysNoticeChoice{Allow this?}               % notices:choice_title
+\sysNoticeAction{AcceptRelatedLinkPrompt}   % notices:choice_action
+\sysNoticeDefault{Allow}                    % notices:choice_default
+\end{verbatim}
+
+The last three elements, \verb|\sysNoticeChoice|,
+\verb|\sysNoticeAction|, and \verb|\sysNoticeDefault|
+would be good places to use the argumentation ontology
+(Section \ref{argumentation}).  (Incidentally, it seems
+these features are not in current use on PlanetMath.)
+
+We will not do a linked data presentation at the moment,
+and will move on to the Vanilla representation.
+
+\begin{verbatim}
+notices:userid         -> GDN_User:UserID
+notices:userfrom       -> GDN_User:UserID
+notices:title          -> GDN_Discussion:Name
+notices:created        -> GDN_Discussion.DateUpdated
+                          GDN_Discussion.DateLastComment
+notices:viewed         -> GDN_Discussion.DateLastViewed (add)
+notices:data           -> GDN_Comment:Body
+notices:choice_title   -> GDN_Action.ActionName         (add)
+notices:choice_action  -> GDN_Action.ActionID           (add)
+notices:choice_default -> GDN_Action.ActionDefault      (add)
+\end{verbatim}
+
+\subsection{Legacy forums}
+
+In PlanetMath, each article is a forum.  There are also
+several special-purpose forums that aren't associated to
+articles.  The contents of all of these need to be
+imported into the new site.
+
+\begin{verbatim}
+\pmForumCreator{akrowne}                       % forums:userid
+\pmForumCreated{2002-06-16 03:06:43}           % forums:created
+\pmForumModified{2002-06-16 03:06:43}          % forums:modified
+\pmForumParent{NULL}                           % forums:parentid
+\pmForumTitle{PlanetMath Help}                 % forums:title
+\pmForumDescription{This is the place
+  to get assistance with tasks on PlanetMath.} % forums:data
+\end{verbatim}
+
+In terms of Linked Data:
+
+\begin{verbatim}
+\pmForumCreator{}     -> sioc:has_creator
+\pmForumCreated{}     -> dct:created
+\pmForumModified{}    -> dct:modified
+\pmForumParent{}      -> sioc:has_parent
+\pmForumTitle{}       -> dct:title
+\pmForumDescription{} -> dct:description
+\end{verbatim}
+
+For Vanilla:
+
+\begin{verbatim}
+forums:userid   -> GDN_Discussion.InsertUserID
+forums:created  -> GDN_Discussion.DateInserted
+forums:modified -> GDN_Discussion.DateUpdated
+forums:parentid -> GDN_Discussion.Parent        (add or ignore)
+forums:title    -> GDN_Discussion.Name
+forums:data     -> GDN_Discussion.Body
+\end{verbatim}
+
+Note that PlanetMath legacy forums currently do not make
+use of the ``\verb|parent|'' field, so we could ignore it
+for now.
+
+\subsection{News}
+
+Much like personal mail is a forum that anyone can post
+to, but only one person can read, news is a forum that
+everyone can read, but only a specific group of people
+(site admins) can post to.  Presumably this is easy to set
+permissions for in Vanilla (Section \ref{permissions}).
+
+\begin{verbatim}
+\pmNewsCreator{akrowne}                        % news:userid
+\pmNewsCreated{2001-01-01 00:00:00}            % news:created
+\pmNewsModified{2001-01-01 00:00:00}           % news:modified
+\pmNewsTitle{The beginning}                    % news:title
+\pmNewsIntro{Time stands still for a moment}   % news:intro
+\pmNewsDescription{Let there be math!}         % news:body
+\end{verbatim}
+
+\begin{verbatim}
+news:userid   -> GDN_Discussion.InsertUserID
+news:created  -> GDN_Discussion.DateInserted
+news:modified -> GDN_Discussion.DateUpdated
+news:parentid -> GDN_Discussion.Parent        (add or ignore)
+news:title    -> GDN_Discussion.Name
+news:body     -> GDN_Discussion.Body
+news:intro    -> GDN_Discussion.Summary       (add or merge into data)
+\end{verbatim}
+
+\begin{verbatim}
+news:userid   -> sioc:has_creator
+news:created  -> dct:created
+news:modified -> dct:modified
+news:title    -> sioc:has_parent
+news:hits     -> dct:title
+news:body     -> awol:content
+news:intro    -> dct:description
+  [for a more in-depth representation, we could consider awol:summary,
+   whose range is awol:TextContent]
+\end{verbatim}
+
+\subsection{Argumentation support} \label{argumentation}
+
+We plan to integrate Christoph Lange's
+\href{https://svn.salzburgresearch.at/svn/kiwi/IkeWiki/branches/SWiM/trunk/WEB-INF/ontologies/matharg/matharg.owl}{argumentation
+  ontology} into Planetary, and although it may in some
+ways be more relevant to the Corrections section of this
+document (Section \ref{corrections}), it is worth
+mentioning here as well, since the idea of
+``argumentation'' will make corrections into a more
+discussion-oriented feature of the site than was
+previously the case.
+
+When we think about implementation, perhaps what works
+best would be same set of tags attached to articles
+(cf. Section \ref{tags}).  However, note that unlike
+completely ``free-form'' tags, there would be specific
+semantics attached to discourse markers from the
+argumentation ontology.  (Other non-freeform tags might
+have their own semantics attached as well, see the
+relevant section for further discussion.)
+
+\begin{verbatim}
+\pmmarker{support}
+\end{verbatim}
+
+\section{User Homepage} \label{users}
+
+Again, some user data is maintained by the system, like
+``score''.  (Note that we'll eventually need a one or more
+``analytics'' plugins to keep things like score up to date
+-- we can start by taking a look at the
+\href{http://vanillaforums.org/addon/topposters-plugin}{TopPosters
+  plugin}.)
+
+\begin{verbatim}
+\pmUsername{jac}                            % users:username
+\pmUserPassword{seeifyoucanguess}           % users:password
+\pmUserEmail{holtzermann17@gmail.com}       % users:email
+\pmUserForename{Joe}                        % users:forename
+\pmUserSurname{Corneli}                     % users:surname
+\pmUserCity{Milton Keynes}                  % users:city
+\pmUserCounty{Buckinghamshire}              % users:state
+% \pmUserState{}                            %
+% \pmUserProvince{}                         %
+\pmUserCountry{United Kingdom}              % users:country
+\pmUserHomepage{http://metameso.org/~joe}   % users:homepage
+\pmUserSignature{Something witty here}      % users:sig
+\pmUserPrefs{need/to/check/what/this/means} % users:prefs
+\pmUserBio{Bla bla bla.}                    % users:bio
+\pmUserPreamble{\usepackage{amssymb}
+                \usepackage{amsmath}}       % users:preamble
+\sysUserScore{999}                          % users:score
+\sysUserJoined{2002-12-19 01:34:11}         % users:joined
+\sysUserAccessLevel{30}                     % users:access
+\sysUserLastLogin{2010-03-03 13:08:13}      % users:last
+\sysUserIsActive{1}                         % users:active
+\sysUserLastIP{212.121.193.251}             % users:lastip
+\sysUserKarma{0}                            % users:karma
+\end{verbatim}
+
+(We will aim to provide better internationalization of
+addresses/locales in this implementation.)
+
+In terms of the metadata store, the mappings are as
+follow:
+
+\begin{verbatim}
+\pmUsername{}         -> sioc:UserAccount (uri)
+\pmUserPassword{}     -> pm:password
+\pmUserEmail{}        -> foaf:mbox
+\pmUserForename{}     -> foaf:givenName
+\pmUserSurname{}      -> foaf:familyName
+\pmUserCity{}         -> mads:City
+                         foaf:based_near
+\pmUserCounty{}       -> mads:County
+\pmUserState{}        -> mads:State
+\pmUserProvince{}     -> mads:State
+\pmUserCountry{}      -> mads:Country
+\pmUserHomepage{}     -> foaf:homepage
+\pmUserSignature{}    -> sig:signature    (maybe)
+\pmUserPrefs{}        -> n/a
+\pmUserBio{}          -> bio:Biography
+\pmUserPreamble{}     -> pm:preamble      (awol:Content)
+\sysUserScore{}       -> pm:score         (xsd:integer)
+\sysUserJoined{}      -> pm:joined        (xsd:date)
+\sysUserAccessLevel{} -> pm:accessLevel   (xsd:nonNegativeInteger)
+\sysUserLastLogin{}   -> sioc:last_activity_date
+
+  [Last activity is more granular than last login;
+  Planetary should reflect the more granular data.
+  If we want to keep track of login data, we can do
+  that separately.]
+
+\sysUserIsActive{}    -> pm:active         (xsd:boolean)
+\sysUserLastIP{}      -> pm:lastIP
+\sysUserKarma{}       -> pm:karma          (xsd:nonNegativeInteger)
+  [maybe replace by sth. from a "trust" ontology]
+\end{verbatim}
+
+See see \url{http://xmlns.com/foaf/spec/} for info on FOAF
+and \url{http://www.loc.gov/standards/mads/rdf/} for
+details on madsrdf.  Another way to deal with country is
+found in \url{http://vocab.org/reuters_regions/1.0/}.  Yet
+another alternative is vcard,
+\url{http://www.w3.org/Submission/vcard-rdf/}.
+
+Note the idea of using digital signatures instead of
+informal email signatures might be an inappropriate jump,
+but see \url{http://payswarm.com/vocabs/signature}.  For
+Bio stuff, see \url{http://vocab.org/bio/schema.rdf}
+
+There will also be a representation in Vanilla as follows.
+
+\begin{verbatim}
+users:username -> GDN_User:UserID
+users:password -> GDN_User:Password
+users:email    -> GDN_User:Email
+users:bio      -> GDN_User:About
+users:joined   -> GDN_User:DateInserted
+users:last     -> GDN_User:DateLastActive
+users:prefs    -> GDN_User:Preferences    (maybe)
+users:score    -> GDN_User:Score          (maybe)
+users:access   -> GDN_User:Permissions    (maybe)
+users:forename -> GDN_User:Forename       (add)
+users:surname  -> GDN_User:Surname        (add)
+users:city     -> GDN_User:City           (add)
+users:state    -> GDN_User:State          (add)
+users:country  -> GDN_User:Country        (add)
+users:homepage -> GDN_User:Homepage       (add)
+users:sig      -> GDN_User:Signature      (add)
+users:preamble -> GDN_User:Preamble       (add)
+users:active   -> GDN_User:ActiveUser     (add)
+users:lastip   -> GDN_User:LastIP         (add)
+users:karma    -> GDN_User:Karma          (add)
+\end{verbatim}
+
+Note that some of the things that need to be added might
+be available in one of the existing plugins.
+
+\section{Corrections} \label{corrections}
+
+These are similar to forum posts in some regards, but they
+have two ``phases''.  They are essentially like
+article-level bug reports.  From a metadata point of view,
+the vocabulary at \url{http://vocab.org/lifecycle/schema}
+could prove useful.  Compare the diagrams on pp. 165 and
+196 of \cite{KrowneThesis} for a picture of the way the
+issue-tracking workflow at is envisioned.
+
+\begin{verbatim}
+\sysCorrectionContext{CanonicalName}       % corrections:objectid
+\sysCorrectionCreated{2002-12-19 01:34:11} % corrections:filed
+\sysCorrectionBy{jac}                      % corrections:userid
+\pmCorrectionSubject{you missed a comma}   % corrections:title
+\pmCorrectionBody{Check sentence two.}     % corrections:data
+\pmCorrectionType{Minor}                   % corrections:type
+
+\sysCorrectionClosed{2003-11-1 11:11:11}   % corrections:closed
+\sysCorrectionClosedBy{apmxi}              % corrections:closedbyid
+\sysCorrectionAccepted{1}                  % corrections:accepted
+\pmCorrectionComment{Thanks}               % corrections:comment
+\sysCorrectionGraceInterval{}              % corrections:graceint
+\end{verbatim}
+
+I don't yet know what the ``Correction Grace Interval''
+is: will have to look more deeply.  Presumably it is a
+reporter-specified grace period that is used to specify
+the timeline in which the next automatic system action
+takes place.
+
+In terms of the metadata store, the mappings are as
+follow:
+
+\begin{verbatim}
+\sysCorrectionContext{}       -> pm:parent                 (uri)
+\sysCorrectionCreated{}       -> dct:created               (xsd:date)
+\sysCorrectionBy{}            -> lifecycle:openedBy        (add)
+\pmCorrectionSubject{}        -> lifecycle:subject         (add)
+\pmCorrectionBody{}           -> lifecycle:taskDescription (add)
+\pmCorrectionType{}           -> lifecycle:TaskGroup:meta  (check)
+
+\sysCorrectionClosed{}        -> lifecycle:state:closed    (add)
+\sysCorrectionClosedBy{}      -> lifecycle:closedBy        (add)
+\sysCorrectionAccepted{}      -> lifecycle:completed
+\pmCorrectionComment{}        -> lifecycle:closingComment  (add)
+\sysCorrectionGraceInterval{} -> nil
+\end{verbatim}
+
+There will also be a representation in Vanilla as follows
+(this requires creating an \verb|GDN_Issue| table.  (There
+is an existing
+\href{http://vanillaforums.org/addon/584-issue-tracker}{Issue
+  Tracker} plugin, but it works by turning Discussions
+into Issues, and that isn't what we want; however,
+potentially some of the material could be recycled.)
+
+\begin{verbatim}
+corrections:objectid    -> GDN_Article:ArticleID
+corrections:filed       -> GDN_Issue.DateUpdated
+corrections:userid      -> GDN_Issue:InsertUserID
+corrections:title       -> GDN_Issue:Name
+corrections:data        -> GDN_Issue:Body
+corrections:type        -> GDN_Issue:Type
+
+corrections:closed      -> GDN_Issue:State
+corrections:closedbyid  -> GDN_Issue:ClosedByID
+corrections:accepted    -> GDN_Issue:Accepted
+corrections:comment     -> GDN_Issue:ClosingComment
+corrections:graceint    -> GDN_Issue:GracePeriod
+\end{verbatim}
+
+\section{Requests}
+Similar to corrections; both have two phases and represent
+some sort of ``bug reporting''.  In fact, we can reuse
+much of the same infrastructure.
+
+\begin{verbatim}
+\sysRequestCreated{2002-12-19 01:34:11}  % requests:created
+\sysRequestBy{jac}                       % requests:creatorid
+\pmRequestSubject{what is a quasigroup?} % requests:title
+\pmRequestBody{Just curious, thanks!}    % requests:data
+
+\sysRequestClosed{2003-11-1 11:11:11}    % requests:closed
+\sysRequestClosedBy{apmxi}               % requests:fulfillerid
+\sysRequestFilled{1}                     % requests:fulfilled
+\end{verbatim}
+
+In terms of the metadata store, the mappings are as
+follow:
+
+\begin{verbatim}
+\sysRequestCreated{}     -> dct:created (xsd:date)
+\sysRequestBy{}          -> lifecycle:openedBy
+\pmRequestSubject{}      -> lifecycle:subject
+\pmRequestBody{}         -> lifecycle:taskDescription
+
+\sysRequestClosed{}      -> lifecycle:state:closed
+\sysRequestClosedBy{}    -> lifecycle:closedBy
+\sysRequestFilled{}      -> lifecycle:completed
+\end{verbatim}
+
+In addition, we should make a
+\verb|lifecycle:TaskGroup:request| annotation to the
+object as a whole.
+
+There will also be a representation in Vanilla as follows.
+
+\begin{verbatim}
+requests:created     -> GDN_Issue.DateUpdated
+requests:creatorid   -> GDN_Issue:InsertUserID
+requests:title       -> GDN_Issue:Name
+requests:data        -> GDN_Issue:Body
+
+requests:closed      -> GDN_Issue:State
+requests:fulfillerid -> GDN_Issue:ClosedByID
+requests:fulfilled   -> GDN_Issue:Accepted
+\end{verbatim}
+
+We might want to make an annotation for
+\verb|GDN_Issue:Type| (set as request), and allow use of
+\verb|GDN_Issue:ClosingComment| and
+\verb|GDN_Issue:GracePeriod| similar to that for
+Corrections.
+
+Finally, note that although requests aren't currently made
+in a given context, eventually they could be (as currently
+happens with corrections).
+
+\section{Groups}
+
+It is possible to define groups within PlanetMath.  I can
+imagine this functioning something like a group home-page.
+For that to work, we'd likelywant to move the
+\verb|group:description| text into a free-form section,
+and make the group function like a special kind of object
+(similar to forums).
+
+\begin{verbatim}
+\pmGroup{JCCoAuthors}{jac}{My pals.} % group:groupname
+                                     % group:userid
+                                     % group:description
+\pmGroupMember{JCCoAuthors}{rpuzio}  % group_members:groupid
+                                       (canonicalized)
+                                     % group_members:userid
+                                       (canonicalized)
+\end{verbatim}
+
+In terms of the metadata store, the mappings are as
+follow.
+
+\begin{verbatim}
+\pmGroup{}{}{}          -> foaf:Group,
+                           foaf:name,
+                           foaf:maker,
+                           foaf:homepage
+\pmGroupMember{}{}      -> foaf:member
+\end{verbatim}
+
+There will also be a representation in Vanilla; we could use
+the existing
+\href{http://vanillaforums.org/addon/groups-plugin}{Groups}
+and
+\href{http://vanillaforums.org/addon/memberships-plugin}{Memberships}
+plugins for this, though they would have to be tweaked in
+order to (a) make it so that it is possible for
+non-Administrators to create groups; and (b) so that
+non-Administrators can edit group membership.  There are
+other reasonable changes to make, like giving each group a
+world-visible home page, and listing group membership on
+user pages.
+
+We should also consider adding access control settings for
+groups (i.e. distinguish between groups that anyone can
+join, or groups where control over membership is exclusive
+to the group's administrator's, etc).
+
+\begin{verbatim}
+group:groupname        -> GDN_Group:Name
+group:userid           -> GDN_Group:InsertUserID (add)
+group:description      -> GDN_Group:Body         (add)
+group_members:groupid  -> GDN_UserGroup:GroupID
+group_members:userid   -> GDN_UserGroup:UserID
+\end{verbatim}
+
+\section{Tags} \label{tags}
+
+We have some liberty about how we implement tags (and any
+workflow that uses the tags), but it would be good to at
+least consider the
+\href{http://trac.mathweb.org/planetary/export/HEAD/contrib/planetmath-tags.pdf}{wishes}
+of the PlanetMath board in this matter.  At the same time,
+there are no legacy tags to import (though there are
+certain data that can usefully be \emph{thought of} as
+tags; some have already appeared in Section \ref{collab}).
+A hypothetical use of tags (e.g. to describe a piece of
+text that could be found in an introduction to Abstract
+Algebra) would look like this:
+
+\begin{verbatim}
+\pmtag{Section:Reference,
+       edlevel:mathmajor,
+       expstyle:pedagogical,
+       audience:student,
+       application:pure,
+       era:modern,
+       source:standard,
+       depth:medium,
+       lifecycle:complete}
+\end{verbatim}
+
+We use the MOAT ontology (which itself relies on a
+\href{http://www.holygoat.co.uk/owl/redwood/0.1/tags/}{tags}
+ontology) to guide the Linked Data implementation.
+
+\begin{verbatim}
+\pmtag{} -> tags:name
+            tags:taggedResource
+            tags:taggedBy
+            moat:tagMeaning
+\end{verbatim}
+
+The \href{http://vanillaforums.org/addon/tagging-plugin}{Tagging
+  Enhanced} plugin gives a guide to the Vanilla
+implementation.  (Update:
+
+\section{Actions} \label{actions}
+
+Activities are described with a couple of ontologies
+related to the \href{http://activitystrea.ms}{activity
+  streams} project, like
+\href{http://xmlns.notu.be/aair/}{AAIR} or
+\href{http://rdfs.org/sioc/actions}{SIOCA}.  We'll go with
+SIOCA, so becoming familiar with
+\href{http://liris.cnrs.fr/Documents/Liris-4573.pdf}{the paper}
+that describes it could be a good idea.
+
+The following pseudocode separates the system-level
+\emph{definition} of a type of an ``action'' from the
+record of a given \emph{instance} of an ``act''.
+
+\begin{verbatim}
+\sysAction{PostEvent}        % actions:type
+          {EventSummary}     % actions:data
+          {100}              % actions:score
+
+\sysAct{UserName}            % actions:objectid
+       {ForumName}           % actions:userid
+       {PostEvent}
+       {2001-01-01 00:00:00} % actions:created
+\end{verbatim}
+
+The Linked Data interpretation is like this:
+
+\begin{verbatim}
+actions:userid   -> sioc:has_creator
+                    event:agent
+actions:type     -> rdf:type
+actions:objectid -> sioca:object
+actions:data     -> dct:description
+actions:created  -> dc:created
+                    event:time
+actions:score    -> pm:score
+\end{verbatim}
+
+The Vanilla interpretation is like this:
+
+\begin{verbatim}
+actions:userid   -> GDN_Activity.RegardingUserID
+actions:type     -> GDN_Activity.ActivityTypeID
+actions:objectid -> GDN_Activity.Route
+actions:data     -> GDN_ActivityType.ProfileHeadline (with some interpretation)
+actions:created  -> GDN_Activity.DateInserted
+actions:score    -> GDN_ActivityType.Value           (add)
+\end{verbatim}
+
+\subsection{Watches} \label{watches}
+A watch is a trigger or hook that responds to a given
+action that occurs within the system.  In the PlanetMath
+implementation the only thing that it watched for is a
+generic ``update event''.
+
+\begin{verbatim}
+\pmWatch{JordansTotientFunction}{jac}  % watches:objectid, watches:tbl
+                                       % watches:userid
+\end{verbatim}
+
+We will skip the Linked Data interpretation for now.
+
+A (minimal) Vanilla interpretation is as follows.  (A more
+complex version would allow the user to select the
+functional behavior of the watch.)
+
+\begin{verbatim}
+watches:objectid -> GDN_Watch:TargetID
+watches:tbl      -> GDN_Watch:TargetType
+watches:userid   -> GDN_Watch:UserID
+\end{verbatim}
+
+\subsection{Hits}
+Hits are in some sense ``anonymous actions'' coming from
+outside the site.  It might be useful to have records that
+pertain to hits queryable in the same style as records
+about other user actions.
+
+\section{Permission Policies} \label{permissions}
+
+Permissions are managed in PlanetMath on a per-object
+basis, typically by a per-object super-user, namely the
+object's ``owner''.  This owner can also delegate similar
+super-user rights to others (p. 146, \cite{KrowneThesis}).
+Access control can also pass to groups (as defined in
+previous section).
+
+In Planetary, we will of course want to accommodate this
+legacy style, but permissions will cover a more general
+set of actions than before.  For example, a user may
+typically have permission to update their own user
+homepage, but they will not necessarily have permission to
+adjust a field that says that they have solved a given
+exercise (only another person, or a system process, would
+be allowed to say that).
+
+In what follows, \verb|x| corresponds to ``permission to
+adjust the \verb|_acl| of an object'', in other words, the
+only way to execute an object is to change the permissions
+for that object.  In other applications (like the example
+of getting credit for an exercise), execution may mean
+something different.
+
+\begin{verbatim}
+\pmUserPermissions{ObjectName}{jac}{rwx}   % acl:objectid
+                                           % acl:subjectid
+                                           % acl:_read
+                                           % acl:_write
+                                           % acl:_acl
+
+\pmDefaultPermissions{ObjectName}{r}       % as above, when
+                                           % acl:default_or_normal
+                                           %  = default
+
+\pmGroupPermissions{ObjectName}{Group}{rw} % as above, when
+                                           % acl:user_or_group
+                                           %  = group
+\end{verbatim}
+
+A simple but widely applicable model of permissions would
+indicate that permission applies to a subject, a verb, and
+an object.  Our notation \begin{quotation}``\verb|{ObjectName}{jac}{rwx}|''
+\end{quotation}
+is in line with this understanding.  The generalization of
+this notation would be
+``\verb|{ObjectName}{UserName}{ActionName}|''.  However,
+it may be that permission only applies in a given context,
+so for example, we might use a string like
+``\verb|{ModerationTag}{UserName}{x}{ForumName}|'' to say
+that a given user has permission to apply a ``moderation''
+tag in a particular forum, but not in every forum.  At
+least in this case, we could use a ``reduced form''
+and write \begin{quotation}
+  ``\verb|{ForumName}{UserName}{ModeratorAction}|''.
+\end{quotation}
+Note that the SIOCA ontology allows several objects to be
+used in one action (though it requires exactly one agent).
+
+Another useful point to keep in mind is that system
+permissions are associated with a global ``access level''
+(cf. \verb|users:access|, which is currently just
+translated to \verb|GDN_User:Permissions|, see Section
+\ref{users}).
+
+A full discussion of permissions will have to follow a
+more complete understanding of user actions (Section
+\ref{actions}).
+
+For permission surrounding the use of tags, see
+\href{http://trac.mathweb.org/planetary/export/HEAD/contrib/planetmath-tags.pdf}{this
+  document} for the latest thoughts from the PlanetMath
+board of directors.
+
+There has been some discussion about how to integrate
+permissions
+\href{http://www.w3.org/2001/sw/Europe/events/foaf-galway/papers/fp/technical_and_privacy_challenges/}{into
+  FOAF}, and a more recent discussion about how to make
+the Semantic Web into an
+``\href{http://www.freesoftwaremagazine.com/articles/semantic_web_operating_system_users_and_permissions}{operating
+  system}''.  The most specific description of permissions
+management for the read/write web I've been able to find
+is
+``\href{http://disi.unitn.it/security/spot.pdf}{Ontology
+  Driven Community Access Control}'' or
+``\href{http://eprints.biblio.unitn.it/archive/00001527/01/080.pdf}{RelBAC}''.
+However, it seems a standard, public, ontology has not
+been developed out of this work.
+
+\begin{verbatim}
+\pmUserPermissions{}{}{}  -> TBA
+\pmDefaultPermissions{}{} -> TBA
+\pmGroupPermissions{}{}{} -> TBA
+\end{verbatim}
+
+As for Vanilla, a new Access plugin that just does a
+direct translation of the old PlanetMath ACL system could
+be effective.
+
+On the other hand, it would be nice to re-use Vanilla's
+native ``Roles'' facility when and where possible.  For
+example, we might be able to make a per-object dashboard
+reusing some of the site-wide code from
+\verb|/dashboard/user| (at least for user interface
+purposes).
+
+Note that in some sense ACLs are ``just additional article
+metadata'' (like tags, so see Section \ref{tags}).
+
+\begin{verbatim}
+acl:objectid         -> GDN_Article:ArticleID
+acl:subjectid        -> GDN_User:UserID,
+                        GDN_Group:GroupID
+                        (use "0" to denote default)
+acl:_read            -> GDN_Access:Read         (add)
+acl:_write           -> GDN_Access:Write        (add)
+acl:_acl             -> GDN_Access:Administer   (add)
+acl:user_or_group    -> GDN_Access:UserOrGroup  (add)
+\end{verbatim}
+
+\section{Links}
+
+\emph{Note: We are going to defer automatic linking to
+  Beta.  This section just contains some preliminary
+  thoughts.}
+
+Links are described in Chapter 9 of \cite{KrowneThesis}
+(pp. 95-131), and an update of PlanetMath's automatic
+linking system (``NNexus'') is described in \cite{NNexus}.
+The code for NNexus is
+\href{http://code.google.com/p/nnexus/source/checkout}{available},
+along with documentation by James Gardner.
+
+Quoting from the introduction to ``NNexus Installation'':
+
+\begin{quotation}
+\noindent When an entry is rendered for display (either at
+display time or during offline batch processing), the text
+is broken down into tokens and scanned for words that
+invoke concepts that have been defined already (in other
+entries).  These words (or word tuples) are ultimately
+turned into hyperlinks to the corresponding entries in the
+output rendering.  In addition, when the concepts are
+added to the collection (or the set of concept labels
+otherwise changes), entries containing potential
+invocation of these concept labels are invalidated using a
+special inverted index called the invalidation index.
+This forces these entries to go through link analysis
+themselves by or before the next time they are displayed.
+\end{quotation}
+
+Accordingly, working properly with links is directly
+related to \emph{caching} and to PlanetMath's use of the
+\verb|inv_dfs|, \verb|inv_idx|, and \verb|inv_phrases|
+tables.
+
+Taking a look at these tables we get a look at what's going on.
+
+\begin{quote}
+\begin{minipage}{5in}
+\verb|inv_dfs|:
+\begin{tabular}{|lll|}
+\hline
+{\bf id} &  {\bf word\_or\_phrase} & {\bf count} \\
+\hline
+99442 &              0 &   124 \\
+99443 &              0 &   126 \\
+99444 &              0 &   122 \\
+\hline
+\end{tabular}
+
+\medskip
+
+\verb|inv_idx|:
+\begin{tabular}{|lll|}
+\hline
+{\bf id} &  {\bf word\_or\_phrase} & {\bf objectid} \\
+\hline
+99442 &              0 &   10 \\
+99443 &              0 &   10 \\
+99444 &              0 &   10 \\
+\hline
+\end{tabular}
+
+\medskip
+
+\verb|inv_phrases|:
+\begin{tabular}{|ll|}
+\hline
+{\bf id} & {\bf id} \\
+\hline
+number inequality &     197463 \\
+number degree     &     197464 \\
+number constant   &     197465 \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{quote}
+
+\subsection{Semantic Links}
+
+Links like this should be straightforward to add as
+generalizations of tags, but we will save them until Beta
+or later.  Furthermore, this sort of linking encroaches on
+s\TeX\ territory, so let's reuse work from s\TeX\ here.
+
+\begin{verbatim}
+\pmILink{hasGeneralization}{SomeOtherArticle}
+\pmOLink{SomeArticle}{hasGeneralization}{SomeOtherArticle}
+\end{verbatim}
+
+\appendix
+
+\section{Legacy tables from PlanetMath.org}
+
+These are the tables we have explicitly dealt with, or
+replaced with some equivalent, above.
+
+\begin{quotation}
+\begin{minipage}{4in}
+{\tt acl, actions, authors, classification, collab,
+  concepts, corrections, forums, group\_members, groups,
+  hits, links, mail, messages, msc, nag, news, notices,
+  objindex, objlinks, requests, score, source, users,
+  watches }
+\end{minipage}
+\end{quotation}
+
+These are tables that we have not dealt with yet, but that
+might be interesting to look at in the beta phase.
+Generally they deal with features that were less important
+than the core features described above.
+
+\begin{quotation}
+\begin{minipage}{4in}
+{\tt blacklist, books, cache, catlinks, corstat, inv\_dfs,
+  inv\_idx, inv\_phrases, inv\_words, ns, object\_rating,
+  object\_rating\_all, ownerlog, papers, polls,
+  relsuggest, rendered\_images, storage, tdesc,
+  users\_clique, users\_rating, users\_uid\_seq }
+\end{minipage}
+\end{quotation}
+
+These tables we may consider in passing, but they play a
+supportive role and likely don't need to be imported
+explicitly (though a few, like {\tt searchresults}, are of
+possible historical interest).
+
+\begin{quotation}
+\begin{minipage}{4in}
+{\tt acl\_default, acl\_default\_uid\_seq, acl\_uid\_seq,
+  actions\_uid\_seq, blacklist\_uid\_seq, books\_uid\_seq,
+  collab\_uid\_seq, concepts\_id\_seq,
+  corrections\_uid\_seq, forums\_uid\_seq,
+  groups\_groupid\_seq, lastmsg, lec\_uid\_seq,
+  mail\_uid\_seq, messages\_tmp, messages\_uid\_seq,
+  news\_uid\_seq, notices\_uid\_seq, objects\_uid\_seq,
+  papers\_uid\_seq, polls\_uid\_seq, requests\_uid\_seq,
+  searchresults }
+\end{minipage}
+\end{quotation}
+
+\section{Tables in Vanilla}
+
+These are the tables that Vanilla provides by default:
+
+\begin{quotation}
+\begin{minipage}{4in}
+{\tt GDN\_Activity, GDN\_ActivityType, GDN\_AnalyticsLocal
+  GDN\_Category, GDN\_Comment, GDN\_Conversation
+  GDN\_ConversationMessage, GDN\_Discussion, GDN\_Draft
+  GDN\_Invitation, GDN\_Message, GDN\_Permission,
+  GDN\_Photo GDN\_Role, GDN\_Tag, GDN\_TagCategoryCount,
+  GDN\_TagDiscussion GDN\_User, GDN\_UserAuthentication
+  GDN\_UserAuthenticationNonce,
+  GDN\_UserAuthenticationProvider
+  GDN\_UserAuthenticationToken, GDN\_UserComment
+  GDN\_UserConversation, GDN\_UserDiscussion,
+  GDN\_UserMeta GDN\_UserRole }
+\end{minipage}
+\end{quotation}
+
+We have modified many of these tables (as indicated in the
+body of this document).  The new tables we introduced in
+the process of adding PlanetMath content to Vanilla are as
+follow:
+
+\begin{quotation}
+\begin{minipage}{4in}
+{\tt GDN\_Access, GDN\_ActivityType, GDN\_Article, GDN\_ArticleType, GDN\_Group, GDN\_Issue, GDN\_UserGroup, GDN\_Watch }
+\end{minipage}
+\end{quotation}
+
+
+\bibliography{pmlegacybib}{}
+\bibliographystyle{annotations}
+
+\end{document}
