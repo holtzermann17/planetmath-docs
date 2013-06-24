@@ -1,0 +1,60 @@
+Why the heck do we have scoring on PlanetMath? Granted that PlanetMath is for ``serious'' content --- not video games. This is true, but there are still instances where it is desirable to have some approximate idea of how much
+``value'' a user has contributed to the system. We developed scoring to be this ``value metric''. The first thing one can do with scores is simply to make them visible, at which point they can serve as an indicator of ``reputation''. This helps to direct beginners to experts, and helps experts identify each other to communicate at a common level. Another use for visible scores are to encourage competition. While this is probably not necessary, within communities like PlanetMath, it can't hurt.
+
+In addition, there are situations where it'd help if the system itself had some rough idea of how ``valuable'' a user is. For example, the PlanetMath.org non-profit organization uses it as a criterion for membership --- acquiring a certain number of points serves as an indication that a particular person has added enough value and shown a level of commitment to be worthy of a say in the governance of the project.  
+
+\subsection*{Scoring Breakdown}
+
+Table \ref{tab:scoring} shows the current scoring chart as used on PlanetMath.
+
+\begin{table}[h]
+\caption{Scoring chart for PlanetMath}\label{tab:scoring}
+\begin{center}
+\begin{tabular}{|l|r|}
+\hline
+Action&Score Change\\
+\hline
+add a paper &+50 \\
+\hline
+add an exposition &+75 \\
+\hline
+add to encyclopedia &+100 \\
+\hline
+add a book &+100 \\
+\hline
+vote (in a poll) &+1 \\
+\hline
+post a message &+1 \\
+\hline
+accepted correction (erratum) &+30 \\
+\hline
+accepted correction (addendum) &+20 \\
+\hline
+accepted correction (meta) &+10 \\
+\hline
+revise an object &+5 \\
+\hline
+minor edit (for admins) &+5 \\
+\hline
+orphan/transfer an object &-(1/2)(score) \\
+\hline
+adopt an object &+(1/2)(score) \\
+\hline
+delete an object &-(score) \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Wherever we've said ``score'', fill in the associated score from creating that particular type of object.
+
+
+\subsection*{Conclusion}
+
+These scores may not be what you'd pick. They are indeed somewhat arbitrary, and reflect the ideas of what we'd most like to encourage as content develops in PlanetMath. For this reason they may change over time.
+
+There is a similar problem in everyday life that is analagous to our problem of how to configure scoring, which is at the core the problem of representing as closely as possible the amount of ``value'' that is created. The analogous problem is how much money should be minted to account for the amount of wealth that is created by a group of people living under a government. The government must try to estimate this added wealth as closely as possible, or risk major economic consequences. Here, the consequences are less dire, but to make the points (the ``coinage'') as useful as possible, we need to try to closely estimate the value (``wealth'') added to the system.
+
+This analogy illustrates how this problem has no perfect solution, due to the subjectivity inherent in value. However, we have tried to come up with something functional. It is possible that we'll decide the way the scores are balanced does not work well, and end up changing them. If this happens, we'll post system news about it.
+
+Suggestions are welcome as always!
