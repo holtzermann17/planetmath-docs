@@ -1,0 +1,69 @@
+Following up on what I sent you yesterday, today I was thinking
+of a minimal plan.  This one is a plan for how to build up our
+educational enterprise in the absence of outside investors or
+grants by ramping up our own efforts.  The bottom line is that,
+if we add an extra year, we could get to the point of teaching
+20 classes through PM.
+
+The starting point for this plan is the calculus course I hope
+to be teaching this fall.  Let's suppose that it succeeds and 
+we find 15 students who are willing to pay $5 per session to 
+attend and are satisfied with the result.  As we discussed,
+running this first course isn't going to cost us anything in
+terms of hiring staff or the like since we will do it using
+existing soft and can take of the administrative load ourselves.
+
+I am thinking of stretching this scenario a little.  Supposing 
+that one class succeeds, I could see myself teaching 4 classes
+of similar size --- that's a typical load for a junior faculty
+member.  As long as I'm getting paid, I could work full-time;
+since teaching the classes, answering questions, and preparing
+lessons would be half-time, I could use time form the other 
+half to take care of the administrative work associated with
+this. (According to yeaterday's estimate, it shouldn't come out
+to much more than an hour a day or so.)  The Linode and 
+Waterloo server should be able to take care of 60 students,
+so we shouldn't need any new expenses for more extensive
+hardware or software platform to handle 1 teacher and 60
+students in the form of 4 classes.
+
+Going with our fee of $5 per session, $2 of which would go to
+PM and $3 of which would go to me, that would mean that over
+the course of a year, I would get $21,600 and PM would get
+$14.400.  Given my cisrcumstances, I could work full-time for
+a year with a salary like that.  As for PM, having that sum
+in the bank would allow it to move to the next step, hire a
+programmer and start working toward teaching 20 classes; as
+I mentioned the other day. looking over the spreadsheet, it
+showed that, since we would only go in the hole $7500 during
+the first year, an investment on the order or $14,400 should
+be sufficient to get the plan going.
+
+Here is a sketch of the finances (assumes more gradual
+ramp-up):  
+
+qtr enrollment teacher  PM  balance programmer sysadmin
+ 0   15         1350    900    900      0           0
+ 1   30         2700   1800   2700      0           0
+ 2   45         4050   2700   5400      0           0
+ 3   60         5400   3600   9000      0           0
+ 4   60         5400   3600  12600      0           0
+ 5   60         5400   3600  11200   5000           0
+ 6   60         5400   3600   9800   5000           0
+ 7   60         5400   3600   8400   5000           0
+ 8   60         5400   3600   7000   5000           0
+ 9   90         8100   5400   4400   5000        3000
+10  120        10800   7200   3600   5000        3000
+11  150        13500   9000   4600   5000        3000
+12  180        16200  10800   7400   5000        3000
+
+So the basic premise is that, after the calculus class
+this fall, I would add a class each quarter until I got
+to 4 classes and stick with teaching 4 classes for the
+duration of the second year.  During the second year, 
+we would hire a programmer to work for $20,000 a year,
+during which time the program for handling multiple
+classes and teachers would be ready.  Thus, for the 
+third year, we could hire a system adminstrator for
+$8,000 a year part-time and have multiple teachers 
+teaching a dozen classes.
