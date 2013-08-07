@@ -1,0 +1,25 @@
+Introduction
+
+Calculus is the branch of mathematics which deals with rates and change.
+In algebra, one considers problems involving constant rates of change
+such as "If a cat runs at 10 miles per hour and a dog runs at 15 miles
+per hour, how long will it take for the dog to catch up with the cat if
+the dog starts out 20 feet behind the cat?".  However, those techniques
+only work for steady motion so, for instance, they would no longer 
+apply to a more realistic version of the problem which takes into account
+the fact that the animals don't instantly start running at top speed, but
+require some time to get up to speed.
+
+In order to cope with non-constant rates of change, we need to augment
+our algebraic techniques with the concept of limit of a quantity.  Roughly
+speaking, if a quantity y depends on a quantity x, then the limit of y is
+the value which y approaches (but might not actually reach) as x behaves in
+a certain way (such as becoming very small or very large or approaching
+some ther value).  Once we have this concept of limit, we can then use it
+to define the processes of differentiation, in which we compute the 
+instantaneous rate of change and integration, where we compute a quantity
+from its instantaneous rate of change.
+
+In this class, we will focus on two topics: learning and mastering the
+techniques for computing limits, derivatives and integrals and applying
+those techniques to real-world problems.
