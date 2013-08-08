@@ -15,14 +15,15 @@ our algebraic techniques with the concept of limit of a quantity.  Roughly
 speaking, if a quantity y depends on a quantity x, then the limit of y is
 the value which y approaches (but might not actually reach) as x behaves in
 a certain way (such as becoming very small or very large or approaching
-some ther value).  Once we have this concept of limit, we can then use it
-to define the processes of differentiation, in which we compute the 
+some specific value).  Once we have this concept of limit, we can then use 
+it to define the processes of differentiation, in which we compute the 
 instantaneous rate of change and integration, where we compute a quantity
 from its instantaneous rate of change.
 
-As it turns out, these same techniques of limits, derivatives, and
-integrals are also applicable to studying the geometry of curved lines
-and surfaces.  
+As it turns out, these same techniques of limits, differentiation, and
+integration are also applicable to studying the geometry of curved lines
+and surfaces.  We will use them to compute tangents, areas, and volumes 
+of various shapes.
 
 In this class, we will focus on two topics: learning and mastering the
 techniques for computing limits, derivatives and integrals and applying
@@ -31,3 +32,21 @@ instances involving elementary algebra in order to become acquainted with
 the new concepts, then gradually push forward to more advanced techniques
 and applications involving exponential, logarithms, trigonometry, and the
 like.
+
+Prerequisites
+
+Algebra:  This is the most important prerequisite since, as described above,
+most of what we will be doing are algebraic manuipulations involving limits.
+To get the most out the course, you should be proficientin manupulating powers,
+polynomials and rational functions, factoring, expanding, collecting terms, 
+and the like.
+
+Geometry:  Aside from a general familiarity with Euclidean goemetry, you
+should know how to plot curves and surfaces on a grid.
+
+Trigonometry:  We will make use of trigonometric functions, exponentials, 
+and logarithms, so familiarity with them will be assumed.  However, since 
+this will not happen until relatively late in the course, there is plenty 
+of time for someone who is not familiar with these topics to pick up
+sufficient backround information; ask the instructor for recommended 
+background reading.
