@@ -20,6 +20,14 @@ to define the processes of differentiation, in which we compute the
 instantaneous rate of change and integration, where we compute a quantity
 from its instantaneous rate of change.
 
+As it turns out, these same techniques of limits, derivatives, and
+integrals are also applicable to studying the geometry of curved lines
+and surfaces.  
+
 In this class, we will focus on two topics: learning and mastering the
 techniques for computing limits, derivatives and integrals and applying
-those techniques to real-world problems.
+those techniques to real-world problems.  We will start out with simple
+instances involving elementary algebra in order to become acquainted with
+the new concepts, then gradually push forward to more advanced techniques
+and applications involving exponential, logarithms, trigonometry, and the
+like.
