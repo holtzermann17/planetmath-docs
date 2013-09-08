@@ -19,7 +19,7 @@
   "Student fee for an hour of one-to-one tutoring.")
 
 (defvar k-member-monthly-fee 5
-  "Member fee for a month of patronage long course.")
+  "Member fee for a month of patronage.")
 
 (defvar m-sessions-per-course 30
   "Number of sessions in a standard course (Monday, Wednesday, Friday for 10 weeks).")
@@ -82,6 +82,12 @@
 (defvar cost-of-membership-system 10000)
 (defvar cost-of-top-100-tickets 10000)
 
-;; these are recurring costs
+;; these are estimated recurring costs
 (defvar cost-of-ongoing-maintenance 10000)
 (defvar cost-of-ongoing-content-work 10000)
+
+;; re-calculating the expenses as a percentage of incomes rather than a fixed amount
+(defvar alternative-calculation-ongoing-maintenance (* .45 dispensible-funds-per-year))
+(defvar alternative-calculation-ongoing-content-work (* .45 dispensible-funds-per-year))
+(defvar rainy-day-fund (* .1 dispensible-funds-per-year))
+
