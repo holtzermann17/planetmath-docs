@@ -1,0 +1,267 @@
+# Org mode outline of PlanetMath Activities   -*- mode: Org; -*-
+#+TODO: LOW MEDIUM HIGH TODO | DONE 
+* Capacity Building Discussion and Strategies
+** Technical issues: let's keep debugging a little at a time.
+** Let's continue to try to get some more institutional support for this stuff.
+I can imagine quickly getting out of my depth, so I want
+to be realistic about that -- at the same time, I also want to be
+realistic about (a) what sort of institutional support would help (as
+well as (b) what sort of institutional support would be possible).
+*** Hire a professional programmer to do some work on the site.
+«The problem is that the demand for Drupal talent exceeds the supply.
+As such, most of the Drupal developers I know are maxed out.»
+http://buytaert.net/on-hiring-drupal-talent
+If we had money, we'd probably end up hiring someone like Florian
+Lengyel, and, with due respect, I don't know for sure that he knows
+more about this stuff than me.  Rather than putting all our eggs in
+one basket (a given lead dev), I think the issue should have more to
+do with building the skills of the team.
+Here, I think you're on the right track with reading a few books!  But
+what else can we do here?
+*** Put priority on features which are actively being used.  
+For instance, if the HoTT thing takes
+off, then prioritize bug fixes and improvements which
+affect how the book displays and the like.
+I agree.  I think we're using the Github tracker well.  We can ping
+the LaTeXML developers as well -- they are reasonably active in
+bugfixing, so we can get support on those issues.
+*** Put priority on work which makes it easier to gain contributors
+Examples include documentation, cleaning up, and making things easier to install.
+Yes - maybe we need to allocate a certain number of weekly hours to
+these things.  For instance, if we always meet on Saturday, we could
+allocate N hours before and N hours after the meeting to this sort of
+stuff.
+*** Promote Planetary and try to get organizations to try it out and use it. 
+For instance, should Glen Whitney come to the conclusion that Planetary
+and/or PlanetMath were useful for running the math museum, quite likely
+he'd pay Florian Lengyel to work on it.  Other candidates
+include Springer and the n-cat lab.  We should find time
+to contact them or, if we're not ready yet, figure out
+exactlly what else needs to be done to Planetary to put
+it into a shape which is worth promoting and prioritize
+those improvements.  I did write to Florian, but he didn't write back yet.  In
+general I agree with this priority -- sounds like maybe rather than a
+weekly cycle, we need a monthly cycle here.  Can we add this to your
+monthly agenda?
+** Start some new projects
+*** Start PlanetComputing. 
+That's a tall order, we've talked about it for some years, but it could help in bringing in
+coders.  Right now, in New York, I am seeing the tech community growing by leaps and bounds and think that there is a niche for something like this, providing we don't wait for someone else to do it first.
+OTOH, simply creating a new drupal instance for us to use to document
+things as we go would be very easy.  It might not immediately take
+off, but at least we'd know where we were putting our documentation -
+and it would be actively in use as long as we and other planetary devs
+were using it.
+
+Along those lines, I am noting a rapidly growing interest
+in the intersection of math and computers among the functional
+programming community.  Thus, I want to be sure to get back
+to HDM stuff and keep at least a foot in that door lest we
+get lost on the wyside as forgotten pioneers.  One of the
+things I am hoping to do today and tomorrow is to pose PM as
+a place for discussions and work on this topic.
+*** Revive PlanetPhysics.
+Porting this into Planetary would be a good idea, putting under the
+PlanetMath umbrella would be OK.  Contact Ben to discuss and get
+latest snapshot of PP.
+
+* Monthly schedule
+** 1st Saturday of month --- Community Discussion
+Reviving what I did back in the good old days
+of PM, but with a new medium.  This would be
+a bottom-up, grassroots opportunity for members
+of the PM community to meet each other and
+discuss topics of mutual interest, give feedback,
+and raise concerns and suggestions,
+*** October 5, preparing this schedule
+** 2nd Saturday of month --- Developer Discussion
+A chance to get together and discuss the codebase
+of Planetary, NNexus, and friends.
+** 3rd Saturday of month --- Business Meeting
+Like today, a structured meeting with an agenda
+to set the course of the organization for the
+upcoming month, review progress, and handle any
+issues which arise.  We could have every third
+such meeting automatically be the quarterly
+board meeting.
+** 4th Saturday of month --- Math Meeting
+Something like our old NRI meetings or LispNYC
+meetups; each one starts with a presentation by
+one of the members on some mathematical topic
+of interest, followed by a discussion of that
+topic which may move into other areas deppending
+on the interest of the attendees.
+
+* Relatively current discussions and activities - to act on and complete sometime this autumn
+** Exports for BABAR
+This is a reminder to please provide dumps of attached entries and keywords.  Don't worry about the format, just use whatever is most convenient since I will massage it into the proper format for uptake into BABAR and tidy it up.
+** Homotopy type theory
+AS I mentioned, I think that this group which is
+meeting in New York is a wonderful opportunity for
+PM.  Their next meeting is during the first week of
+October and I hoping we can have most of the
+following in place by then.
+*** HOTT book online
+*** Exercises from book
+*** HOTT collection
+*** HOTT forum
+** Relaunch
+Even if we haven't finished everything we hope to, I
+nevertheless think that it would be worthwhile to have
+some sort of a site relaunch sometime in October. 
+*** Q/A/Problem/Solution section
+*** Collections
+*** Books (HOTT and PG)
+*** Course
+*** Technical issues
+**** TODO Assigning collections to the PMBooks author (only works for admin users)
+(Have workaround that works for time being.)
+*** Personally contact past collaborators and top users.
+** Course
+Since this week has been hectic with unrelated house work,
+I didn't get a chance to put together the announcement for
+the course; I will attend to that in the upcoming week.
+Because of all the other things going on, because preparing
+the textbook has turned out to be more time-consuming
+than anticipated, and because it is already the middle of
+September, I am thinking of instead scheduling the course
+for the first quarter of 2014 and putting out the announcement
+and registration along with the relaunch.
+** Advisory board
+Once the dust settles from all these other items, it might
+be time to reconvene our advisory board.  I like what you
+are doing; for instance, we might tell them that it would
+cost 20000 Euros to fix up the Drupal and that there is a
+EU grant which could pay for this providing that we can come
+up with 5000 Euros on our end and work through a European
+organization, then see what Michael and everyone else come
+up with.  In general, I think that starting the discussion
+with such concrete data and suggestions should keep us from
+again floating about in vague proposals and platitudes about
+attracting more volunteers and the like.
+** Bibliographies project
+Following up what you sent about bibliographies in Planetary,
+I would like to sort out the different things related to
+bibliographies into a coherent plan.  I am thinking that we
+could get in touch with Pitman and with the fellow at OU to
+see how things are going with BKN and figure out where we
+fit in to this scheme of things
+** Following up with PlanetMath Books Exchange grant proposal
+Contact Wikiversity and Wikibkooks people to ask them what would be
+useful for them and look into collaboration with PM and FKN on course
+projects.  Contact past/present PM users who who were/are involved
+with WP.
+
+* Grant applications
+** Can we match our previews up with funding agencies?
+*** What's next for Planetary preview
+Immediate wish is to raise €11K ($15K USD) to pay programmers, can we find a foundation that would help with that? 
+*** Books
+We've made some progress on this
+*** Bibliography 
+*** Classroom 
+Ray is working on the calculus book and will try to launch in Spring (has a business model so we don't necessarily need to apply for grants here)
+*** Projects 
+Write something for Christoph about this - to send to EU?... and connect it with "computer math"
+Starting HoTT, hyperbolic geometry, resistor networks and the like as ad hoc projects using existing software.
+*** Internationalization
+*** Computer Math 
+*** Experimental Math 
+*** Hypertext & Metamath
+*** "Indie Bundle"
+*** "Making other business models work"
+https://github.com/holtzermann17/planetmath-docs/wiki/Business-Models
+*** Patronage
+Joe can be working on hooking up the CivicRM software
+
+** Funding institutions to follow up with
+*** Wikimedia Foundation
+http://www.wikimedia.org/
+we've proposed a version of the Books preview here
+Rolling schedule, so can resubmit after getting feedback.
+They have several different "flavors" of grants we can apply for, see https://meta.wikimedia.org/wiki/Grants:Start
+*** Simons Foundation
+https://www.simonsfoundation.org/
+*** Shuttleworth Foundation
+http://www.shuttleworthfoundation.org/
+*** Mellon Foundation
+http://www.mellon.org/
+http://www.mellon.org/news_publications/annual-reports-essays/presidents-essays/priorities-for-the-scholarly-communications-program priorities
+http://www.mellon.org/grant_programs/programs/scit
+Letters of inquiry should be brief, extending no more than three
+pages.  The letter should describe: the project for which you are
+seeking funding; its scope, objectives, and significance; why you
+require external funding and what benefits you would achieve from such
+funding; the specific activities for which funding is being requested;
+and how much funding is needed.
+
+«(1) to support libraries and archives in their efforts to preserve
+and provide access to materials of broad cultural and scholarly
+significance; (2) to assist scholars in the development of specialized
+resources that promise to open or advance fields of study in the
+humanities and humanistic social sciences; and (3) to strengthen the
+publication of humanistic scholarship and its dissemination to the
+widest possible audience.»
+
+Accordingly, I'm not sure whether mathematics is really something they
+can support -- we could send them a VERY short email asking about
+this.  Some of their stuff about cultural and scholarly work would be
+relevant (assuming they think of mathematics as "cultural", which I
+do!).
+
+http://www.brynmawr.edu/math/people/melvin/ a mathematician whos work
+was supported by the Mellon foundation (potentially worth an email to
+ask him about this)
+
+Other (somewhat related) precedent:
+https://www.wm.edu/as/charlescenter/mellon/index.php
+
+*** Gabriella & Paul Rosenbaum Foundation
+http://www.rosenbaum-foundation.org/
+Generally interested in mathematics, they seem to require letters of interest be sent to Madge Rosenbaum Goldman, 764 Mt. Pleasant Road, Bryn Mawr, PA 19010
+I think we should put together a 2-to-3 page letter to send to them.
+*** National Endowment for the Humanities
+http://www.neh.gov
+
+*** Nuffield Foundation
+http://www.nuffieldfoundation.org
+Does do capacity building grants, mainly interested in organizations
+based in the UK...
+http://www.nuffieldfoundation.org/capacity-building
+
+They are also specifically interested in mathematics education:
+http://www.nuffieldfoundation.org/mathematics-education
+
+http://www.nuffieldfoundation.org/mathematics-education-0 here's some
+more info about their work in this area.
+
+They might be interested in our Classroom preview?  Also, since they
+are not opposed to capacity building, they might be interested in
+addressing some of the core issues in our Strategic Plan at the top of
+this document.
+
+The contact person is Kim Woodruff, kwoodruff@nuffieldfoundation.org
+
+Their address is: Nuffield Foundation, 28 Bedford Square, London, WC1B
+3JS (near the Goodge Street tube stop)
+
+*** The Number Theory Foundation
+http://www.math.uiuc.edu/ntf/
+Looks like they mainly do conference funding
+
+*** ArXiv
+http://arXiv.org
+I sent a note to simeon warner
+
+*** Springer
+http://www.springer.com
+
+*** European Union
+http://ec.europa.eu/governance/impact/planned_ia/docs/2013_eac_003_opening_up_education_en.pdf
+(pre-plan about the "Opening Up Education")
+
+*** NSF
+*** Bechtel
+http://www.bechtel.com/foundation.html
+I sent them a quick query via their contact form, haven't heard back
+
