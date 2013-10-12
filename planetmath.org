@@ -2,6 +2,12 @@
 #+TODO: LOW MEDIUM HIGH TODO | DONE 
 * Capacity Building Discussion and Strategies
 ** Technical issues: let's keep debugging a little at a time.
+https://github.com/holtzermann17/planetmath-docs (organization level)
+https://github.com/KWARC/planetary (technical issues)
+*** Some of the technical issues will take place on a recurrent basis
+**** MEDIUM update the Drupal core and contributed modules with security fixes :monthly:
+*** Some pressing priorities in order to move things forward at all
+**** TODO https://github.com/KWARC/planetary/issues/416 would help Ray get work done
 ** Let's continue to try to get some more institutional support for this stuff.
 I can imagine quickly getting out of my depth, so I want
 to be realistic about that -- at the same time, I also want to be
@@ -75,8 +81,10 @@ discuss topics of mutual interest, give feedback,
 and raise concerns and suggestions,
 *** October 5, preparing this schedule
 ** 2nd Saturday of month --- Developer Discussion
+
 A chance to get together and discuss the codebase
 of Planetary, NNexus, and friends.
+*** October 12, planned the slice/dice/upload system to work this week
 ** 3rd Saturday of month --- Business Meeting
 Like today, a structured meeting with an agenda
 to set the course of the organization for the
@@ -84,6 +92,8 @@ upcoming month, review progress, and handle any
 issues which arise.  We could have every third
 such meeting automatically be the quarterly
 board meeting.
+**** TODO finalise the advisory board and work on the Nuffield Foundation overture
+**** TODO report back on experiences with org mode, schedule the advisory and regular board mtgs
 ** 4th Saturday of month --- Math Meeting
 Something like our old NRI meetings or LispNYC
 meetups; each one starts with a presentation by
@@ -252,6 +262,7 @@ Looks like they mainly do conference funding
 *** ArXiv
 http://arXiv.org
 I sent a note to simeon warner
+**** Note from Gowers: http://episciences.org/ is setting up a platform for running overlay journals
 
 *** Springer
 http://www.springer.com
