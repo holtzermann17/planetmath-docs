@@ -7,7 +7,20 @@ https://github.com/KWARC/planetary (technical issues)
 *** Some of the technical issues will take place on a recurrent basis
 **** MEDIUM update the Drupal core and contributed modules with security fixes :monthly:
 *** Some pressing priorities in order to move things forward at all
-**** TODO https://github.com/KWARC/planetary/issues/416 would help Ray get work done
+**** DONE [#A] https://github.com/KWARC/planetary/issues/416 (basic version)
+     CLOSED: [2013-10-17 Thu 00:49] SCHEDULED: <2013-10-16 Wed>
+     - CLOSING NOTE [2013-10-17 Thu 00:49] \\
+       Got a (very) basic version done, although really finishing it will be
+       another story.  I've decomposed that into a new set of tasks.
+**** TODO [#A] Finish the basic article content importer for Ray. :importer:
+     SCHEDULED: <2013-10-17 Thu>
+**** TODO [#A] Make exercises automatically. :importer:
+     SCHEDULED: <2013-10-17 Thu>
+**** TODO [#A] Upload stuff to collections. :importer:
+     SCHEDULED: <2013-10-17 Thu>
+**** TODO Make collections automatically. :importer:
+**** TODO Take an existing node, and adjust the content. :importer:
+**** MEDIUM Generally, keep a (potentially large) collection of articles up to date. :importer:
 ** Let's continue to try to get some more institutional support for this stuff.
 I can imagine quickly getting out of my depth, so I want
 to be realistic about that -- at the same time, I also want to be
@@ -71,7 +84,10 @@ Porting this into Planetary would be a good idea, putting under the
 PlanetMath umbrella would be OK.  Contact Ben to discuss and get
 latest snapshot of PP.
 
+** Let's make use of our own "premium" advertising space to advertise what we're actually doing
+250 word summary and links to previews
 * Monthly schedule
+** Blog the news items (i.e. short summaries of the meetings)
 ** 1st Saturday of month --- Community Discussion
 Reviving what I did back in the good old days
 of PM, but with a new medium.  This would be
@@ -92,8 +108,11 @@ upcoming month, review progress, and handle any
 issues which arise.  We could have every third
 such meeting automatically be the quarterly
 board meeting.
-**** TODO finalise the advisory board and work on the Nuffield Foundation overture
-**** TODO report back on experiences with org mode, schedule the advisory and regular board mtgs
+**** TODO [#A] advisory board note and Nuffield Foundation overture :outreach:
+
+     SCHEDULED: <2013-10-19 Sat>
+**** TODO [#A] report back on org mode, schedule board mtgs :org:
+     SCHEDULED: <2013-10-19 Sat>
 ** 4th Saturday of month --- Math Meeting
 Something like our old NRI meetings or LispNYC
 meetups; each one starts with a presentation by
@@ -124,8 +143,9 @@ some sort of a site relaunch sometime in October.
 *** Books (HOTT and PG)
 *** Course
 *** Technical issues
-**** TODO Assigning collections to the PMBooks author (only works for admin users)
-(Have workaround that works for time being.)
+**** TODO Assigning collections to another author :feature:
+There is a "work around" (the feature works, but only works for admin
+users).
 *** Personally contact past collaborators and top users.
 ** Course
 Since this week has been hectic with unrelated house work,
