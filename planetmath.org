@@ -7,10 +7,12 @@ https://github.com/KWARC/planetary (technical issues)
 *** Some of the technical issues will take place on a recurrent basis
 **** MEDIUM update the Drupal core and contributed modules with security fixes :monthly:
 *** Some pressing priorities in order to move things forward at all
-**** TODO [#A] Upload stuff to collections. :importer:
+**** TODO [#A] Upload stuff to existing collections.               :importer:
      SCHEDULED: <2013-10-17 Thu>
-**** TODO Make collections automatically. :importer:
-**** TODO Take an existing node, and adjust the content. :importer:
+**** TODO [#A] Make new collections automatically.                 :importer:
+     SCHEDULED: <2013-11-09 Sat>
+**** TODO [#A] Take an existing node, and adjust the content.      :importer:
+     SCHEDULED: <2013-11-09 Sat>
 **** MEDIUM Generally, keep a (potentially large) collection of articles up to date. :importer:
 ** Let's continue to try to get some more institutional support for this stuff.
 I can imagine quickly getting out of my depth, so I want
@@ -115,12 +117,14 @@ on the interest of the attendees.
 
 * Linear schedule
 ** Top priorities for programming
-*** HIGH CivicRM install on Metameso
-*** HIGH Produce some downloadable snapshots of the content on a regular basis
+*** TODO [#A] CivicRM install on Metameso
+    SCHEDULED: <2013-11-09 Sat>
+*** TODO [#A] Produce some downloadable snapshots of the content on a regular basis
+    SCHEDULED: <2013-11-09 Sat>
 Send to Murray
-*** HIGH Front page improvements to follow up with Ray and Murray
+*** TODO [#A] Front page improvements to follow up with Ray and Murray
+    SCHEDULED: <2013-11-09 Sat>
 *** HIGH MSC Browser cache
-*** HIGH Why aren't user pages showing up properly
 ** Finish the first demo books
 ** Collections of Topic Articles
 ** Calculus book preparation
