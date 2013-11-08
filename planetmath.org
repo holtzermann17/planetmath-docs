@@ -7,15 +7,6 @@ https://github.com/KWARC/planetary (technical issues)
 *** Some of the technical issues will take place on a recurrent basis
 **** MEDIUM update the Drupal core and contributed modules with security fixes :monthly:
 *** Some pressing priorities in order to move things forward at all
-**** DONE [#A] https://github.com/KWARC/planetary/issues/416 (basic version)
-     CLOSED: [2013-10-17 Thu 00:49] SCHEDULED: <2013-10-16 Wed>
-     - CLOSING NOTE [2013-10-17 Thu 00:49] \\
-       Got a (very) basic version done, although really finishing it will be
-       another story.  I've decomposed that into a new set of tasks.
-**** TODO [#A] Finish the basic article content importer for Ray. :importer:
-     SCHEDULED: <2013-10-17 Thu>
-**** TODO [#A] Make exercises automatically. :importer:
-     SCHEDULED: <2013-10-17 Thu>
 **** TODO [#A] Upload stuff to collections. :importer:
      SCHEDULED: <2013-10-17 Thu>
 **** TODO Make collections automatically. :importer:
@@ -114,6 +105,7 @@ board meeting.
 **** TODO [#A] report back on org mode, schedule board mtgs :org:
      SCHEDULED: <2013-10-19 Sat>
 ** 4th Saturday of month --- Math Meeting
+
 Something like our old NRI meetings or LispNYC
 meetups; each one starts with a presentation by
 one of the members on some mathematical topic
@@ -121,6 +113,22 @@ of interest, followed by a discussion of that
 topic which may move into other areas deppending
 on the interest of the attendees.
 
+* Linear schedule
+** Top priorities for programming
+*** HIGH CivicRM install on Metameso
+*** HIGH Produce some downloadable snapshots of the content on a regular basis
+Send to Murray
+*** HIGH Front page improvements to follow up with Ray and Murray
+*** HIGH MSC Browser cache
+*** HIGH Why aren't user pages showing up properly
+** Finish the first demo books
+** Collections of Topic Articles
+** Calculus book preparation
+** Catalog to develop a clear sense of what's out there (contact David King and Jim Pitman)
+*** "What free math is there?"
+*** Decide our license procedure
+*** What can we do on top of Wikipedia and StackExchange content?  (E.g. interactive/dynamic.)
+** Import Project Gutenburg books
 * Relatively current discussions and activities - to act on and complete sometime this autumn
 ** Exports for BABAR
 This is a reminder to please provide dumps of attached entries and keywords.  Don't worry about the format, just use whatever is most convenient since I will massage it into the proper format for uptake into BABAR and tidy it up.
