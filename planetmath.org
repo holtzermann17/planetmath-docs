@@ -9,8 +9,6 @@ https://github.com/KWARC/planetary (technical issues)
 *** Some pressing priorities in order to move things forward at all
 **** TODO [#A] Upload stuff to existing collections.               :importer:
      SCHEDULED: <2013-10-17 Thu>
-**** TODO [#A] Make new collections automatically.                 :importer:
-     SCHEDULED: <2013-11-09 Sat>
 **** TODO [#A] Take an existing node, and adjust the content.      :importer:
      SCHEDULED: <2013-11-09 Sat>
 **** MEDIUM Generally, keep a (potentially large) collection of articles up to date. :importer:
@@ -104,8 +102,13 @@ board meeting.
 **** TODO [#A] advisory board note and Nuffield Foundation overture :outreach:
 
      SCHEDULED: <2013-10-19 Sat>
-**** TODO [#A] report back on org mode, schedule board mtgs :org:
-     SCHEDULED: <2013-10-19 Sat>
+**** DONE [#A] report back on org mode, schedule board mtg              :org:
+     CLOSED: [2013-11-11 Mon 00:55] SCHEDULED: <2013-10-19 Sat>
+     - CLOSING NOTE [2013-11-11 Mon 00:55] \\
+       The standard board meeting is scheduled.  We'll need to schedule the
+       advisory board meeting as well but that can be handled separately.
+       Org mode seems to be working well, and I hope I can use it with other
+       projects!
 ** 4th Saturday of month --- Math Meeting
 
 Something like our old NRI meetings or LispNYC
@@ -117,8 +120,6 @@ on the interest of the attendees.
 
 * Linear schedule
 ** Top priorities for programming
-*** TODO [#A] CivicRM install on Metameso
-    SCHEDULED: <2013-11-09 Sat>
 *** TODO [#A] Produce some downloadable snapshots of the content on a regular basis
     SCHEDULED: <2013-11-09 Sat>
 Send to Murray
