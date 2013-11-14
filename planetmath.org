@@ -155,17 +155,27 @@ one of the members on some mathematical topic
 of interest, followed by a discussion of that
 topic which may move into other areas deppending
 on the interest of the attendees.
-
+*** December 28, meeting to discuss Arxana/HONEY
 * Linear schedule
 ** December
 *** Graphs research and development
 *** Figure out CiviCRM and launch it
 *** One more book, work on course material (e.g. Hardy's book and our math textbook)
+**** Top Tickets
+***** 
 ** January
 *** Likely: Run a first class
 *** Somewhat less likely: Work on the wikimedia grant
+*** Advisory board meeting for January
+**** Top Tickets
+***** 
 ** February
+*** Grant follow up stuff
+**** Top Tickets
+***** 
 ** March
+*** With money: this may make it very clear (e.g. Wikipedia stuff) 
+*** And without much money: reconsider our strategy based on data
 * Relatively current discussions and activities - to act on and complete sometime this autumn
 ** Exports for BABAR
 This is a reminder to please provide dumps of attached entries and keywords.  Don't worry about the format, just use whatever is most convenient since I will massage it into the proper format for uptake into BABAR and tidy it up.
@@ -255,8 +265,36 @@ http://www.wikimedia.org/
 we've proposed a version of the Books preview here
 Rolling schedule, so can resubmit after getting feedback.
 They have several different "flavors" of grants we can apply for, see https://meta.wikimedia.org/wiki/Grants:Start
+**** We have an application under consideration, and that's a good thing
+*** Nuffield Foundation
+http://www.nuffieldfoundation.org
+Does do capacity building grants, mainly interested in organizations
+based in the UK...
+http://www.nuffieldfoundation.org/capacity-building
+
+They are also specifically interested in mathematics education:
+http://www.nuffieldfoundation.org/mathematics-education
+
+http://www.nuffieldfoundation.org/mathematics-education-0 here's some
+more info about their work in this area.
+
+They might be interested in our Classroom preview?  Also, since they
+are not opposed to capacity building, they might be interested in
+addressing some of the core issues in our Strategic Plan at the top of
+this document.
+
+The contact person is Kim Woodruff, kwoodruff@nuffieldfoundation.org
+
+Their address is: Nuffield Foundation, 28 Bedford Square, London, WC1B
+3JS (near the Goodge Street tube stop)
+**** HIGH Make an appointment with Kim Woodruff
+
 *** Simons Foundation
 https://www.simonsfoundation.org/
+*** European Union
+http://ec.europa.eu/governance/impact/planned_ia/docs/2013_eac_003_opening_up_education_en.pdf
+(pre-plan about the "Opening Up Education")
+
 *** Shuttleworth Foundation
 http://www.shuttleworthfoundation.org/
 *** Mellon Foundation
@@ -291,39 +329,6 @@ ask him about this)
 Other (somewhat related) precedent:
 https://www.wm.edu/as/charlescenter/mellon/index.php
 
-*** Gabriella & Paul Rosenbaum Foundation
-http://www.rosenbaum-foundation.org/
-Generally interested in mathematics, they seem to require letters of interest be sent to Madge Rosenbaum Goldman, 764 Mt. Pleasant Road, Bryn Mawr, PA 19010
-I think we should put together a 2-to-3 page letter to send to them.
-*** National Endowment for the Humanities
-http://www.neh.gov
-
-*** Nuffield Foundation
-http://www.nuffieldfoundation.org
-Does do capacity building grants, mainly interested in organizations
-based in the UK...
-http://www.nuffieldfoundation.org/capacity-building
-
-They are also specifically interested in mathematics education:
-http://www.nuffieldfoundation.org/mathematics-education
-
-http://www.nuffieldfoundation.org/mathematics-education-0 here's some
-more info about their work in this area.
-
-They might be interested in our Classroom preview?  Also, since they
-are not opposed to capacity building, they might be interested in
-addressing some of the core issues in our Strategic Plan at the top of
-this document.
-
-The contact person is Kim Woodruff, kwoodruff@nuffieldfoundation.org
-
-Their address is: Nuffield Foundation, 28 Bedford Square, London, WC1B
-3JS (near the Goodge Street tube stop)
-
-*** The Number Theory Foundation
-http://www.math.uiuc.edu/ntf/
-Looks like they mainly do conference funding
-
 *** ArXiv
 http://arXiv.org
 I sent a note to simeon warner
@@ -332,12 +337,18 @@ I sent a note to simeon warner
 *** Springer
 http://www.springer.com
 
-*** European Union
-http://ec.europa.eu/governance/impact/planned_ia/docs/2013_eac_003_opening_up_education_en.pdf
-(pre-plan about the "Opening Up Education")
-
 *** NSF
 *** Bechtel
 http://www.bechtel.com/foundation.html
 I sent them a quick query via their contact form, haven't heard back
 
+*** National Endowment for the Humanities
+http://www.neh.gov
+
+*** Gabriella & Paul Rosenbaum Foundation
+http://www.rosenbaum-foundation.org/
+Generally interested in mathematics, they seem to require letters of interest be sent to Madge Rosenbaum Goldman, 764 Mt. Pleasant Road, Bryn Mawr, PA 19010
+I think we should put together a 2-to-3 page letter to send to them.
+*** The Number Theory Foundation
+http://www.math.uiuc.edu/ntf/
+Looks like they mainly do conference funding
