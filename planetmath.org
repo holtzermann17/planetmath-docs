@@ -1,6 +1,35 @@
 # Org mode outline of PlanetMath Activities   -*- mode: Org; -*-
 #+TODO: LOW MEDIUM HIGH TODO | DONE 
+* Overview (to sort, current conversations)
+** Top priorities for programming
+*** TODO [#A] Produce some downloadable snapshots of the content on a regular basis
+    SCHEDULED: <2013-11-09 Sat>
+Send to Murray
+*** TODO [#A] Front page improvements to follow up with Ray and Murray
+    SCHEDULED: <2013-11-09 Sat>
+*** HIGH MSC Browser cache
+** Finish the first demo books
+** Collections of Topic Articles
+** Calculus book preparation
+** Catalog to develop a clear sense of what's out there (contact David King and Jim Pitman)
+*** "What free math is there?"
+*** Decide our license procedure
+*** What can we do on top of Wikipedia and StackExchange content?  (E.g. interactive/dynamic.)
+** Import Project Gutenburg books
 * Capacity Building Discussion and Strategies
+** Realistic estimates of time commitment
+*** Joe: 2-10 hours per week
+*** Ray: according to 2014 schedule
+**** 8 hours . . . PM community interaction
+**** 4 hours . . . PM administration and outreach
+**** 4 hours . . . Teaching a class or two
+**** 4 hours . . . Building maintenance and repair
+**** 20 hours . . . Research and development
+**** Income: goals
+    - $5400 teaching ($45/class * 30 classes/qtr * 4 qtr/yr)
+    - $6600 PM Operations Manager (20% of $33,000/yr)
+*** Aaron: hopefully something to push forward the business end
+*** Deyan: in concert with Ph. D.
 ** Technical issues: let's keep debugging a little at a time.
 https://github.com/holtzermann17/planetmath-docs (organization level)
 https://github.com/KWARC/planetary (technical issues)
@@ -76,7 +105,8 @@ PlanetMath umbrella would be OK.  Contact Ben to discuss and get
 latest snapshot of PP.
 
 ** Let's make use of our own "premium" advertising space to advertise what we're actually doing
-250 word summary and links to previews
+**** TODO 250 word summary and links to previews on the site
+**** TODO CivicRM configuration on the beta test site
 * Monthly schedule
 ** Blog the news items (i.e. short summaries of the meetings)
 ** 1st Saturday of month --- Community Discussion
@@ -119,21 +149,7 @@ topic which may move into other areas deppending
 on the interest of the attendees.
 
 * Linear schedule
-** Top priorities for programming
-*** TODO [#A] Produce some downloadable snapshots of the content on a regular basis
-    SCHEDULED: <2013-11-09 Sat>
-Send to Murray
-*** TODO [#A] Front page improvements to follow up with Ray and Murray
-    SCHEDULED: <2013-11-09 Sat>
-*** HIGH MSC Browser cache
-** Finish the first demo books
-** Collections of Topic Articles
-** Calculus book preparation
-** Catalog to develop a clear sense of what's out there (contact David King and Jim Pitman)
-*** "What free math is there?"
-*** Decide our license procedure
-*** What can we do on top of Wikipedia and StackExchange content?  (E.g. interactive/dynamic.)
-** Import Project Gutenburg books
+
 * Relatively current discussions and activities - to act on and complete sometime this autumn
 ** Exports for BABAR
 This is a reminder to please provide dumps of attached entries and keywords.  Don't worry about the format, just use whatever is most convenient since I will massage it into the proper format for uptake into BABAR and tidy it up.
