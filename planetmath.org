@@ -19,6 +19,12 @@ Send to Murray
 * Capacity Building Discussion and Strategies
 ** Realistic estimates of time commitment
 *** Joe: 2-10 hours per week
+**** 2 hour  . . . PM community interaction
+**** 5 hours . . . Planetary (do logging to figure out how much time it takes to close an average ticket)
+**** Development: goals
+    - at least 52 tickets (what are the top tickets?)
+**** Income: goals
+    - $2000 bounties (funded by CivicRM)
 *** Ray: according to 2014 schedule
 **** 8 hours . . . PM community interaction
 **** 4 hours . . . PM administration and outreach
@@ -121,6 +127,7 @@ and raise concerns and suggestions,
 
 A chance to get together and discuss the codebase
 of Planetary, NNexus, and friends.
+**** TODO What are the top 52 tickets (buy a deck of cards or use Arxana for that)?
 *** October 12, planned the slice/dice/upload system to work this week
 ** 3rd Saturday of month --- Business Meeting
 Like today, a structured meeting with an agenda
@@ -139,6 +146,7 @@ board meeting.
        advisory board meeting as well but that can be handled separately.
        Org mode seems to be working well, and I hope I can use it with other
        projects!
+**** MEDIUM Update the PlanetMath "linear schedule" as the frame shifts forward
 ** 4th Saturday of month --- Math Meeting
 
 Something like our old NRI meetings or LispNYC
@@ -149,7 +157,15 @@ topic which may move into other areas deppending
 on the interest of the attendees.
 
 * Linear schedule
-
+** December
+*** Graphs research and development
+*** Figure out CiviCRM and launch it
+*** One more book, work on course material (e.g. Hardy's book and our math textbook)
+** January
+*** Likely: Run a first class
+*** Somewhat less likely: Work on the wikimedia grant
+** February
+** March
 * Relatively current discussions and activities - to act on and complete sometime this autumn
 ** Exports for BABAR
 This is a reminder to please provide dumps of attached entries and keywords.  Don't worry about the format, just use whatever is most convenient since I will massage it into the proper format for uptake into BABAR and tidy it up.
