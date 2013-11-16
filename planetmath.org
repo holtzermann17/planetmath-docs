@@ -157,9 +157,13 @@ topic which may move into other areas deppending
 on the interest of the attendees.
 *** December 28, meeting to discuss Arxana/HONEY
 * Linear schedule
+** November
+*** Initial docs import and new blurb for front page
+*** First half of CiviCRM (set up email, payment methods, and so forth)
+*** Get blog systems working
 ** December
 *** Graphs research and development
-*** Figure out CiviCRM and launch it
+*** Finish working with CiviCRM and launch it
 *** One more book, work on course material (e.g. Hardy's book and our math textbook)
 **** Top Tickets
 ***** 
@@ -266,6 +270,7 @@ we've proposed a version of the Books preview here
 Rolling schedule, so can resubmit after getting feedback.
 They have several different "flavors" of grants we can apply for, see https://meta.wikimedia.org/wiki/Grants:Start
 **** We have an application under consideration, and that's a good thing
+And we've gotten some feedback, https://meta.wikimedia.org/wiki/Grants_talk:IEG/PlanetMath_Books_Project#Aggregated_feedback_from_the_committee_for_PlanetMath_Books_Project
 *** Nuffield Foundation
 http://www.nuffieldfoundation.org
 Does do capacity building grants, mainly interested in organizations
