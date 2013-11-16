@@ -35,151 +35,161 @@ Send to Murray
     - $5400 teaching ($45/class * 30 classes/qtr * 4 qtr/yr)
     - $6600 PM Operations Manager (20% of $33,000/yr)
 *** Aaron: hopefully something to push forward the business end
+**** Experiences with blog stuff on Implode/Explode: bloggers can build big followings
 *** Deyan: in concert with Ph. D.
-** Technical issues: let's keep debugging a little at a time.
+*** Advisory board: ask them about other people who can do content or coding: can we get a student doing undergrad study once a semester?
+**** Include other known academics who have been members of the site
+**** Offering mentorship and experience: you could be developing cutting edge math on the web content and technology
+**** Structure it so you don't depend too much on any one intern
+*** High school or college intern?
+** technical issues: let's keep debugging a little at a time.
 https://github.com/holtzermann17/planetmath-docs (organization level)
-https://github.com/KWARC/planetary (technical issues)
-*** Some of the technical issues will take place on a recurrent basis
-**** MEDIUM update the Drupal core and contributed modules with security fixes :monthly:
-*** Some pressing priorities in order to move things forward at all
-**** TODO [#A] Upload stuff to existing collections.               :importer:
-     SCHEDULED: <2013-10-17 Thu>
-**** TODO [#A] Take an existing node, and adjust the content.      :importer:
-     SCHEDULED: <2013-11-09 Sat>
-**** MEDIUM Generally, keep a (potentially large) collection of articles up to date. :importer:
-** Let's continue to try to get some more institutional support for this stuff.
-I can imagine quickly getting out of my depth, so I want
-to be realistic about that -- at the same time, I also want to be
+https://github.com/kwarc/planetary (technical issues)
+*** some of the technical issues will take place on a recurrent basis
+**** medium update the drupal core and contributed modules with security fixes :monthly:
+*** some pressing priorities in order to move things forward at all
+**** todo [#a] upload stuff to existing collections.               :importer:
+     scheduled: <2013-10-17 thu>
+**** todo [#a] take an existing node, and adjust the content.      :importer:
+     scheduled: <2013-11-09 sat>
+**** medium generally, keep a (potentially large) collection of articles up to date. :importer:
+** let's continue to try to get some more institutional support for this stuff.
+i can imagine quickly getting out of my depth, so i want
+to be realistic about that -- at the same time, i also want to be
 realistic about (a) what sort of institutional support would help (as
 well as (b) what sort of institutional support would be possible).
-*** Hire a professional programmer to do some work on the site.
-«The problem is that the demand for Drupal talent exceeds the supply.
-As such, most of the Drupal developers I know are maxed out.»
+*** hire a professional programmer to do some work on the site.
+«the problem is that the demand for drupal talent exceeds the supply.
+as such, most of the drupal developers i know are maxed out.»
 http://buytaert.net/on-hiring-drupal-talent
-If we had money, we'd probably end up hiring someone like Florian
-Lengyel, and, with due respect, I don't know for sure that he knows
-more about this stuff than me.  Rather than putting all our eggs in
-one basket (a given lead dev), I think the issue should have more to
+if we had money, we'd probably end up hiring someone like florian
+lengyel, and, with due respect, i don't know for sure that he knows
+more about this stuff than me.  rather than putting all our eggs in
+one basket (a given lead dev), i think the issue should have more to
 do with building the skills of the team.
-Here, I think you're on the right track with reading a few books!  But
+here, i think you're on the right track with reading a few books!  but
 what else can we do here?
-*** Put priority on features which are actively being used.  
-For instance, if the HoTT thing takes
+*** put priority on features which are actively being used.  
+for instance, if the hott thing takes
 off, then prioritize bug fixes and improvements which
 affect how the book displays and the like.
-I agree.  I think we're using the Github tracker well.  We can ping
-the LaTeXML developers as well -- they are reasonably active in
+i agree.  i think we're using the github tracker well.  we can ping
+the latexml developers as well -- they are reasonably active in
 bugfixing, so we can get support on those issues.
-*** Put priority on work which makes it easier to gain contributors
-Examples include documentation, cleaning up, and making things easier to install.
-Yes - maybe we need to allocate a certain number of weekly hours to
-these things.  For instance, if we always meet on Saturday, we could
-allocate N hours before and N hours after the meeting to this sort of
+*** put priority on work which makes it easier to gain contributors
+examples include documentation, cleaning up, and making things easier to install.
+yes - maybe we need to allocate a certain number of weekly hours to
+these things.  for instance, if we always meet on saturday, we could
+allocate n hours before and n hours after the meeting to this sort of
 stuff.
-*** Promote Planetary and try to get organizations to try it out and use it. 
-For instance, should Glen Whitney come to the conclusion that Planetary
-and/or PlanetMath were useful for running the math museum, quite likely
-he'd pay Florian Lengyel to work on it.  Other candidates
-include Springer and the n-cat lab.  We should find time
+*** promote planetary and try to get organizations to try it out and use it. 
+for instance, should glen whitney come to the conclusion that planetary
+and/or planetmath were useful for running the math museum, quite likely
+he'd pay florian lengyel to work on it.  other candidates
+include springer and the n-cat lab.  we should find time
 to contact them or, if we're not ready yet, figure out
-exactlly what else needs to be done to Planetary to put
+exactlly what else needs to be done to planetary to put
 it into a shape which is worth promoting and prioritize
-those improvements.  I did write to Florian, but he didn't write back yet.  In
-general I agree with this priority -- sounds like maybe rather than a
-weekly cycle, we need a monthly cycle here.  Can we add this to your
+those improvements.  i did write to florian, but he didn't write back yet.  in
+general i agree with this priority -- sounds like maybe rather than a
+weekly cycle, we need a monthly cycle here.  can we add this to your
 monthly agenda?
-** Start some new projects
-*** Start PlanetComputing. 
-That's a tall order, we've talked about it for some years, but it could help in bringing in
-coders.  Right now, in New York, I am seeing the tech community growing by leaps and bounds and think that there is a niche for something like this, providing we don't wait for someone else to do it first.
-OTOH, simply creating a new drupal instance for us to use to document
-things as we go would be very easy.  It might not immediately take
+** start some new projects
+*** start planetcomputing. 
+that's a tall order, we've talked about it for some years, but it could help in bringing in
+coders.  right now, in new york, i am seeing the tech community growing by leaps and bounds and think that there is a niche for something like this, providing we don't wait for someone else to do it first.
+otoh, simply creating a new drupal instance for us to use to document
+things as we go would be very easy.  it might not immediately take
 off, but at least we'd know where we were putting our documentation -
 and it would be actively in use as long as we and other planetary devs
 were using it.
 
-Along those lines, I am noting a rapidly growing interest
+along those lines, i am noting a rapidly growing interest
 in the intersection of math and computers among the functional
-programming community.  Thus, I want to be sure to get back
-to HDM stuff and keep at least a foot in that door lest we
-get lost on the wyside as forgotten pioneers.  One of the
-things I am hoping to do today and tomorrow is to pose PM as
+programming community.  thus, i want to be sure to get back
+to hdm stuff and keep at least a foot in that door lest we
+get lost on the wyside as forgotten pioneers.  one of the
+things i am hoping to do today and tomorrow is to pose pm as
 a place for discussions and work on this topic.
-*** Revive PlanetPhysics.
-Porting this into Planetary would be a good idea, putting under the
-PlanetMath umbrella would be OK.  Contact Ben to discuss and get
-latest snapshot of PP.
+*** revive planetphysics.
+porting this into planetary would be a good idea, putting under the
+planetmath umbrella would be ok.  contact ben to discuss and get
+latest snapshot of pp.
 
-** Let's make use of our own "premium" advertising space to advertise what we're actually doing
-**** TODO 250 word summary and links to previews on the site
-**** TODO CivicRM configuration on the beta test site
+** let's make use of our own "premium" advertising space to advertise what we're actually doing
+**** todo 250 word summary and links to previews on the site
+**** todo civicrm configuration on the beta test site
 * Monthly schedule
 ** Blog the news items (i.e. short summaries of the meetings)
-** 1st Saturday of month --- Community Discussion
-Reviving what I did back in the good old days
-of PM, but with a new medium.  This would be
+** 1st Saturday of month --- Community discussion
+reviving what i did back in the good old days
+of pm, but with a new medium.  this would be
 a bottom-up, grassroots opportunity for members
-of the PM community to meet each other and
+of the pm community to meet each other and
 discuss topics of mutual interest, give feedback,
 and raise concerns and suggestions,
 *** October 5, preparing this schedule
-** 2nd Saturday of month --- Developer Discussion
+** 2nd Saturday of month --- Developer discussion
 
-A chance to get together and discuss the codebase
-of Planetary, NNexus, and friends.
-**** TODO What are the top 52 tickets (buy a deck of cards or use Arxana for that)?
+a chance to get together and discuss the codebase
+of planetary, nnexus, and friends.
+**** TODO what are the top 52 tickets (buy a deck of cards or use arxana for that)?
 *** October 12, planned the slice/dice/upload system to work this week
-** 3rd Saturday of month --- Business Meeting
-Like today, a structured meeting with an agenda
-to set the course of the organization for the
-upcoming month, review progress, and handle any
-issues which arise.  We could have every third
-such meeting automatically be the quarterly
-board meeting.
-**** TODO [#A] advisory board note and Nuffield Foundation overture :outreach:
+** 3rd Saturday of month --- Business meeting
+Like today, a structured meeting with an agenda to set the course of
+the organization for the upcoming month, review progress, and handle
+any issues which arise.  we could have every third such meeting
+automatically be the quarterly board meeting.
+**** TODO [#a] advisory board note and nuffield foundation overture :outreach:
 
-     SCHEDULED: <2013-10-19 Sat>
-**** DONE [#A] report back on org mode, schedule board mtg              :org:
-     CLOSED: [2013-11-11 Mon 00:55] SCHEDULED: <2013-10-19 Sat>
-     - CLOSING NOTE [2013-11-11 Mon 00:55] \\
-       The standard board meeting is scheduled.  We'll need to schedule the
+     scheduled: <2013-10-19 sat>
+**** DONE [#a] report back on org mode, schedule board mtg              :org:
+     closed: [2013-11-11 mon 00:55] scheduled: <2013-10-19 sat>
+     - closing note [2013-11-11 mon 00:55] \\
+       the standard board meeting is scheduled.  we'll need to schedule the
        advisory board meeting as well but that can be handled separately.
-       Org mode seems to be working well, and I hope I can use it with other
+       org mode seems to be working well, and i hope i can use it with other
        projects!
-**** MEDIUM Update the PlanetMath "linear schedule" as the frame shifts forward
-** 4th Saturday of month --- Math Meeting
+**** medium update the planetmath "linear schedule" as the frame shifts forward
+** 4th Saturday of month --- Math meeting
 
-Something like our old NRI meetings or LispNYC
-meetups; each one starts with a presentation by
-one of the members on some mathematical topic
-of interest, followed by a discussion of that
-topic which may move into other areas deppending
-on the interest of the attendees.
+Something like our old NRI meetings or lispnyc meetups; each one
+starts with a presentation by one of the members on some mathematical
+topic of interest, followed by a discussion of that topic which may
+move into other areas deppending on the interest of the attendees.
 *** December 28, meeting to discuss Arxana/HONEY
+*** January 25, invite people like John Awbrey?
+** 5th Saturday of month --- Big picture strategy!
+*** December 30th, look at plans for the next 3 years for different PlanetMath participants and others
+Invite Charlie, Charlotte, Helene?
 * Linear schedule
 ** November
 *** Initial docs import and new blurb for front page
 *** First half of CiviCRM (set up email, payment methods, and so forth)
-*** Get blog systems working
+*** Get blog systems working: at least design and pseudocode level, probably finish it
+*** Top Tickets
+***** 
 ** December
 *** Graphs research and development
 *** Finish working with CiviCRM and launch it
 *** One more book, work on course material (e.g. Hardy's book and our math textbook)
-**** Top Tickets
+*** Top Tickets
 ***** 
 ** January
 *** Likely: Run a first class
 *** Somewhat less likely: Work on the wikimedia grant
 *** Advisory board meeting for January
-**** Top Tickets
+*** Top Tickets
 ***** 
 ** February
 *** Grant follow up stuff
-**** Top Tickets
+*** Top Tickets
 ***** 
 ** March
 *** With money: this may make it very clear (e.g. Wikipedia stuff) 
 *** And without much money: reconsider our strategy based on data
+*** Top Tickets
+***** 
 * Relatively current discussions and activities - to act on and complete sometime this autumn
 ** Exports for BABAR
 This is a reminder to please provide dumps of attached entries and keywords.  Don't worry about the format, just use whatever is most convenient since I will massage it into the proper format for uptake into BABAR and tidy it up.
@@ -264,6 +274,11 @@ https://github.com/holtzermann17/planetmath-docs/wiki/Business-Models
 Joe can be working on hooking up the CivicRM software
 
 ** Funding institutions to follow up with
+*** General ideas
+We can be a center for the development of online tools, we've proven
+our ability to develop things without much funding.  We can do things
+that need to be done for math online, peer learning, social computing
+-- without being too entrenched.
 *** Wikimedia Foundation
 http://www.wikimedia.org/
 we've proposed a version of the Books preview here
