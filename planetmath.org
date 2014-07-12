@@ -1,12 +1,10 @@
 # Org mode outline of PlanetMath Activities   -*- mode: Org; -*-
-#+TODO: LOW MEDIUM HIGH TODO | DONE 
+#+TODO: LOW MEDIUM HIGH TODO | DONE WONTFIX
 * Overview (to sort, current conversations)
 ** Top priorities for programming
-*** TODO [#A] Produce some downloadable snapshots of the content on a regular basis
+*** HIGH Produce some downloadable snapshots of the content on a regular basis
     SCHEDULED: <2013-11-09 Sat>
 Send to Murray
-*** TODO [#A] Front page improvements to follow up with Ray and Murray
-    SCHEDULED: <2013-11-09 Sat>
 *** HIGH MSC Browser cache
 ** Finish the first demo books
 ** Collections of Topic Articles
@@ -133,23 +131,12 @@ and raise concerns and suggestions,
 
 a chance to get together and discuss the codebase
 of planetary, nnexus, and friends.
-**** TODO what are the top 52 tickets (buy a deck of cards or use arxana for that)?
 *** October 12, planned the slice/dice/upload system to work this week
 ** 3rd Saturday of month --- Business meeting
 Like today, a structured meeting with an agenda to set the course of
 the organization for the upcoming month, review progress, and handle
 any issues which arise.  we could have every third such meeting
 automatically be the quarterly board meeting.
-**** TODO [#a] advisory board note and nuffield foundation overture :outreach:
-
-     scheduled: <2013-10-19 sat>
-**** DONE [#a] report back on org mode, schedule board mtg              :org:
-     closed: [2013-11-11 mon 00:55] scheduled: <2013-10-19 sat>
-     - closing note [2013-11-11 mon 00:55] \\
-       the standard board meeting is scheduled.  we'll need to schedule the
-       advisory board meeting as well but that can be handled separately.
-       org mode seems to be working well, and i hope i can use it with other
-       projects!
 **** medium update the planetmath "linear schedule" as the frame shifts forward
 ** 4th Saturday of month --- Math meeting
 
@@ -212,7 +199,7 @@ some sort of a site relaunch sometime in October.
 *** Books (HOTT and PG)
 *** Course
 *** Technical issues
-**** TODO Assigning collections to another author :feature:
+**** HIGH Assigning collections to another author                   :feature:
 There is a "work around" (the feature works, but only works for admin
 users).
 *** Personally contact past collaborators and top users.
@@ -307,8 +294,7 @@ The contact person is Kim Woodruff, kwoodruff@nuffieldfoundation.org
 
 Their address is: Nuffield Foundation, 28 Bedford Square, London, WC1B
 3JS (near the Goodge Street tube stop)
-**** HIGH Make an appointment with Kim Woodruff
-
+**** MEDIUM Make an appointment with Kim Woodruff of the Nuffield Foundation
 *** Simons Foundation
 https://www.simonsfoundation.org/
 *** European Union
